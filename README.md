@@ -64,11 +64,11 @@ Niwelacja działania znaków specjalnych poprzez znak \\ - działa na: \\ \` * _
 > Cytaty blokowe można zagnieżdżać ...
 >> ... używając dodatkowych znaków większości bezpośrednio obok siebie ...
 > > > ... lub ze spacjami między strzałkami, ... <br>   
->>> a także łamać wiersza trzema spacjami lub znacznikiem "br", ...
+>>> ... a także łamać wiersza trzema spacjami lub znacznikiem "br", ...
 >>
->> żeby opuścić zagnieżdżenie należy użyć tej samej ilości znaków większości + Enter ... 
+>> ... żeby opuścić zagnieżdżenie należy użyć tej samej ilości znaków większości + Enter ... 
 > 
-> dziwne co nie.
+> ... dziwne co nie.
 
 
 ## Listy
@@ -177,7 +177,7 @@ Link z automatyczną konwersią -> https://github.com/nodeca/pica
 [id]: https://picsum.photos/seed/picsum/150  "Tekst tytułu!"
 
 
-## Przypisy Obsidian
+## Przypisy w Obsidian
 
 Przypis 1 link[^1].
 
