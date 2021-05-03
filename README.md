@@ -3,14 +3,9 @@
 ---
 
 # Markdown / Obsidian - składnia
-
 ^08d127
-
 ___
 ## Nagłówki
-
-^28faf9
-
 # h1 Nagłówek
 ## h2 Nagłówek
 ### h3 Nagłówek
