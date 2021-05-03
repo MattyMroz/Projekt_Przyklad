@@ -1,114 +1,133 @@
-# Projekt_Przyklad
-Przykładowy projekt od nauki
 ---
-__Reklama :)__
-
-- __ [pica] (https://nodeca.github.io/pica/demo/) __ - wysoka jakość i szybki obraz
-  zmienić rozmiar w przeglądarce.
-- __ [babelfish] (https://github.com/nodeca/babelfish/) __ - przyjazny dla programistów
-  i18n z obsługą liczby mnogiej i prostą składnią.
-
-Spodoba ci się te projekty!
-
+	METADANA niewidoczna część notatki w Obsidian
 ---
 
-# h1 Nagłówek 8-)
+# Markdown składnia
+___
+## Nagłówki
+# h1 Nagłówek
 ## h2 Nagłówek
 ### h3 Nagłówek
 #### h4 Nagłówek
 ##### h5 Nagłówek
 ###### h6 Nagłówek
 
-## Zasady horyzontalne
+h1 Nagłówek
+===============
+h2 Nagłówek
+---------------
 
+
+## Podział - kreska
 ___
-
 ---
-
 ***
 
 
-## Zastępstwa typograficzne
+## Podział wierszy i akapitów
+Wiersz 1 -> Trzy spacje + Enter ->   
+Wiersz 2
 
-Włącz opcję typograficzną, aby zobaczyć wynik.
+Wiersz 1 -> znacznik HTML "br" -> <br>
+Wiersz 2
 
-(c) (C) (r) (R) (tm) (TM) (p) (P) + -
+Akapit 1 -> Enter + Enter ->
 
-test.. test... test..... test?..... test!....
-
-!!!!!! ???? ,, - ---
-
-„Smartypants, podwójne cudzysłowy” i „pojedyncze cudzysłowy”
+Akapit 2
 
 
-## Nacisk
+## Formatowanie
 
-**To jest pogrubiony tekst**
+**Pogrubiony tekst** -> w środku zdania
 
-__To jest pogrubiony tekst__
+__Pogrubiony tekst__
 
-*To jest kursywa*
+*Kursywa*  -> w środku zdania
 
-_To jest kursywa_
+_Kursywa_
+
+***Pogrubiona kursywa*** -> w środku zdania
 
 ~~Przekreślenie~~
+
+==Zaznaczony tekst==
+
+Niwelacja działania znaków specjalnych poprzez znak \\ na znaki: \\ \` * _ {} [] <> () # + - . ! |   
+\- Ze znakiem \\
+- Bez znaku \\
+
+-> Do formatowania można również używać znaczników **HTML**
 
 
 ## Cytaty blokowe
 
-
-> Cytaty blokowe można również zagnieżdżać ...
+> Cytaty blokowe można zagnieżdżać ...
 >> ... używając dodatkowych znaków większości bezpośrednio obok siebie ...
->>> ... lub ze spacjami między strzałkami.
+> > > ... lub ze spacjami między strzałkami, ... <br>   
+>>> a także łamać wiersza trzema spacjami lub znacznikiem "br", ...
+>>
+>> żeby opuścić zagnieżdżenie należy użyć tej samej ilości znaków większości + Enter ... 
+> 
+> dziwne co nie.
 
 
 ## Listy
 
-Niezamówiony
+Utwórz listę nieuporządkowaną, zaczynając linię od `+`, `-` lub` * `
++ plus
+- minus
+* gwiazdka
 
-+ Utwórz listę, zaczynając linię od `+`, `-` lub` * `
-+ Podlisty są tworzone przez wcięcie 2 spacji:
-  - Zmiana znaku markera wymusza początek nowej listy:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Bardzo proste!
+Utwórz listę uporządkowaną, zaczynając linię od 1. 2. 3. 
 
-Zamówione
+1.  Pierwsza pozycja
+2.  Druga pozycja
+3.  Trzecia pozycja
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
+Utwórz listę uporządkowaną, zaczynając linię od 1. 1. 1.
+1.  Pierwsza pozycja
+1.  Druga pozycja
+1.  Trzecia pozycja
+
+Utwórz listę uporządkowaną, zaczynając linię - licząc od 100. 1. 1. 2. 3 itp.
+
+100. foo
+1.  Pierwsza pozycja
+1.  Druga pozycja
+2.  Trzecia pozycja
+
+Utwórz listę zagnieżdżoną -> Enter + Tab
+1.  Pierwsza pozycja
+	-  Podpunkt jeden
+	-  Podpunkt dwa
+2.  Druga pozycja
+	1.  Podpunkt jeden
+	2.  Podpunkt dwa
+
+Rozpoczynanie nieuporządkowanych elementów listy z numerami -> \\
+- 2020\.
+- 2021
 
 
-1. Możesz użyć kolejnych numerów ...
-1. ... lub zachowaj wszystkie liczby jako `1`
+## Bloki kodu
 
-Rozpocznij numerację z przesunięciem:
+Kod nieoznaczony -> `kod`
 
-57. foo
-1. bar
+Kod z wcięciem -> Enter + Tab
 
-
-## Kod
-
-Wbudowany `kod`
-
-Kod z wcięciem
-
-    // Kilka komentarzy
+	Kilka komentarzy
     linia 1 kodu
     linia 2 kodu
     linia 3 kodu
 
 
-Kod blokowy „ogrodzenia”
+Nieoznaczony kod z ogrodzeniem ->  \```kod```
 
 ```
 Przykładowy tekst tutaj...
 ```
 
-Podświetlanie składni
+Podświetlanie składni języka programowania -> \``` nazwa języka -> Enter -> kod -> Enter```
 
 ``` js
 var foo = function (bar) {
@@ -117,6 +136,7 @@ var foo = function (bar) {
 
 console.log (foo (5));
 ```
+
 
 ## Tabele
 
@@ -137,110 +157,38 @@ Kolumny wyrównane do prawej
 
 ## Linki
 
-[tekst linku](http://dev.nodeca.com)
+-> [Tekst linku](http://dev.nodeca.com)
 
-[link z tytułem](http://nodeca.github.io/pica/demo/ "tekst tytułu!")
+-> [Link z tytułem](http://nodeca.github.io/pica/demo/ "Tekst tytułu!")
 
-Łącze z automatyczną konwersją https://github.com/nodeca/pica (włącz linkify, aby zobaczyć)
+Link z automatyczną konwersią -> https://github.com/nodeca/pica
 
 
 ## Obrazy
 
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+| Obraz |Obraz z tytułem | Obraz z linkiem do obrazu i tytułem w przypisie  |Obraz z linkiem wysyłającym do źródła i tytułem|
+| ----- | ----- | ----- | ----- |
 
-Podobnie jak linki, obrazy mają również składnię w stylu przypisów
+![Obraz1](https://picsum.photos/seed/picsum/150)
+![Obraz2](https://picsum.photos/seed/picsum/150 "Tekst tytułu!")
+![Obraz3][id]
+[![Obraz4](https://picsum.photos/seed/picsum/150)](https://www.youtube.com/  "Tekst tytułu!")
 
-![Alt text][id]
-
-Z odniesieniem w dalszej części dokumentu określającego lokalizację adresu URL:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
+[id]: https://picsum.photos/seed/picsum/150  "Tekst tytułu!"
 
 
-## Wtyczki
+## Przypisy Obsidian
 
-Zabójczą cechą programy `markdown-it` jest bardzo skutecznym obsługa
-[wtyczk składniowych](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
+Przypis 1 link[^1].
 
+Przypis 2 link[^2].
 
-### [Emoji](https://github.com/markdown-it/markdown-it-emoji)
-
-> Klasyczne znaczniki:: mrugnięcie:: zgniatanie:: płacz:: łza:: śmiech:: mniam:
->
-> Skróty (emotikony): :-) :-( 8-) ;)
-
-zobacz [jak zmienić wyjście](https://github.com/markdown-it/markdown-it-emoji#change-output) z twemoji.
-
-
-### [Indeks](https://github.com/markdown-it/markdown-it-sub) / [Indeks górny](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Wstawiony tekst++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Zaznaczony tekst==
-
-
-### [Przypisy](https://github.com/markdown-it/markdown-it-footnote)
-
-Przypis 1 link[^first].
-
-Przypis 2 link[^second].
+Powielone odniesienie do przypisu[^2].
 
 Przypis wewnętrzny^[Tekst wbudowanego przypisu] definicja.
 
-Powielone odniesienie do przypisu[^second].
+[^1]: Notka **może mieć znaczniki**
 
-[^first]: Footnote **może mieć znaczniki**
+	i wiele akapitów.
 
-    i wiele akapitów.
-
-[^second]: Tekst przypisu.
-
-
-### [Listy definicji](https://github.com/markdown-it/markdown-it-deflist)
-
-:	Termin 1
-
-	Definicja 1 z leniwą kontynuacją.
-
-Termin 2 ze _znacznikami wbudowanymi_
-
-:	Definicja 2
-
-		{ jakiś kod, część definicji 2 }
-	
-	Trzeci akapit definicji 2
-
-_Kompaktowy styl:_
-
-Termin 1
-
-	~ Definicja 1
-
-Termin 2
-
-	~ Definicja 2a
-	~ Definicja 2b
-
-
-### [Skróty](https://github.com/markdown-it/markdown-it-abbr)
-
-To jest przykład skrótu HTML .
-
-Konwertuje „ HTML ”, ale zachowuje nienaruszone częściowe wpisy, takie jak „xxxHTMLyyy” i tak dalej.
-
-### [Kontenery niestandardowe](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*tu będą smoki*
-:::
+[^2]: Tekst przypisu 2.
