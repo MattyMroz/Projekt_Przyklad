@@ -52,7 +52,7 @@ _Kursywa_
 
 ==Zaznaczony tekst==
 
-Niwelacja działania znaków specjalnych poprzez znak \\ na znaki: \\ \` * _ {} [] <> () # + - . ! |   
+Niwelacja działania znaków specjalnych poprzez znak \\ - działa na: \\ \` * _ {} [] <> () # + - . ! |   
 \- Ze znakiem \\
 - Bez znaku \\
 
