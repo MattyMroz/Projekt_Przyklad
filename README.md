@@ -2,7 +2,7 @@
 	METADANA niewidoczna część notatki w Obsidian
 ---
 
-# Markdown składnia
+# Markdown / Obsidian - składnia
 
 ^08d127
 
