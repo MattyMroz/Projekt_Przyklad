@@ -1,9 +1,9 @@
 // Darmowy program NetBeans
 // https://www.programiz.com/java-programming/keywords-identifiers
 // 1
-class Nazwa_pliku {
+public class Nazwa_pliku  {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        System.out.println("Hello World!");
         // Twój kod
     }
 }
