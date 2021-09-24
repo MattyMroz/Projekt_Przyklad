@@ -108,4 +108,157 @@ int main()
 }
 
 
+// Dziesiętny na szesnastkowy
+
+#include <iostream>
+#include <string>
+ 
+using namespace std;
+int a, r;
+ 
+int main()
+{
+ 
+    cout << "Podaj liczbe w systemie dziesietnym:" << endl;
+    cin >> a;
+    string hex = ""; //do tej zmiennej będziemy zapisywać kolejne znaki
+ 
+    while (a>0)
+    {
+        r = a % 16;
+        a /= 16;
+ 
+        if (r == 10)
+            hex += 'A';
+        else if (r == 11)
+            hex += 'B';
+        else if (r == 12)
+            hex += 'C';
+        else if (r == 13)
+            hex += 'D';
+        else if (r == 14)
+            hex += 'E';
+        else if (r == 15)
+            hex += 'F';
+        else
+            hex += to_string(r); //konwersja zmiennej r z typu int na string
+    }
+ 
+    for (int i = hex.length()-1; i >= 0; i--) //wypisanie kolejno od tyłu zawartości zmiennej hex
+    {
+        cout << hex[i];
+    }
+ 
+    return 0;
+}
+
+
+// System rzymski
+#include <iostream>
+#include <string.h>
+ 
+using namespace std;
+const int N = 13;
+ 
+int main()
+{
+        string rom[N] = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+        int dec[N] = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        int x;
+        string lr = "";
+ 
+        cout << "Podaj dowolna liczbe: " << endl;
+        cin >> x;
+ 
+        for (int i = 0; i < N; i++)
+                while (dec[i] <= x)
+                {
+                        lr += rom[i];
+                        x -= dec[i];
+                }
+ 
+        cout << "W notacji rzymskiej to: " << lr << endl;
+ return 0;
+}
+
+
+
+
+#include <iostream>
+#include <string.h>
+ 
+using namespace std;
+const int N = 13;
+
+int welcome()
+{
+    cout << "Witaj w programie przeliczeniowym!" << endl;
+    cout << "   Wcisnij [...] by:" << endl;
+    cout << "[1] - Przeliczanie z liczby z systemu dziesietnego na rzymski" << endl;
+    cout << "[2] - Przeliczanie z liczby z systemu rzymskiego na dziesietny" << endl;
+    cout << "[Przycisk z klawiatury] - Wyjscie z programu" << endl;
+    cout << "Podaj wybor:" << endl;
+    int x;
+    cin >> x;
+    return x;
+}
+
+void choice(){
+    switch (welcome())
+    {
+    case 1:
+        {
+            dec_to_rom();
+            break;
+        }
+
+    case 2:
+        {
+            rom_to_dec();
+            break;
+        }
+
+    default:
+        cout << "Do widzenia! \n";
+        break;
+    }
+}
+
+
+void dec_to_rom(){
+    string rom[N] = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+    int dec[N] = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+    int x;
+    string lr = "";
+
+    cout << "Podaj dowolna liczbe: " << endl;
+    cin >> x;
+
+    for (int i = 0; i < N; i++)
+            while (dec[i] <= x)
+            {
+                    lr += rom[i];
+                    x -= dec[i];
+            }
+
+    cout << "W notacji rzymskiej to: " << lr << endl;
+}
+
+void rom_to_dec(){
+
+}
+
+
+
+
+
+
+
+
+ 
+int main()
+{
+    choice();
+    return 0;
+}
 
