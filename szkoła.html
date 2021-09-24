@@ -2,58 +2,104 @@
 <html lang="pl">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <style>
-
-  </style>
-  <title>Tytył</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Porjekt_Szkoła</title>
 </head>
 
 <body>
+    <div class="container">
+        <div class="row">
 
-  <div class="container">
-    <div class="row">
-      <header class="col-lg-12">
-        <h1>Column 1</h1>
-        <p>Lorem ipsum dolor..lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, magnam assumenda
-          dicta nesciunt, velit iusto molestias consectetur fuga odio molestiae vero voluptate possimus perferendis
-          atque voluptates sit! Est, similique tempora!</p>
-      </header>
+            <header class="col-12">
+                <h1>1. Witaj świecie!</h1>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem nesciunt tempora, harum voluptas
+                    saepe ullam beatae optio qui soluta magni repudiandae omnis totam. Totam aliquam veniam quaerat
+                    corrupti. Facilis, iure?
+                </p>
+            </header>
 
-      <nav class="col-lg-3">
-        <h3>Column 2</h3>
-        <p>Lorem ipsum dolor.. Lorem, ipsum dolor sit amet consectetur adipisicing Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Tempora eius dolores laboriosam repellat sapiente, perspiciatis repellendus
-          atque sunt officiis fugit unde excepturi quam. Laborum magnam accusantium nemo culpa molestiae delectus.</p>
-      </nav>
+            <div class="row">
 
+                <nav class="col-lg-3 col-md-6 col-12 order-md-1 order-2">
+                    <h3>2.</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam iste ea iusto, tenetur
+                        exercitationem facilis quisquam qui dicta, ex laudantium, itaque eius id molestiae. Sed modi
+                        voluptate in accusamus veritatis?
+                    </p>
+                </nav>
 
+                <div class="col order-md-2 order-1">
+                    <div class="col-12">
+                        <h3>3.</h3>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde in quisquam aut! Error
+                            accusantium laudantium voluptate vero assumenda quia cumque harum minima. Possimus
+                            consequatur quos obcaecati perspiciatis sapiente mollitia vero?
+                        </p>
+                    </div>
 
-      <div class="col-lg-9">
-        <h3>Column 3</h3>
-        <p>Lorem !</p>
-      </div>
+                    <div id="hidden1" class="col-12">
+                        <h3>4.</h3>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde in quisquam aut! Error
+                            accusantium laudantium voluptate vero assumenda quia cumque harum minima. Possimus
+                            consequatur quos obcaecati perspiciatis sapiente mollitia vero?
+                        </p>
+                    </div>
+                </div>
 
+            </div>
 
-      <div class="col-lg-9 offset-3 ">
-        <h3>Column 4</h3>
-        <p>Lorem .</p>
-      </div>
+            <div id="hidden2" class="col-12">
+                <h3>4.</h3>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde in quisquam aut! Error
+                    accusantium laudantium voluptate vero assumenda quia cumque harum minima. Possimus
+                    consequatur quos obcaecati perspiciatis sapiente mollitia vero?
+                </p>
+            </div>
 
+            <footer class="col-lg-12">
+                <h3>5.</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus exercitationem, earum, repellendus
+                    perferendis alias debitis ad blanditiis quia vel inventore laboriosam, minus veniam ducimus. Facilis
+                    ad dolorem suscipit et doloribus.
+                </p>
+            </footer>
 
-
-
-      <footer class="col-lg-12">
-        <h3>Column 5</h3>
-        <p>Lorem !</p>
-      </footer>
+        </div>
     </div>
-  </div>
 
-  <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script type="text/javascript">
+        var idInterwalu;
+
+        function changeOfHideDiv() {
+            idInterwalu = setInterval(assigningHiding, 1);
+        }
+
+        function assigningHiding() {
+            var elem1 = document.getElementById("hidden1");
+            var elem2 = document.getElementById("hidden2");
+            if (window.innerWidth >= 992) {
+                elem1.style.display = "";
+                elem2.style.display = "none";
+
+            } else {
+                elem1.style.display = "none";
+                elem2.style.display = "";
+            }
+        }
+        changeOfHideDiv();
+    </script>
+
 </body>
 
 </html>
