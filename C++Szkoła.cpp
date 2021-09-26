@@ -186,79 +186,214 @@ int main()
 
 #include <iostream>
 #include <string.h>
- 
+#include <conio.h>
 using namespace std;
-const int N = 13;
 
-int welcome()
+struct Roman_numerals
 {
-    cout << "Witaj w programie przeliczeniowym!" << endl;
-    cout << "   Wcisnij [...] by:" << endl;
-    cout << "[1] - Przeliczanie z liczby z systemu dziesietnego na rzymski" << endl;
-    cout << "[2] - Przeliczanie z liczby z systemu rzymskiego na dziesietny" << endl;
-    cout << "[Przycisk z klawiatury] - Wyjscie z programu" << endl;
-    cout << "Podaj wybor:" << endl;
-    int x;
-    cin >> x;
-    return x;
-}
+    char rom;
+    int dec;
+};
 
-void choice(){
-    switch (welcome())
+Roman_numerals Rome[7] =
     {
-    case 1:
-        {
-            dec_to_rom();
-            break;
-        }
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}};
 
-    case 2:
-        {
-            rom_to_dec();
-            break;
-        }
+void welcome();
+void clearBuffer();
 
-    default:
-        cout << "Do widzenia! \n";
-        break;
-    }
-}
+int testCinDecToRom();
+string decToRom(int x);
 
+string testCinRomToDec();
+int rome_to_dec(char x);
+void RomToDec(string x);
 
-void dec_to_rom(){
-    string rom[N] = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
-    int dec[N] = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
-    int x;
-    string lr = "";
-
-    cout << "Podaj dowolna liczbe: " << endl;
-    cin >> x;
-
-    for (int i = 0; i < N; i++)
-            while (dec[i] <= x)
-            {
-                    lr += rom[i];
-                    x -= dec[i];
-            }
-
-    cout << "W notacji rzymskiej to: " << lr << endl;
-}
-
-void rom_to_dec(){
-
-}
-
-
-
-
-
-
-
-
- 
 int main()
 {
-    choice();
+    char choice;
+    for (;;)
+    {
+        welcome();
+        clearBuffer();
+        choice = getch();
+        switch (choice)
+        {
+        case '1':
+        {
+            cout << "1. Z SYSTEMU DZIESIETNEGO NA RZYMSKI" << endl;
+            cout << decToRom(testCinDecToRom());
+            break;
+        }
+
+        case '2':
+        {
+            cout << "2. Z SYSTEMU RZYMSKIEGO NA DZIESIETNY" << endl;
+            RomToDec(testCinRomToDec());
+            break;
+        }
+
+        case '3':
+            exit(0);
+            break;
+
+        default:
+            cout << "Nie ma takiej opcji w menu!";
+        }
+        clearBuffer();
+        getchar();
+        system("cls");
+    }
     return 0;
 }
 
+void welcome()
+{
+    cout << endl;
+    cout << "    MENU GLOWNE" << endl;
+    cout << "-------------------" << endl;
+    cout << "1. Z SYSTEMU DZIESIETNEGO NA RZYMSKI" << endl;
+    cout << "2. Z SYSTEMU RZYMSKIEGO NA DZIESIETNY" << endl;
+    cout << "3. Koniec progromu" << endl;
+    cout << "-------------------" << endl;
+    cout << "Podpowiedz: Nacisnij klawisz odpowiadajacy cyfrom: 1, 2 lub 3." << endl;
+    cout << endl;
+}
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.sync();
+}
+
+int testCinDecToRom()
+{
+    int x;
+    do
+    {
+        cout << "Podaj poprawna liczbe z przedzialu 1 - 3999:" << endl;
+        cin >> x;
+        clearBuffer();
+    } while (x <= 0 || x > 3999);
+
+    return x;
+}
+
+string decToRom(int x)
+{
+    const int N = 13;
+    string rom[N] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    int dec[N] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    string display_rom = "";
+
+    for (int i = 0; i < N; i++)
+        while (dec[i] <= x)
+        {
+            display_rom += rom[i];
+            x -= dec[i];
+        }
+
+    return display_rom;
+}
+
+string testCinRomToDec()
+{
+    struct Roman_wrong_num
+    {
+        string rom_wrong;
+    };
+
+    Roman_wrong_num Rome_wrong[30] = {"IIII", "XXXX", "CCCC", "MMMM",
+                                      "IIV", "IIX", "IL", "IC", "ID", "IM",
+                                      "VX", "VL", "VC", "VD", "VM",
+                                      "XD", "XM",
+                                      "LC", "LD", "LM",
+                                      "DM",
+                                      "VV", "LL", "DD",
+                                      "IVIV", "IXIX", "XLXL", "XCXC", "CDCD", "CMCM"};
+    string x;
+    char var;
+    bool verification1, verification2;
+    do
+    {
+        cout << "Podaj poprawna liczbe rzymska:" << endl;
+        cin >> x;
+
+        verification1 = false;
+        verification2 = false;
+        for (int i = 0; i < 30; i++)
+        {
+            size_t position = x.find(Rome_wrong[i].rom_wrong);
+            if (position != string::npos)
+            {
+                verification1 = true;
+            }
+        }
+        for (int i = 0; i < x.length(); i++)
+        {
+
+            if (x[i] != 'I' &&
+                x[i] != 'V' &&
+                x[i] != 'X' &&
+                x[i] != 'L' &&
+                x[i] != 'C' &&
+                x[i] != 'D' &&
+                x[i] != 'M')
+            {
+                verification2 = true;
+            }
+        }
+    } while (verification1 || verification2);
+
+    return x;
+}
+
+int rome_to_dec(char x)
+{
+    int rom;
+
+    for (int i = 0; i < 7; i++)
+    {
+        if (x == Rome[i].rom)
+        {
+            rom = Rome[i].dec;
+        }
+    }
+    return rom;
+}
+
+void RomToDec(string x)
+{
+    int display_dec = 0;
+    int L = x.length();
+
+    if (L > 1)
+    {
+        int First = rome_to_dec(x[0]), i = 0;
+        while (i < L)
+        {
+            i++;
+            int Second = rome_to_dec(x[i]);
+            if (First < Second)
+            {
+                display_dec -= First;
+            }
+            else
+            {
+                display_dec += First;
+            }
+            First = Second;
+        }
+    }
+    else
+    {
+        display_dec = rome_to_dec(x[0]);
+    }
+    cout << display_dec;
+}
