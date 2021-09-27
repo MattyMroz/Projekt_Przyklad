@@ -183,7 +183,189 @@ int main()
 
 
 
+#include <iostream>
+#include <string.h>
+#include <conio.h>
+using namespace std;
+string ROM;
+int DEC;
+char s[81];
+unsigned int n;
 
+const char *Symbol[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+const unsigned int Value[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+
+void welcome();
+void clearBuffer();
+void testCinDecToRom();
+void testCinRomToDec();
+bool IntToRom(unsigned int n, char *s, int maxLen);
+bool RomToInt(char *s, unsigned int &n);
+
+int main()
+{
+
+    char choice;
+    for (;;)
+    {
+        welcome();
+        clearBuffer();
+        choice = getch();
+        switch (choice)
+        {
+        case '1':
+        {
+            cout << "1. Z SYSTEMU DZIESIETNEGO NA RZYMSKI" << endl;
+
+            do
+            {
+                testCinDecToRom();
+
+                if (IntToRom(n, s, 81) == true)
+                {
+                    cout << ROM << endl;
+                }
+            } while (IntToRom(n, s, 81) == false);
+
+            break;
+        }
+
+        case '2':
+        {
+            cout << "2. Z SYSTEMU RZYMSKIEGO NA DZIESIETNY" << endl;
+
+            do
+            {
+                testCinRomToDec();
+                if (RomToInt(s, n) == true)
+                {
+                    cout << DEC << endl;
+                }
+            } while (RomToInt(s, n) == false);
+
+            break;
+        }
+
+        case '3':
+            exit(0);
+            break;
+
+        default:
+            cout << "Nie ma takiej opcji w menu!";
+        }
+        clearBuffer();
+        getchar();
+        system("cls");
+    }
+    return 0;
+}
+
+void welcome()
+{
+    cout << endl;
+    cout << "    MENU GLOWNE" << endl;
+    cout << "-------------------" << endl;
+    cout << "1. Z SYSTEMU DZIESIETNEGO NA RZYMSKI" << endl;
+    cout << "2. Z SYSTEMU RZYMSKIEGO NA DZIESIETNY" << endl;
+    cout << "3. Koniec progromu" << endl;
+    cout << "-------------------" << endl;
+    cout << "Podpowiedz: Nacisnij klawisz odpowiadajacy cyfrom: 1, 2 lub 3." << endl;
+    cout << endl;
+}
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.sync();
+}
+
+void testCinDecToRom()
+{
+    do
+    {
+        cout << "Podaj poprawna liczbe z przedzialu 1 - 3999:" << endl;
+        cin >> n;
+        clearBuffer();
+    } while (n <= 0 || n > 3999);
+}
+
+void testCinRomToDec()
+{
+    bool ver1, ver2;
+    do
+    {
+        ver1 = false;
+        ver2 = false;
+        cout << "Podaj poprawna liczbe rzymska:" << endl;
+        cin >> s;
+        clearBuffer();
+
+        ROM = s;
+        size_t position = ROM.find("MMMM");
+        if (position != string::npos)
+        {
+            ver1 = true;
+        }
+        for (int i = 0; i < ROM.length(); i++)
+        {
+
+            if (ROM[i] != 'I' &&
+                ROM[i] != 'V' &&
+                ROM[i] != 'X' &&
+                ROM[i] != 'L' &&
+                ROM[i] != 'C' &&
+                ROM[i] != 'D' &&
+                ROM[i] != 'M')
+            {
+                ver2 = true;
+            }
+        }
+    } while (ver1 || ver2);
+}
+
+bool IntToRom(unsigned int n, char *s, int maxLen)
+{
+    *s = '\0';
+    for (int r = 0; n > 0;)
+        if (Value[r] <= n)
+        {
+            if ((maxLen -= (int)strlen(Symbol[r])) < 0)
+                return false;
+            strcat(s, Symbol[r]);
+            n -= Value[r];
+        }
+        else
+            r++;
+    ROM = s;
+    return (n == 0) && (*s != '\0');
+}
+
+bool RomToInt(char *s, unsigned int &n)
+{
+    const int Nast[] = {1, 5, 4, 5, 5, 9, 8, 9, 9, 13, 12, 13, 13};
+    int k = 256;
+    for (int r = n = 0; (r < 13) && (*s != 0); k = (r % 4) ? 1 : 3)
+    {
+        bool b = false;
+        while ((k > 0) && (strncmp(s, Symbol[r], strlen(Symbol[r])) == 0))
+        {
+            n += Value[r];
+            s += strlen(Symbol[r]);
+            b = true;
+            k--;
+        }
+        if (b)
+            r = Nast[r];
+        else
+            r++;
+    }
+    DEC = n;
+    return (n > 0) && (*s == 0);
+}
+
+
+
+//ŹLE	
 #include <iostream>
 #include <string.h>
 #include <conio.h>
@@ -309,14 +491,16 @@ string testCinRomToDec()
         string rom_wrong;
     };
 
-    Roman_wrong_num Rome_wrong[30] = {"IIII", "XXXX", "CCCC", "MMMM",
+    Roman_wrong_num Rome_wrong[40] = {"IIII", "XXXX", "CCCC", "MMMM",
                                       "IIV", "IIX", "IL", "IC", "ID", "IM",
                                       "VX", "VL", "VC", "VD", "VM",
-                                      "XD", "XM",
+                                      "XXL", "XD", "XXC", "XM",
                                       "LC", "LD", "LM",
+                                      "CCD", "CCM",
                                       "DM",
                                       "VV", "LL", "DD",
-                                      "IVIV", "IXIX", "XLXL", "XCXC", "CDCD", "CMCM"};
+                                      "IVIV", "IXIX", "XLXL", "XCXC", "CDCD", "CMCM",
+                                      "IVI", "IXI", "XLX", "XCX", "CDC", "CMC"};
     string x;
     char var;
     bool verification1, verification2;
@@ -327,7 +511,7 @@ string testCinRomToDec()
 
         verification1 = false;
         verification2 = false;
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 40; i++)
         {
             size_t position = x.find(Rome_wrong[i].rom_wrong);
             if (position != string::npos)
