@@ -202,3 +202,37 @@ public class Main {
     }
 }
 
+// Kalkulator
+package main;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int jeden = 0;
+        int dwaw = 0;
+        int co = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Co dzisiaj robimy? Wpisz odpowiedni numer");
+        System.out.println("1. Dodawanie, 2. Odejmowanie, 3. Mnożenie, 4. Dzielenie");
+        co = Integer.parseInt(scan.nextLine());
+        System.out.println("Podaj 1 liczbę");
+        jeden = Integer.parseInt(scan.nextLine());
+        System.out.println("Podaj 2 liczbę");
+        dwaw = Integer.parseInt(scan.nextLine());
+        if (co == 1) {
+            int Wynik = jeden + dwaw;
+            System.out.println(Wynik); }
+        if (co == 2) {
+            int Wynik = jeden - dwaw;
+            System.out.println(Wynik); }
+        if (co == 3) {
+            int Wynik = jeden * dwaw;
+            System.out.println(Wynik); }
+        if (co == 4) {
+            int Wynik = jeden / dwaw;
+            System.out.println(Wynik); }
+    }
+}
