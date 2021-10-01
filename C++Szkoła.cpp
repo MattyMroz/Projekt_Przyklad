@@ -582,26 +582,88 @@ void RomToDec(string x)
     cout << display_dec;
 }
 
+// Sortwanie bąbelkowe 1-4
 #include <iostream>
 using namespace std;
-int a[10] = {2,4,5,1,-9,8,238,1,2,9};
+int a[20] = {2,4,5,1,-9,8,238,1,2,9,6,86,43,5,-79,23,43,5,6,65};
 int main()
 {
-    for(int i=0; i<9;i++)
+    for(int i=0; i<19;i++)
     {
-        for(int j=0; j<9;j++)
+        for(int j=0; j<19;j++)
         {
-            if(a[j]>a[j+1])
+            if(a[j]<a[j+1])
             {
                 swap(a[j],a[j+1]);
             }
         }
 
     }
-    
-    for(int i=0;i<10;i++)
+
+    for(int i=0;i<20;i++)
     {
-        cout << a[i] << endl;
+        cout << a[i] << " ";
     }
     return 0;
 }
+
+
+
+#include <iostream>
+using namespace std;
+int a[10];
+int main()
+{
+
+    for(int i=0; i<10; i++)
+    {
+        cin >> a[i];
+    }
+
+    for(int i=0; i<9;i++)
+    {
+        for(int j=0; j<9;j++)
+        {
+            if(a[j]<a[j+1])
+            {
+                swap(a[j],a[j+1]);
+            }
+        }
+
+    }
+
+    for(int i=0;i<10;i++)
+    {
+        cout << a[i] << " ";
+    }
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+string a[15] = {"a","ab","abc","abce","abcf","abcg","abch","abci","abcj","abcdasdk","abcdasdk","abcdasdk","abcdsdfasdk","abcdsdffsdfsdfsdfsdfsfdasdk","abcdfsfsdfsdasdk"};
+int main()
+{
+
+
+    for(int i=0; i<15; i++)
+    {
+        for(int j=0; j<15; j++)
+        {
+            if(a[j].size() > a[j+1].size())
+            {
+                swap(a[j],a[j+1]);
+            }
+        }
+    }
+
+    for(int i=0;i<15;i++)
+    {
+        cout << a[i] << " ";
+    }
+
+    return 0;
+}
+
+
