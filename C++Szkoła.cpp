@@ -666,4 +666,26 @@ int main()
     return 0;
 }
 
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
 
+int main()
+{
+    string wyrazy[15];
+
+    cout << "Podaj dziesięć wyrazów:\n";
+
+    //BASIA KASIA DARIA ANNA KAMILA
+    for (int i = 0; i < 15; i++)
+        cin >> wyrazy[i];
+
+    sort(wyrazy, wyrazy + 15);
+
+    cout << "Elementy posortowane:\n";
+    for (int i = 0; i < 15; i++)
+        cout << wyrazy[i] << endl;
+
+    return 0;
+}
