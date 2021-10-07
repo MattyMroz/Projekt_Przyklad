@@ -253,9 +253,7 @@ public class Main {
         c = scan.nextInt();
         if ((Math.pow(a,2) + Math.pow(b,2) == Math.pow(c,2)) ||
             (Math.pow(a,2) + Math.pow(c,2) == Math.pow(b,2)) ||
-            (Math.pow(b,2) + Math.pow(c,2) == Math.pow(a,2))
-
-            ) {
+            (Math.pow(b,2) + Math.pow(c,2) == Math.pow(a,2))) {
             System.out.printf("Liczby stanowią trojkę pitagorejska!");
         } else {
             System.out.printf("To nie jest trojka pitagorejska!");
@@ -284,11 +282,13 @@ public class Main {
             System.out.println("4. Dzielenie");
             System.out.printf("Twój wybór to: ");
             choice = scan.nextInt();
+
             if (choice < 1 || choice > 4) {
                 System.out.println("Podaj poprawną wartość!");
                 System.out.println("");
                 continue;
             }
+
             System.out.println("Podaj dwie liczby:");
             System.out.printf("a = ");
             a = scan.nextDouble();
@@ -322,7 +322,6 @@ public class Main {
 
         System.out.printf("Podaj rok: ");
         int rok = scan.nextInt();
-
 
         if (((rok % 4 == 0) && (rok % 100 != 0)) || (rok % 400 == 0)) {
             System.out.println("Rok jest przestępny!");
