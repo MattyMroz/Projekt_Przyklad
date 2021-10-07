@@ -236,3 +236,101 @@ public class Main {
             System.out.println(Wynik); }
     }
 }
+
+// Trójka pitagorejska
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int a, b, c;
+        System.out.printf("Podaj liczbę a: ");
+        a = scan.nextInt();
+        System.out.printf("Podaj liczbę b: ");
+        b = scan.nextInt();
+        System.out.printf("Podaj liczbę c: ");
+        c = scan.nextInt();
+        if ((Math.pow(a,2) + Math.pow(b,2) == Math.pow(c,2)) ||
+            (Math.pow(a,2) + Math.pow(c,2) == Math.pow(b,2)) ||
+            (Math.pow(b,2) + Math.pow(c,2) == Math.pow(a,2))
+
+            ) {
+            System.out.printf("Liczby stanowią trojkę pitagorejska!");
+        } else {
+            System.out.printf("To nie jest trojka pitagorejska!");
+        }
+    }
+}
+
+
+
+// Prosty kalkulator
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int choice = 0;
+        double a, b;
+        boolean test = true;
+
+        while (test){
+            System.out.println("Wybierz co chcesz zrobić:");
+            System.out.println("1. Dodawane");
+            System.out.println("2. Odejmowanie");
+            System.out.println("3. Mnoźenie");
+            System.out.println("4. Dzielenie");
+            System.out.printf("Twój wybór to: ");
+            choice = scan.nextInt();
+            if (choice < 1 || choice > 4) {
+                System.out.println("Podaj poprawną wartość!");
+                System.out.println("");
+                continue;
+            }
+            System.out.println("Podaj dwie liczby:");
+            System.out.printf("a = ");
+            a = scan.nextDouble();
+            System.out.printf("b = ");
+            b = scan.nextDouble();
+
+            if (choice == 1) {
+                System.out.println(a + b);
+                break;
+            } else if (choice == 2) {
+                System.out.println(a - b);
+                break;
+            } else if (choice == 3) {
+                System.out.println(a * b);
+                break;
+            } else {
+                System.out.println(a / b);
+                break;
+            }
+        }
+    }
+}
+
+
+// Sprawdzanie czy rok jest przestępny
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.printf("Podaj rok: ");
+        int rok = scan.nextInt();
+
+
+        if (((rok % 4 == 0) && (rok % 100 != 0)) || (rok % 400 == 0)) {
+            System.out.println("Rok jest przestępny!");
+        } else {
+            System.out.println("Rok nie jest przestępny!");
+        }
+    }
+}
+
+
+
