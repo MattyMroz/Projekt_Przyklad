@@ -845,3 +845,58 @@ int main()
     system("pause");
     return 0;
 }
+
+
+// Sortowanie przez selekcję według długości string
+#include <iostream>
+using namespace std;
+
+void selection_sort(string tab[], int n)
+{
+    int mn_index;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        mn_index = i;
+        for (int j = i + 1; j < n; j++)
+            if (tab[j].size() < tab[mn_index].size())
+                mn_index = j;
+
+        swap(tab[i], tab[mn_index]);
+    }
+}
+
+int main()
+{
+    int n;
+    string *tab;
+
+    cout << "Podaj wielkość zbioru: ";
+    cin >> n;
+
+    tab = new string[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Podaj " << i + 1 << " element: ";
+        cin >> tab[i];
+    }
+
+    cout << "Elementy przed sortowaniem:\n";
+    for (int i = 0; i < n; i++)
+        cout << tab[i] << " ";
+
+    selection_sort(tab, n);
+
+    cout << "\nElementy posortowaniem:\n";
+    for (int i = 0; i < n; i++)
+        cout << tab[i] << " ";
+
+    cout << endl;
+    system("pause");
+    return 0;
+}
+
+
+
+
