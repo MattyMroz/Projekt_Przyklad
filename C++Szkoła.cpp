@@ -795,3 +795,53 @@ int main()
 }
 
 
+
+// Sortowanie przez selekcję
+#include <iostream>
+using namespace std;
+
+void selection_sort(int tab[], int n) //n - ilość elementów do posortowania
+{
+    int mn_index; //zmienna pomocnicza przechowująca indeks komórki
+                  //z minimalną wartością
+    for (int i = 0; i < n - 1; i++)
+    {
+        mn_index = i;
+        for (int j = i + 1; j < n; j++) //pętla wyszukuje najmniejszy element w podzbiorze nieposortowanym
+            if (tab[j] < tab[mn_index])
+                mn_index = j;
+
+        //zamiana elementu najmniejszego w podzbiorze z pierwszą pozycją nieposortowaną
+        swap(tab[i], tab[mn_index]);
+    }
+}
+
+int main()
+{
+    int *tab, n;
+
+    cout << "Podaj wielkość zbioru: ";
+    cin >> n;
+
+    tab = new int[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Podaj " << i + 1 << " element: ";
+        cin >> tab[i];
+    }
+
+    cout << "Elementy przed sortowaniem:\n";
+    for (int i = 0; i < n; i++)
+        cout << tab[i] << " ";
+
+    selection_sort(tab, n); //sortowanie przez selekcję
+
+    cout << "\nElementy posortowaniem:\n";
+    for (int i = 0; i < n; i++)
+        cout << tab[i] << " ";
+
+    cout << endl;
+    system("pause");
+    return 0;
+}
