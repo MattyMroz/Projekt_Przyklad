@@ -333,3 +333,386 @@ public class Main {
 
 
 
+
+
+
+
+// Odczyt i zapis do pliku projekt
+// 1
+// Szablon
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main  {
+    public static void main(String[] args) {
+        try{
+            //zapis
+            PrintWriter zapis = new PrintWriter("dane.txt");
+            zapis.println("admin;login;haslo");
+            zapis.println("user;aaa;aaa");
+            zapis.close();
+
+            //odczyt
+            File plik = new File("dane.txt");
+            Scanner in = new Scanner(plik);
+            String zdanie;
+            while(in.hasNext()){
+                zdanie = in.nextLine();
+
+                List<String> tokens = new ArrayList<>();
+                StringTokenizer tokenizer = new StringTokenizer(zdanie, ";");
+                while (tokenizer.hasMoreElements()) {
+                    tokens.add(tokenizer.nextToken());
+                }
+
+                System.out.print("Uprawnienia: ");
+                System.out.println(tokens.get(0));
+                System.out.print("Login: ");
+                System.out.println(tokens.get(1));
+                System.out.print("Haslo: ");
+                System.out.println(tokens.get(2));
+                System.out.println();
+            }
+
+        }catch(FileNotFoundException e){
+
+        }
+    }
+}
+
+
+
+
+// 22222222222222222222222
+// Zadanie 1
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main2 {
+    public static void main(String[] args) {
+        try {
+            // zapis
+            PrintWriter zapis = new PrintWriter("dane1.txt");
+            zapis.println("admin;admin;haslo_poprawne");
+            zapis.println("admin;admin_niepoprawny;haslo_poprawne");
+            zapis.println("admin;admin;haslo_niepoprawne");
+
+            zapis.println("user;admin;haslo_poprawne");
+            zapis.println("user;user_niepoprawny;haslo_poprawne");
+            zapis.println("user;admin;haslo_niepoprawne");
+            zapis.close();
+
+            // odczyt
+            File plik = new File("dane1.txt");
+            Scanner in = new Scanner(plik);
+            String zdanie;
+            while (in.hasNext()) {
+                zdanie = in.nextLine();
+
+                List<String> tokens = new ArrayList<>();
+                StringTokenizer tokenizer = new StringTokenizer(zdanie, ";");
+                while (tokenizer.hasMoreElements()) {
+                    tokens.add(tokenizer.nextToken());
+                }
+                System.out.println();
+                System.out.print("Uprawnienia: ");
+                System.out.println(tokens.get(0));
+                // Zad1 Po uruchomieniu program ten przyzna dostęp wyłącznie użytkownikowi o
+                // nazwie admin, który dysponuje właściwym hasłem
+                // uznałem że nazwa (admin) = login, a nie uprawnienia
+                System.out.print("Login: ");
+                if (tokens.get(1).equals("admin")) {
+                    System.out.println(tokens.get(1));
+                } else {
+                    System.out.println("Niepoprawny login");
+                    continue;
+                }
+
+                System.out.print("Haslo: ");
+                if (tokens.get(2).equals("haslo_poprawne")) {
+                    System.out.println(tokens.get(2));
+                } else {
+                    System.out.println("Niepoprawne haslo");
+                    continue;
+                }
+                System.out.println("Poprawnie zalogowano!");
+                System.out.println();
+
+            }
+
+        } catch (FileNotFoundException e) {
+
+        }
+    }
+}
+
+
+// 333333333333333333
+// Połączenie zadań 2 i 3
+// Razem tworzą lepszą funkcjonalność i spełniają wszystkie warunki owych zadań
+// Funkcje zrobione są amatorsko można by je bardziej porozdzielać, by zapobiegać redundancji kodu
+// Taki kod zroniony w pare godzin, wynik twórczego działania ;)
+import java.io.File;
+// import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+// import java.io.Writer;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+public class Main3 {
+
+    public static boolean sign_in_admin(String login_admin, String haslo_admin) {
+        int n = 0;
+        try {
+            // Ddczyt pliku
+            File plik = new File("dane2.txt");
+            Scanner in = new Scanner(plik);
+            String zdanie;
+            while (in.hasNext()) {
+                zdanie = in.nextLine();
+
+                List<String> tokens = new ArrayList<>();
+                StringTokenizer tokenizer = new StringTokenizer(zdanie, ";");
+                while (tokenizer.hasMoreElements()) {
+                    tokens.add(tokenizer.nextToken());
+                }
+                System.out.println();
+
+                if (tokens.get(0).equals("admin") && tokens.get(1).equals(login_admin)
+                        && tokens.get(2).equals(haslo_admin)) {
+                    n = 1;
+                    break;
+                } else {
+                    n = 0;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        if (n == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static int sign_in_all_users(String login, String haslo) {
+        int n = 0;
+        try {
+            // Doczyt pliku
+            File plik = new File("dane2.txt");
+            Scanner in = new Scanner(plik);
+            String zdanie;
+            while (in.hasNext()) {
+                zdanie = in.nextLine();
+
+                List<String> tokens = new ArrayList<>();
+                StringTokenizer tokenizer = new StringTokenizer(zdanie, ";");
+                while (tokenizer.hasMoreElements()) {
+                    tokens.add(tokenizer.nextToken());
+                }
+                System.out.println();
+
+                if (tokens.get(0).equals("admin") && tokens.get(1).equals(login) && tokens.get(2).equals(haslo)) {
+                    n = 1;
+                    break;
+                } else if (tokens.get(0).equals("user") && tokens.get(1).equals(login) && tokens.get(2).equals(haslo)) {
+                    n = 2;
+                } else {
+                    n = 3;
+                }
+
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        if (n == 1) {
+            return 1;
+        } else if (n == 2) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
+    public static void main(String[] args) {
+        char x;
+        String y, user_admin, login, haslo;
+        Scanner scan = new Scanner(System.in);
+
+        while (true) {
+
+            System.out.println("    MENU GLOWNE");
+            System.out.println("-------------------");
+            System.out.println("1. REJESTRACJA UZYTKOWNIKOW - TYLKO ADMIN");
+            System.out.println("2. LOGOWANIE");
+            System.out.println("3. Koniec progromu");
+            System.out.println("------------------");
+            System.out.println("Podpowiedz: Nacisnij klawisz odpowiadajacy cyfrom: 1, 2 lub 3");
+            System.out.println();
+            x = scan.next().charAt(0);
+
+            switch (x) {
+            case '1':
+                scan.nextLine();
+                System.out.println("Tylko Administrator moze dodawac uzytkownikow!");
+                System.out.println("Wpisz haslo do uprawnien administratora!");
+                System.out.println("(JESLI jestes administratoram wpisz: admin)");
+                user_admin = scan.nextLine();
+
+                if (user_admin.equals("admin")) {
+                    System.out.println("Zaloguj sie by dodac uzytkownikow! - Login: admin, Haslo: haslo");
+
+                    System.out.print("Podaj login: ");
+                    login = scan.nextLine();
+                    System.out.print("Podaj haslo: ");
+                    haslo = scan.nextLine();
+
+                    // Gdy plik jest pusty dodaje użytkownika admin;admin;haslo
+                    try {
+                        File plik = new File("dane2.txt");
+                        BufferedWriter zapis = new BufferedWriter(new FileWriter(plik, true));
+                        if (plik.length() == 0) {
+                            zapis.append("admin;admin;haslo");
+                        }
+                        zapis.close();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    // Rejestracja użytkowników przez administratora
+                    if (sign_in_admin(login, haslo) == true) {
+                        try {
+                            // Rejestracja
+                            System.out.println("Chcesz stworzyc:");
+                            System.out.println("1 - Administratora");
+                            System.out.println("2 - Urzytkownika");
+                            int x1 = scan.nextInt();
+                            scan.nextLine();
+
+                            int n = 0;
+                            boolean user_is = true;
+                            while (n < 2) {
+                                user_is = true;
+
+                                File plik = new File("dane2.txt");
+                                Scanner in = new Scanner(plik);
+
+                                System.out.print("Podaj login nowego uzytkownika: ");
+                                login = scan.nextLine();
+                                System.out.print("Podaj haslo nowego uzytkownika: ");
+                                haslo = scan.nextLine();
+
+                                // Odczyt pliku
+                                String zdanie;
+                                while (in.hasNext()) {
+                                    zdanie = in.nextLine();
+
+                                    List<String> tokens = new ArrayList<>();
+                                    StringTokenizer tokenizer = new StringTokenizer(zdanie, ";");
+                                    while (tokenizer.hasMoreElements()) {
+                                        tokens.add(tokenizer.nextToken());
+                                    }
+                                    System.out.println();
+
+                                    if (tokens.get(0).equals("admin") && tokens.get(1).equals(login)
+                                            || tokens.get(0).equals("user") && tokens.get(1).equals(login)) {
+                                        System.out.println("Istnieje juz uzytkownik o podanym loginie!");
+                                        user_is = false;
+                                        break;
+                                    }
+
+                                }
+
+                                BufferedWriter zapis = new BufferedWriter(new FileWriter(plik, true));
+                                if (x1 == 1 && user_is == true) {
+                                    n++;
+                                    zapis.append("\nadmin;" + login + ";" + haslo);
+                                } else if (x1 == 2 && user_is == true) {
+                                    n++;
+                                    zapis.append("\nuser;" + login + ";" + haslo);
+                                } else {
+                                    System.out.println("Powodzenia za nastepnym razem!");
+                                }
+                                zapis.close();
+                                n++;
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    } else {
+                        System.out.println("Logowanie sie nie powiodlo!");
+                        System.out.println("Sproboj jeszcze raz!");
+                    }
+                } else {
+                    System.out.println("Zegnam!");
+                }
+
+                break;
+            case '2':
+                int m = 0;
+                while (m < 2) {
+                    scan.nextLine();
+                    System.out.print("Podaj login: ");
+                    login = scan.nextLine();
+                    System.out.print("Podaj haslo: ");
+                    haslo = scan.nextLine();
+                    if (sign_in_all_users(login, haslo) == 1) {
+                        System.out.println("Zalogowano poprawnie!");
+                        System.out.println("Uprawnienia: Administrator");
+                        System.out.println("Login: " + login);
+                        System.out.println("Haslo: " + haslo);
+                        m = 2;
+                    } else if (sign_in_all_users(login, haslo) == 2) {
+                        System.out.println("Zalogowano poprawnie!");
+                        System.out.println("Uprawnienia: Uzytkownik");
+                        System.out.println("Login: " + login);
+                        System.out.println("Haslo: " + haslo);
+                        m = 2;
+                    } else {
+                        System.out.println("Nie zalogowano poprawnie!");
+                        m++;
+                    }
+                }
+
+                break;
+            case '3':
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("Podaj wartosc 1, 2 lub 3!");
+                System.out.println("Wcisnij Enter");
+                System.out.println();
+                scan.nextLine();
+                break;
+            }
+            y = scan.nextLine();
+            System.out.print("\033[H\033[2J");
+        }
+    }
+}
+
+
+
+
+
