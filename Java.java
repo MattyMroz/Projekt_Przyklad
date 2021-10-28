@@ -793,12 +793,12 @@ public class Main1 {
 
 // Zad 3
 import java.util.Scanner;
-
+import static java.lang.Math.*;
 public class Main1 {
 
     public static void main(String[] args) {
         int x;
-        double precyzja = 0, suma = 0;
+        double precyzja = 0, suma = 0, w1 = 0, w2 = 0;
         Scanner scaner = new Scanner(System.in);
 
         System.out.print("x = ");
@@ -807,10 +807,14 @@ public class Main1 {
         precyzja = scaner.nextDouble();
 
 
+        while (abs(w1 - w2)<precyzja)
+        {
+            
+        }
         // cos(x) = 1 − x2/2! + x4/4! − x6/6! + . . .
 
+        abs(x);
 
-        
 
         // dzielnik = 0,0001
         // |wynik1 - wynik2| < dzielnik
