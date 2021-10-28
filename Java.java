@@ -792,3 +792,49 @@ public class Main1 {
 }
 
 // Zad 3
+import java.util.Scanner;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        int x;
+        double precyzja = 0, suma = 0;
+        Scanner scaner = new Scanner(System.in);
+
+        System.out.print("x = ");
+        x = scaner.nextInt();
+        System.out.print("Precyzja = ");
+        precyzja = scaner.nextDouble();
+
+
+        // cos(x) = 1 − x2/2! + x4/4! − x6/6! + . . .
+
+
+        
+
+        // dzielnik = 0,0001
+        // |wynik1 - wynik2| < dzielnik
+
+        // System.exit(0);
+
+
+
+
+
+
+        if (x > 0){
+            int wynik=silnia(x);
+            System.out.println(wynik);
+        }
+
+        System.out.println("cos(x) = ");
+    }
+
+    static int silnia(int n){
+        if(n>1)
+            return n*silnia(n-1);
+        else
+            return 1;
+    }
+
+}
