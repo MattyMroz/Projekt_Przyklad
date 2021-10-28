@@ -736,6 +736,28 @@ public class Main1 {
 
 // Zad 2
 
+import java.util.Scanner;
 
+public class Main1 {
+
+    public static void main(String[] args) {
+        System.out.println("Podaj wielkosc boku trojkata:");
+        int x;
+        Scanner scaner = new Scanner(System.in);
+        x = scaner.nextInt();
+
+        if(x == 0){
+            System.out.println("Silnia 0 = 1!");
+        } else if (x > 0) {
+            int suma = 1;
+            for (int i = 1; i<=x; i++){
+                suma *= i;
+            }
+            System.out.println("Silnia "+ x +" = "+ suma+"!");
+        } else {
+            System.out.println("Blad! Liczba jest ujemna!");
+        }
+    }
+}
 
 
