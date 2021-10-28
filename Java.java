@@ -760,4 +760,35 @@ public class Main1 {
     }
 }
 
+// Zad 2 silnia rekurencyjnie
+import java.util.Scanner;
 
+public class Main1 {
+    
+    public static void main(String[] args) {
+        int n;
+        Scanner klaw=new Scanner(System.in);
+        System.out.print("n = ");
+        n=klaw.nextInt();
+        int wynik = 0;
+        if (n > 0){
+            wynik=silnia(n);
+            System.out.print(n);
+            System.out.print("! = ");
+            System.out.println(wynik);
+        } else {
+            System.out.println("Blad! Liczba jest ujemna!");
+        }
+
+    }
+
+    static int silnia(int n){
+        if(n>1)
+            return n*silnia(n-1);
+        else
+            return 1;
+    }
+
+}
+
+// Zad 3
