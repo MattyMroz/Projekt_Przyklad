@@ -713,6 +713,29 @@ public class Main3 {
 }
 
 
+// Zad 1 Rysowanie przyklejonych trójkątów
+import java.util.Scanner;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        System.out.println("Podaj wielkosc boku trojkata:");
+        int x;
+        Scanner scaner = new Scanner(System.in);
+        x = scaner.nextInt();
+
+        for(int i=x;i>=0;i--){
+            for(int j=i;j>=0;j--)
+                System.out.print(" ");
+            for(int j=i;j<x;j++)
+                System.out.print("##");
+
+        }
+    }
+}
+
+// Zad 2
+
 
 
 
