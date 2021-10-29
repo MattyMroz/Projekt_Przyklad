@@ -930,4 +930,74 @@ int main()
     return 0;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#include <iostream>
+#include<string>
+#include <fstream>
+#include <algorithm>
+using namespace std;
 
+
+void reading()
+{
+    string linia;
+    fstream plik;
+    int count = 0, *array;
+    array = new int[123123];
+
+    plik.open("liczby.txt", ios::in);
+    if(plik.good() == true)
+    {
+        while(!plik.eof())
+        {
+            getline(plik, linia);
+            if(linia != "")
+            {
+                array[count] = stoi(linia);
+                // cout<<array[count] << endl;
+                count++;
+            }
+        }
+        sort(array, array + count);
+        // for(int i = 0; i<count; i++) // wypisuje posortowane
+        // {
+        //     cout<<array[i] << endl;
+        // }
+        plik.close();
+    } else 
+    {
+        cout << "Plik nie istnieje!" << endl;
+    }
+
+}
+
+// void typing(){
+//     fstream plik;
+
+//     plik.open("liczby.txt", ios::out, ios::app);
+//     if(plik.good() == true)
+//     {
+//         for(int i = 0; i<count; i++)
+//         {
+
+//             plik << array[i];
+//         }
+//         plik.close();
+//     } else 
+//     {
+//         cout << "Plik nie istnieje!" << endl;
+//     }
+// }
+
+
+int main()
+{
+
+
+    
+    reading();
+    // typing();
+
+
+    return 0;
+}
