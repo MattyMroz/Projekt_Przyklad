@@ -932,97 +932,180 @@ int main()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Sortuje liczby z pliku liczby.txt i wpisuje je do wyniki1.txt
-#include <iostream>
-#include<string>
-#include <fstream>
+// Unikalne liczby wpisze do wyniki2.txt
+// Zduplikowane liczby wpisze do wyniki2.txt
 #include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <string>
 using namespace std;
 
-int creation_count(int count);
-int reading(int *array);
-void typing(int count, int *array);
+int creation_count(int count);			 // Zczytuje z pliku liczbę wierszy
+int reading(int *array);				 // Wczytuje wiersze, zamienia na int, sortuje, i przekazuje tablice dalej
+void typing(int count, int *array);		 // Posortowane wyniki do w1.txt
+void unique_num(int count, int *array);	 // Liczy unikalne liczby i wpisuje do w2.txt
+void doubled_num(int count, int *array); // Liczy zdublowane liczby i wpisuje do w2.txt
 
 int main()
 {
-    int count = 0;
-    count = creation_count(count);
-    // cout << count << endl;
-    int *array = new int[count];
+	int count = 0;
+	count = creation_count(count);
+	// cout << count << endl;
+	int *array = new int[count];
+	*array = reading(array);
 
-    *array = reading(array);
+	typing(count, array);	  // Zad1
+	unique_num(count, array); // Zad2
 
-    // for(int i = 0; i<count; i++) 
-    // {
-    //     cout<<array[i] << endl;
-    // }
-    
-    typing(count, array);
+	*array = reading(array);
+	doubled_num(count, array); // Zad3
 
+	// for(int i = 0; i<count; i++)
+	// {
+	//     cout<<array[i] << endl;
+	// }
 
-    delete[] array;
-    return 0;
+	delete[] array;
+	return 0;
 }
 
-int creation_count(int count){
+int creation_count(int count)
+{
+	string line;
+	fstream file;
 
-    string line;
-    fstream file;
-
-    file.open("liczby.txt", ios::in);
-    if(file.good() == true)
-    {
-        while(getline(file, line))
-            count++;
-        return count;
-        file.close();
-    } else 
-    {
-        exit(0);
-    }
+	file.open("liczby.txt", ios::in);
+	if (file.good() == true)
+	{
+		while (getline(file, line))
+			count++;
+		file.close();
+	}
+	else
+	{
+		exit(0);
+	}
+	return count;
 }
 
 int reading(int *array)
 {
-    string line;
-    fstream file;
-    int count = 0;
+	string line;
+	fstream file;
+	int count = 0;
 
-    file.open("liczby.txt", ios::in);
-    if(file.good() == true)
-    {
+	file.open("liczby.txt", ios::in);
+	if (file.good() == true)
+	{
+		while (!file.eof())
+		{
+			getline(file, line);
+			if (line != "")
+			{
+				array[count] = stoi(line);
+				count++;
+			}
+		}
+		sort(array, array + count);
 
-        while(!file.eof())
-        {
-            getline(file, line);
-            if(line != "")
-            {
-                array[count] = stoi(line);
-                count++;
-            }
-        }
-        sort(array, array + count);
-
-        return *array;
-        file.close();
-    } else 
-    {
-        exit(0);
-    }
-
+		file.close();
+	}
+	else
+	{
+		exit(0);
+	}
+	return *array;
 }
 
-void typing(int count, int *array){
-    fstream file;
-    file.open("wyniki1.txt", ios::out | ios::app);
-    if(file.good() == true)
-    {
-        for(int i = 0; i < count; i++)
-        {
-            file << array[i] << endl;
-        }
-        file.close();
-    } else 
-    {
-        cout << "Plik nie istnieje!" << endl;
-    }
+void typing(int count, int *array)
+{
+	fstream file;
+	file.open("wyniki1.txt", ios::out | ios::app);
+	if (file.good() == true)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			file << array[i] << endl;
+		}
+		file.close();
+	}
+	else
+	{
+		cout << "Plik nie istnieje!" << endl;
+	}
+}
+
+void unique_num(int count, int *array)
+{
+	fstream file;
+	file.open("wyniki2.txt", ios::out | ios::app);
+	if (file.good() == true)
+	{
+		// Wpisuje do pliku tylko unikalne liczby
+		for (int i = 0; i < count; i++)
+		{
+			for (int j = i + 1; j < count; j++)
+			{
+				if (array[i] == array[j])
+					array[j] = 0;
+			}
+		}
+
+		for (int i = 0; i < count; i++)
+		{
+			if (array[i] != 0)
+				file << array[i] << endl;
+		}
+
+		file.close();
+	}
+	else
+	{
+		cout << "Plik nie istnieje!" << endl;
+	}
+}
+
+void doubled_num(int count, int *array)
+{
+	int *array2 = new int[count];
+	int x = 0;
+	fstream file;
+	file.open("wyniki3.txt", ios::out | ios::app);
+	if (file.good() == true)
+	{
+		// Powtarzejące się liczby wpisuje do nowej tablicy
+		for (int i = 0; i < count; i++)
+		{
+			for (int j = i + 1; j < count; j++)
+			{
+				if (array[i] == array[j])
+				{
+					array2[x] = array[i];
+					x++;
+				}
+			}
+		}
+
+		// Wpisuje do pliku tylko unikalne liczby (z powtarzających się)
+		for (int i = 0; i < x; i++)
+		{
+			for (int j = i + 1; j < x; j++)
+			{
+				if (array2[i] == array2[j])
+					array2[j] = 0;
+			}
+		}
+
+		for (int i = 0; i < x; i++)
+		{
+			if (array2[i] != 0)
+				file << array2[i] << endl;
+		}
+		file.close();
+		delete[] array2;
+	}
+	else
+	{
+		cout << "Plik nie istnieje!" << endl;
+	}
 }
