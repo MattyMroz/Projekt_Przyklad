@@ -841,3 +841,51 @@ public class Main1 {
     }
 
 }
+
+
+
+
+//////////////////// COŚ
+import java.util.Scanner;
+import static java.lang.Math.*;
+
+public class Main2 {
+
+    static int silnia(int n) {
+        if (n > 1)
+            return n * silnia(n - 1);
+        else
+            return 1;
+    }
+    static double potega(double x, int n) {
+        double wynik = 1;
+        for (int i = 0; i < n; i++)
+            wynik *= x;
+        return wynik;
+    }
+
+    public static void main(String[] args) {
+        int n, licznik = 0;
+        double x0, wyraz, wynik = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("x = ");
+        x0 = scanner.nextDouble();
+        System.out.print("Precyzja / Ilosc wyrazow w szeregu = ");
+        n = scanner.nextInt();
+
+        while (licznik <= n){
+            if (licznik % 2 == 0)
+                wyraz = -1;
+            else
+                wyraz = 1;
+            wyraz = wyraz * potega(x0, 2*licznik+1) / silnia(2*licznik+1);
+            wynik += wyraz;
+            licznik++;
+
+        }
+        System.out.printf("cos(x) = " + wynik);
+
+
+    }
+
+}
