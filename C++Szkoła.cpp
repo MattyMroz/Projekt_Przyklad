@@ -931,73 +931,98 @@ int main()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Sortuje liczby z pliku liczby.txt i wpisuje je do wyniki1.txt
 #include <iostream>
 #include<string>
 #include <fstream>
 #include <algorithm>
 using namespace std;
 
+int creation_count(int count);
+int reading(int *array);
+void typing(int count, int *array);
 
-void reading()
+int main()
 {
-    string linia;
-    fstream plik;
-    int count = 0, *array;
-    array = new int[123123];
+    int count = 0;
+    count = creation_count(count);
+    // cout << count << endl;
+    int *array = new int[count];
 
-    plik.open("liczby.txt", ios::in);
-    if(plik.good() == true)
+    *array = reading(array);
+
+    // for(int i = 0; i<count; i++) 
+    // {
+    //     cout<<array[i] << endl;
+    // }
+    
+    typing(count, array);
+
+
+    delete[] array;
+    return 0;
+}
+
+int creation_count(int count){
+
+    string line;
+    fstream file;
+
+    file.open("liczby.txt", ios::in);
+    if(file.good() == true)
     {
-        while(!plik.eof())
+        while(getline(file, line))
+            count++;
+        return count;
+        file.close();
+    } else 
+    {
+        exit(0);
+    }
+}
+
+int reading(int *array)
+{
+    string line;
+    fstream file;
+    int count = 0;
+
+    file.open("liczby.txt", ios::in);
+    if(file.good() == true)
+    {
+
+        while(!file.eof())
         {
-            getline(plik, linia);
-            if(linia != "")
+            getline(file, line);
+            if(line != "")
             {
-                array[count] = stoi(linia);
-                // cout<<array[count] << endl;
+                array[count] = stoi(line);
                 count++;
             }
         }
         sort(array, array + count);
-        // for(int i = 0; i<count; i++) // wypisuje posortowane
-        // {
-        //     cout<<array[i] << endl;
-        // }
-        plik.close();
+
+        return *array;
+        file.close();
     } else 
     {
-        cout << "Plik nie istnieje!" << endl;
+        exit(0);
     }
 
 }
 
-// void typing(){
-//     fstream plik;
-
-//     plik.open("liczby.txt", ios::out, ios::app);
-//     if(plik.good() == true)
-//     {
-//         for(int i = 0; i<count; i++)
-//         {
-
-//             plik << array[i];
-//         }
-//         plik.close();
-//     } else 
-//     {
-//         cout << "Plik nie istnieje!" << endl;
-//     }
-// }
-
-
-int main()
-{
-
-
-    
-    reading();
-    // typing();
-
-
-    return 0;
+void typing(int count, int *array){
+    fstream file;
+    file.open("wyniki1.txt", ios::out | ios::app);
+    if(file.good() == true)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            file << array[i] << endl;
+        }
+        file.close();
+    } else 
+    {
+        cout << "Plik nie istnieje!" << endl;
+    }
 }
