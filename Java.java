@@ -729,31 +729,30 @@ public class Main1 {
                 System.out.print(" ");
             for(int j=i;j<x;j++)
                 System.out.print("##");
-
+            System.out.println("");
         }
     }
 }
 
 // Zad 2
-
 import java.util.Scanner;
 
-public class Main1 {
+public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Podaj wielkosc boku trojkata:");
+        System.out.print("n = ");
         int x;
         Scanner scaner = new Scanner(System.in);
         x = scaner.nextInt();
 
-        if(x == 0){
+        if (x == 0) {
             System.out.println("Silnia 0 = 1!");
         } else if (x > 0) {
             int suma = 1;
-            for (int i = 1; i<=x; i++){
+            for (int i = 1; i <= x; i++) {
                 suma *= i;
             }
-            System.out.println("Silnia "+ x +" = "+ suma+"!");
+            System.out.println(x + "!" + " = " + suma);
         } else {
             System.out.println("Blad! Liczba jest ujemna!");
         }
