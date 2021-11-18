@@ -889,3 +889,86 @@ public class Main2 {
     }
 
 }
+
+
+// Kalkulator systemów liczbowych
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        char x;
+        String bin, dec, hex;
+
+        Scanner s = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("");
+            System.out.println("    MENU GLOWNE");
+            System.out.println("-------------------");
+            System.out.println("1. Z systemu binarnego");
+            System.out.println("2. Z systemu dziesietnego");
+            System.out.println("3. Z systemu heksodecymalnego");
+            System.out.println("4. Koniec progromu");
+            System.out.println("------------------");
+            System.out.println("Podpowiedz: Nacisnij klawisz odpowiadajacy cyfrom: 1, 2, 3 lub 4");
+            System.out.println();
+            x = s.next().charAt(0);
+
+            switch (x) {
+            case '1':
+                System.out.println("1. Z systemu binarnego, podaj liczbe:");
+                // pobranie bin zamiana bin na dec i hex i wyswietlenie bin dec i hex
+                try {
+                    bin = s.next();
+                    dec = Integer.toString(Integer.parseInt(bin, 2));
+                    hex = Integer.toHexString(Integer.parseInt(bin, 2));
+                    System.out.println("Liczba binarna: " + bin);
+                    System.out.println("Liczba dziesietna: " + dec);
+                    System.out.println("Liczba heksodecymalna: " + hex);
+                } catch (Exception e) {
+                    System.out.println("Niepoprawna liczba");
+                }
+                break;
+            case '2':
+                System.out.println("2. Z systemu dziesietnego, podaj liczbe:");
+                // pobranie dec zamiana dec na bin i hex i wyswietlenie bin dec i hex
+                try {
+                    dec = s.next();
+                    bin = Integer.toBinaryString(Integer.parseInt(dec));
+                    hex = Integer.toHexString(Integer.parseInt(dec));
+                    System.out.println("Liczba binarna: " + bin);
+                    System.out.println("Liczba dziesietna: " + dec);
+                    System.out.println("Liczba heksodecymalna: " + hex);
+                } catch (Exception e) {
+                    System.out.println("Niepoprawna liczba");
+                }
+                break;
+            case '3':
+                System.out.println("3. Z systemu heksodecymalnego, podaj liczbe:");
+                // pobranie hex zamiana hex na bin i dec i wyswietlenie bin dec i hex
+                try {
+                    hex = s.next();
+                    bin = Integer.toBinaryString(Integer.parseInt(hex, 16));
+                    dec = Integer.toString(Integer.parseInt(hex, 16));
+                    System.out.println("Liczba binarna: " + bin);
+                    System.out.println("Liczba dziesietna: " + dec);
+                    System.out.println("Liczba heksodecymalna: " + hex);
+                } catch (Exception e) {
+                    System.out.println("Niepoprawna liczba");
+                }
+                break;
+            case '4':
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("Podaj wartosc 1, 2, 3 lub 4!");
+                System.out.println();
+                s.nextLine();
+                break;
+            }
+        }
+    }
+}
+
+
