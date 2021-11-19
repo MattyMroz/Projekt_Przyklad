@@ -1109,3 +1109,118 @@ void doubled_num(int count, int *array)
 		cout << "Plik nie istnieje!" << endl;
 	}
 }
+
+///////////////////////////////////////////////////////////////////////
+// To co powyżej ale z wykorzystaniem vector
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+// funkcja pobiera liczby z pliku liczby.txt, wpisuje je do vektora i wypisuje do wyniki1.txt
+void zad1();
+// funkcja pobiera liczby z pliku liczby.txt, wpisuje je do vektora, znajduje unikalne liczby i wypisuje do wyniki2.txt
+void zad2();
+// funkcja pobiera liczby z pliku liczby.txt, wpisuje je do vektora, znajduje występujące więcej niż jeden raz i wypisuje do wyniki3.txt
+void zad3();
+
+int main()
+{
+    zad1();
+    zad2();
+    zad3();
+    return 0;
+}
+
+void zad1()
+{
+    ifstream plik;
+    plik.open("liczby.txt");
+    vector<int> liczby;
+    int liczba;
+    while (plik >> liczba)
+    {
+        liczby.push_back(liczba);
+    }
+    plik.close();
+    sort(liczby.begin(), liczby.end());
+    ofstream wynik;
+    wynik.open("wyniki1.txt");
+    for (int i = 0; i < liczby.size(); i++)
+    {
+        wynik << liczby[i] << endl;
+    }
+    wynik.close();
+    cout << "Zadanie 1 zrobione" << endl;
+}
+
+void zad2()
+{
+    ifstream plik;
+    plik.open("liczby.txt");
+    vector<int> liczby;
+    int liczba;
+    while (plik >> liczba)
+    {
+        liczby.push_back(liczba);
+    }
+    plik.close();
+    sort(liczby.begin(), liczby.end());
+    vector<int> unikalne;
+    for (int i = 0; i < liczby.size(); i++)
+    {
+        if (i == 0 || liczby[i] != liczby[i - 1])
+        {
+            unikalne.push_back(liczby[i]);
+        }
+    }
+    ofstream wynik;
+    wynik.open("wyniki2.txt");
+    for (int i = 0; i < unikalne.size(); i++)
+    {
+        wynik << unikalne[i] << endl;
+    }
+    wynik.close();
+    cout << "Zadanie 2 zrobione" << endl;
+}
+
+void zad3()
+{
+    ifstream plik;
+    plik.open("liczby.txt");
+    vector<int> liczby;
+    int liczba;
+    while (plik >> liczba)
+    {
+        liczby.push_back(liczba);
+    }
+    plik.close();
+    sort(liczby.begin(), liczby.end());
+    vector<int> wystapienia;
+    for (int i = 0; i < liczby.size(); i++)
+    {
+        if (i == 0 || liczby[i] != liczby[i - 1])
+        {
+            wystapienia.push_back(1);
+        }
+        else
+        {
+            wystapienia[wystapienia.size() - 1]++;
+        }
+    }
+    ofstream wynik;
+    wynik.open("wyniki3.txt");
+    for (int i = 0; i < wystapienia.size(); i++)
+    {
+        if (wystapienia[i] > 1)
+        {
+            wynik << liczby[i] << endl;
+        }
+    }
+    wynik.close();
+    cout << "Zadanie 3 zrobione" << endl;
+}
+
+
+
+
