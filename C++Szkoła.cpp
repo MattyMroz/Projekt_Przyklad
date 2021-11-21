@@ -1224,3 +1224,210 @@ void zad3()
 
 
 
+
+
+// Zadanie maturalne  informatyka-2021-maj-matura-rozszerzona-zad-4
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// zadanie 4.1
+void zadanie4_1(vector<string> &lines)
+{
+    int number = 0;
+    for (int i = 0; i < lines.size(); i++)
+    {
+        if (lines[i][0] == 'D')
+        {
+            number++;
+        }
+        else if (lines[i][0] == 'U')
+        {
+            number--;
+        }
+    }
+    cout << "1) " << number << endl;
+}
+
+// zadanie 4.2
+void zadanie4_2(vector<string> &lines)
+{
+    string aktualny_rodzaj = "";
+    int aktualna_dlugosc = 0;
+    string najdluzszy_rodzaj = "";
+    int najdluzsza_dlugosc = 0;
+    for (int i = 0; i < lines.size(); i++)
+    {
+        string rodzaj = lines[i].substr(0, lines[i].find(" "));
+        if (aktualny_rodzaj == "")
+        {
+            aktualny_rodzaj = rodzaj;
+            aktualna_dlugosc = 1;
+            continue;
+        }
+        if (aktualny_rodzaj == rodzaj)
+        {
+            aktualna_dlugosc++;
+            if (aktualna_dlugosc > najdluzsza_dlugosc)
+            {
+                // ten ciąg jest w tym momencie najdłuższy
+                najdluzsza_dlugosc = aktualna_dlugosc;
+                najdluzszy_rodzaj = rodzaj;
+            }
+        }
+        else
+        {
+            aktualny_rodzaj = rodzaj;
+            aktualna_dlugosc = 1;
+        }
+    }
+    cout << "2) " << najdluzszy_rodzaj << " " << najdluzsza_dlugosc << endl;
+}
+
+// zadanie 4.3
+void zadanie4_3(vector<string> &lines)
+{
+    vector<string> rodzaje;
+
+    for (int i = 0; i < lines.size(); i++)
+    {
+        if (lines[i][0] == 'D')
+        {
+            rodzaje.push_back(lines[i].substr(lines[i].size() - 1, lines[i].size()));
+        }
+    }
+
+    // znajduje najczęściej występujący element w wektorze wypisuje go i ilość wystąpień
+    int max_count = 0;
+    string max_element = "";
+    for (int i = 0; i < rodzaje.size(); i++)
+    {
+        int count = 0;
+        for (int j = 0; j < rodzaje.size(); j++)
+        {
+            if (rodzaje[i] == rodzaje[j])
+            {
+                count++;
+            }
+        }
+        if (count > max_count)
+        {
+            max_count = count;
+            max_element = rodzaje[i];
+        }
+    }
+    cout << "3) " << max_element << " " << max_count << endl;
+}
+
+// zadanie 4.4
+string dopisz(vector<string> &lines, string &s, int i)
+{
+    s += lines[i][lines[i].size() - 1];
+    return s;
+}
+
+void zamien(vector<string> &lines, string &s, int i)
+{
+    s[s.size() - 1] = lines[i][lines[i].size() - 1];
+}
+
+void usun(vector<string> &lines, string &s)
+{
+    s.erase(s.size() - 1);
+}
+
+void przesun(vector<string> &lines, string &s, int i)
+{
+    for (int j = 0; j < s.size(); j++)
+    {
+        if (s[j] == lines[i][lines[i].size() - 1])
+        {
+            if (lines[i][lines[i].size() - 1] == 'Z')
+            {
+                s[j] = 'A';
+                break;
+            }
+
+            s[j] = (lines[i][lines[i].size() - 1]) + 1;
+            break;
+        }
+    }
+}
+
+void zadanie4_4(vector<string> &lines)
+{
+    string s = "";
+    for (int i = 0; i < lines.size(); i++)
+    {
+        if (lines[i][0] == 'D')
+        {
+            dopisz(lines, s, i);
+        }
+        else if (lines[i][0] == 'Z')
+        {
+            zamien(lines, s, i);
+        }
+        else if (lines[i][0] == 'U')
+        {
+            usun(lines, s);
+        }
+        else if (lines[i][0] == 'P')
+        {
+            przesun(lines, s, i);
+        }
+    }
+
+    cout << "4) " << s << endl;
+}
+
+int main()
+{
+
+    ifstream file;
+    // file.open("./DANE_2105/przyklad.txt");
+    file.open("./DANE_2105/instrukcje.txt");
+    vector<string> lines;
+    string line;
+    while (getline(file, line))
+    {
+        lines.push_back(line);
+    }
+    file.close();
+
+    // for (int i = 0; i < lines.size(); i++)
+    // {
+    //     cout << lines[i] << endl;
+    // }
+
+    // Zadanie 4.1
+    zadanie4_1(lines);
+    zadanie4_2(lines);
+    zadanie4_3(lines);
+    zadanie4_4(lines);
+
+    return 0;
+}
+
+// DOPISZ Z
+// DOPISZ U
+// USUN 1
+// DOPISZ L
+// DOPISZ A
+// PRZESUN Z
+// DOPISZ U
+// PRZESUN U
+// ZMIEN M
+// PRZESUN M
+// DOPISZ N
+// USUN 1
+// DOPISZ T
+// DOPISZ U
+// DOPISZ R
+// DOPISZ N
+// PRZESUN H
+// DOPISZ V
+// ZMIEN G
+
+
