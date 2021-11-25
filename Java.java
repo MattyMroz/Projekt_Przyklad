@@ -972,3 +972,94 @@ public class Main {
 }
 
 
+
+///////////////////////////////////////////
+package main;
+
+import java.util.Scanner;
+
+public class main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj liczbe całkowita: ");
+        int liczba = scanner.nextInt();
+        // obliczanie sum
+        int suma = 0, parzyste = 0, p_dzielnik = 0, nieparzyste = 0, np_dzielnik = 0;
+        while (liczba > 0) {
+            suma += liczba % 10;
+            if (liczba % 2 == 0) {
+                parzyste += liczba % 10;
+                p_dzielnik++;
+            } else {
+                nieparzyste += liczba % 10;
+                np_dzielnik++;
+            }
+            liczba /= 10;
+        }
+        // stosunek średniej arytmetycznej cyfr parzystych do średniej arytmetycznej
+        // cyfr nieparzystych
+        System.out.println("Suma cyfr parzystych: " + parzyste);
+        System.out.println("Suma cyfr nieparzystych: " + nieparzyste);
+        System.out.println("Srednia arytmetyczna cyfr parzystych: " + (double) parzyste / p_dzielnik);
+        System.out.println("Srednia arytmetyczna cyfr nieparzystych: " + (double) nieparzyste / np_dzielnik);
+        System.out.println(
+                "Stosunek średniej arytmetycznej cyfr parzystych do średniej arytmetycznej cyfr nieparzystych: "
+                        + (double) parzyste / nieparzyste);
+    }
+}
+
+///////////////////////////////////////
+package main;
+
+import java.util.Scanner;
+
+public class main2 {
+    public static void main(String[] args) {
+        // Napisać program, dla podanej liczby całkowitej wyświetla jej dzielniki.
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj liczbę całkowitą: ");
+        int number = scanner.nextInt();
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+
+//////////////////////////////////////
+
+package main;
+
+import java.security.Principal;
+import java.util.Scanner;
+
+public class main3 {
+    public static void main(String[] args) {
+        // Napisać program, który sprawdza, czy podana liczba całkowita n, n > 1, jest
+        // liczbą pierwszą
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj liczbę: ");
+        int number = scanner.nextInt();
+        int i = 2;
+        if (number > 1) {
+            while (i < number) {
+                if (number % i == 0) {
+                    System.out.println("Liczba nie jest liczbą pierwszą");
+                    break;
+                }
+                i++;
+            }
+            if (i == number) {
+                System.out.println("Liczba jest liczbą pierwszą");
+            }
+        } else {
+            System.out.println("Liczba nie jest liczbą pierwszą");
+        }
+    }
+
+}
+
+
