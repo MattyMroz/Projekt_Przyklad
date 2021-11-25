@@ -1000,6 +1000,7 @@ public class main {
         }
         // stosunek średniej arytmetycznej cyfr parzystych do średniej arytmetycznej
         // cyfr nieparzystych
+        System.out.println("Suma cyfr: " + suma);
         System.out.println("Suma cyfr parzystych: " + parzyste);
         System.out.println("Suma cyfr nieparzystych: " + nieparzyste);
         System.out.println("Srednia arytmetyczna cyfr parzystych: " + (double) parzyste / p_dzielnik);
