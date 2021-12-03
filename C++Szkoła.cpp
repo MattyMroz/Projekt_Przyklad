@@ -1430,4 +1430,48 @@ int main()
 // DOPISZ V
 // ZMIEN G
 
+///////////////////////////////////////////////////////////
+// Rekurencja https://www-users.mat.umk.pl//~sendlew/w12/mata2-rekurencja-slajdy.pdf
+
+#include "iostream"
+using namespace std;
+
+int kwadrat(int n)
+{
+    if (n == 1)
+        return 1;
+    else
+        return kwadrat(n - 1) + 2 * n - 1;
+}
+
+int trojkata(int n)
+{
+    if (n == 1)
+        return 1;
+    else
+    {
+        return n * n - trojkata(n - 1);
+    }
+}
+
+int tetraedralne(int n)
+{
+    if (n == 1)
+        return 1;
+    else
+    {
+        return tetraedralne(n - 1) + (n * (n + 1) / 2);
+    }
+}
+
+main()
+{
+    int n;
+    cout << "Podaj liczbe: ";
+    cin >> n;
+    cout << "Wynik kwadrat: " << kwadrat(n) << endl;
+    cout << "Wynik trojkat: " << trojkata(n) << endl;
+    cout << "Wynik tetraedralne: " << tetraedralne(n);
+}
+
 
