@@ -1433,7 +1433,7 @@ int main()
 ///////////////////////////////////////////////////////////
 // Rekurencja https://www-users.mat.umk.pl//~sendlew/w12/mata2-rekurencja-slajdy.pdf
 
-#include "iostream"
+#include <iostream>
 using namespace std;
 
 int kwadrat(int n)
@@ -1473,5 +1473,3 @@ main()
     cout << "Wynik trojkat: " << trojkata(n) << endl;
     cout << "Wynik tetraedralne: " << tetraedralne(n);
 }
-
-
