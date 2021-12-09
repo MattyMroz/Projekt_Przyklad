@@ -1030,7 +1030,7 @@ public class main2 {
     }
 }
 
-//////////////////////////////////////
+////////////////////////////////////// Silnia
 
 package main;
 
@@ -1062,5 +1062,82 @@ public class main3 {
     }
 
 }
+
+
+//////////////////////////////// NWD
+package main;
+
+import java.util.Scanner;
+
+public class main2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj liczbę");
+        int a = scanner.nextInt();
+        System.out.println("Podaj liczbę");
+        int b = scanner.nextInt();
+
+        while (a != b) {
+            if (a > b) {
+                a = a - b;
+            } else {
+                b = b - a;
+            }
+        }
+        System.out.println("NWD = " + a);
+        scanner.close();
+    }
+}
+
+/////////////////////////////// Fibonaci
+package main;
+
+import java.util.Scanner;
+
+public class main3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj n");
+        int n = scanner.nextInt();
+        if (n < 0) {
+            System.out.println("Nieprawidłowe dane");
+        } else {
+            System.out.println("Wynik iteracyjny: " + fibonacciIter(n));
+            System.out.println("Wynik rekurencyjny: " + fibonacciRec(n));
+        }
+        scanner.close();
+    }
+
+    public static int fibonacciIter(int n) {
+        int a = 0;
+        int b = 1;
+        int c = 0;
+        if (n == 0) {
+            return a;
+        } else if (n == 1) {
+            return b;
+        } else {
+            for (int i = 2; i <= n; i++) {
+                c = a + b;
+                a = b;
+                b = c;
+            }
+            return c;
+        }
+    }
+
+    public static int fibonacciRec(int n) {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else {
+            return fibonacciRec(n - 1) + fibonacciRec(n - 2);
+        }
+    }
+
+}
+
+
 
 
