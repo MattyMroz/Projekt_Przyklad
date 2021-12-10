@@ -1473,3 +1473,39 @@ main()
     cout << "Wynik trojkat: " << trojkata(n) << endl;
     cout << "Wynik tetraedralne: " << tetraedralne(n);
 }
+
+
+// Skracanie ułamków
+#include <iostream>
+using namespace std;
+
+struct wymierna
+{
+    int liczba;
+    int mianownik;
+};
+
+int NWD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return NWD(b, a % b);
+}
+
+int main()
+{
+    wymierna a;
+    int n;
+    cout << "Podaj licznik: ";
+    cin >> a.liczba;
+    cout << "Podaj mianownik: ";
+    cin >> a.mianownik;
+    n = NWD(a.liczba, a.mianownik);
+    a.liczba /= n;
+    a.mianownik /= n;
+    cout << "Ulamek po skruceniu: " << a.liczba << "/" << a.mianownik << endl;
+    return 0;
+}
+
+
+
