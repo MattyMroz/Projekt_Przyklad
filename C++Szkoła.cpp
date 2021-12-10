@@ -1521,10 +1521,10 @@ int NWD(int a, int b)
 int main()
 {
     int n;
-    cout << "Podaj n: ";
+    cout << "Podaj ilosc liczb: n = ";
     cin >> n;
     int a, b;
-    cout << "Podaj a: ";
+    cout << "Podaj pierwsza liczbe: ";
     cin >> a;
     for (int i = 0; i < n - 1; i++)
     {
@@ -1536,5 +1536,3 @@ int main()
     cout << "NWD tych liczb = " << a << endl;
     return 0;
 }
-
-
