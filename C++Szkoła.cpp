@@ -1507,5 +1507,34 @@ int main()
     return 0;
 }
 
+// NWD n liczb dodarnich
+#include <iostream>
+using namespace std;
+
+int NWD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return NWD(b, a % b);
+}
+
+int main()
+{
+    int n;
+    cout << "Podaj n: ";
+    cin >> n;
+    int a, b;
+    cout << "Podaj a: ";
+    cin >> a;
+    for (int i = 0; i < n - 1; i++)
+    {
+        cout << "Podaj kolejna liczbe: ";
+        cin >> b;
+        a = NWD(a, b);
+        // cout << a << " " << endl;
+    }
+    cout << "NWD tych liczb = " << a << endl;
+    return 0;
+}
 
 
