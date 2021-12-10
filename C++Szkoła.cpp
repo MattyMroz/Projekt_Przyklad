@@ -1573,8 +1573,9 @@ int main()
     return 0;
 }
 
-
-/////////////////// Liczy sume 2 ułamkownych liczb i ją skraca
+///////////////////////////////////////////////
+// Liczy sume 2 ułamkownych liczb i ją skraca
+// Liczy iloczyn 2 ułamkownych liczb i ją skraca
 #include <iostream>
 using namespace std;
 
@@ -1627,12 +1628,20 @@ void suma(wymierna &a, wymierna &b, wymierna &c)
     cout << "Suma: " << c.liczba << "/" << c.mianownik << endl;
 }
 
+void mnozenie(wymierna &a, wymierna &b, wymierna &c)
+{
+    c.liczba = a.liczba * b.liczba;
+    c.mianownik = a.mianownik * b.mianownik;
+    cout << "Iloczyn: " << c.liczba << "/" << c.mianownik << endl;
+}
 int main()
 {
     wymierna a, b, c;
     skroc(a);
     skroc(b);
     suma(a, b, c);
+    skroc_ulamek(c);
+    mnozenie(a, b, c);
     skroc_ulamek(c);
 
     return 0;
