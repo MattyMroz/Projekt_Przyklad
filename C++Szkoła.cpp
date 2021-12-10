@@ -1574,5 +1574,68 @@ int main()
 }
 
 
+/////////////////// Liczy sume 2 ułamkownych liczb i ją skraca
+#include <iostream>
+using namespace std;
+
+int NWD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return NWD(b, a % b);
+}
+
+int NWW(int a, int b)
+{
+    return (a * b) / NWD(a, b);
+}
+
+struct wymierna
+{
+    int liczba;
+    int mianownik;
+};
+
+void skroc(wymierna &a)
+{
+    int n;
+    cout << "Podaj licznik: ";
+    cin >> a.liczba;
+    cout << "Podaj mianownik: ";
+    cin >> a.mianownik;
+    n = NWD(a.liczba, a.mianownik);
+    a.liczba /= n;
+    a.mianownik /= n;
+    cout << "Skrocone wymierne: " << a.liczba << "/" << a.mianownik << endl;
+}
+
+void skroc_ulamek(wymierna &a)
+{
+    int n;
+    n = NWD(a.liczba, a.mianownik);
+    a.liczba /= n;
+    a.mianownik /= n;
+    cout << "Skrocone wymierne: " << a.liczba << "/" << a.mianownik << endl;
+}
+
+void suma(wymierna &a, wymierna &b, wymierna &c)
+{
+    int nww = NWW(a.mianownik, b.mianownik);
+    int licznik = (nww / a.mianownik) * a.liczba + (nww / b.mianownik) * b.liczba;
+    c.liczba = licznik;
+    c.mianownik = nww;
+    cout << "Suma: " << c.liczba << "/" << c.mianownik << endl;
+}
+
+int main()
+{
+    wymierna a, b, c;
+    skroc(a);
+    skroc(b);
+    suma(a, b, c);
+    skroc_ulamek(c);
+
+    return 0;
+}
 
 
