@@ -1475,39 +1475,7 @@ main()
 }
 
 
-// Skracanie ułamków
-#include <iostream>
-using namespace std;
-
-struct wymierna
-{
-    int liczba;
-    int mianownik;
-};
-
-int NWD(int a, int b)
-{
-    if (b == 0)
-        return a;
-    return NWD(b, a % b);
-}
-
-int main()
-{
-    wymierna a;
-    int n;
-    cout << "Podaj licznik: ";
-    cin >> a.liczba;
-    cout << "Podaj mianownik: ";
-    cin >> a.mianownik;
-    n = NWD(a.liczba, a.mianownik);
-    a.liczba /= n;
-    a.mianownik /= n;
-    cout << "Ulamek po skruceniu: " << a.liczba << "/" << a.mianownik << endl;
-    return 0;
-}
-
-// NWD n liczb dodarnich
+////////////////////////////// NWD n liczb dodarnich
 #include <iostream>
 using namespace std;
 
@@ -1536,3 +1504,44 @@ int main()
     cout << "NWD tych liczb = " << a << endl;
     return 0;
 }
+
+
+////////////////////////////////////////////////// Skracanie ułamków
+#include <iostream>
+using namespace std;
+
+struct wymierna
+{
+    int liczba;
+    int mianownik;
+};
+
+int NWD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return NWD(b, a % b);
+}
+
+void skroc(wymierna &a)
+{
+    int n;
+    cout << "Podaj licznik: ";
+    cin >> a.liczba;
+    cout << "Podaj mianownik: ";
+    cin >> a.mianownik;
+    n = NWD(a.liczba, a.mianownik);
+    a.liczba /= n;
+    a.mianownik /= n;
+    cout << "Skrocone wymierne: " << a.liczba << "/" << a.mianownik << endl;
+}
+
+int main()
+{
+    wymierna a;
+    skroc(a);
+
+    return 0;
+}
+
+/////////////////////////////
