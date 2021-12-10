@@ -1544,4 +1544,35 @@ int main()
     return 0;
 }
 
-/////////////////////////////
+
+//////////////////////// NWD i NWW dla 2 liczb
+#include <iostream>
+using namespace std;
+
+int NWD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return NWD(b, a % b);
+}
+
+int NWW(int a, int b)
+{
+    return (a * b) / NWD(a, b);
+}
+
+int main()
+{
+    int a, b;
+    cout << "Podaj pierwsza liczbe: ";
+    cin >> a;
+    cout << "Podaj druga liczbe: ";
+    cin >> b;
+    cout << "NWD(" << a << ", " << b << ") = " << NWD(a, b) << endl;
+    cout << "NWW(" << a << ", " << b << ") = " << NWW(a, b) << endl;
+    return 0;
+}
+
+
+
+
