@@ -1646,5 +1646,107 @@ int main()
 
     return 0;
 }
+////////////////////////////// Na ocone liczy ułamek odwrotny wymierny i sprawdza czy jest on poprawny
+#include <iostream>
+using namespace std;
 
+struct wymierna
+{
+    int licznik;
+    int mianownik;
+};
+
+void clearBuffer();
+int NWD(int a, int b);
+void wczytaj(wymierna &a);
+void przypisz(wymierna &a, wymierna &b);
+void skroc(wymierna &a);
+void odwroc(wymierna &a);
+void wypisz(wymierna &a, wymierna &b);
+void sprawdz(wymierna &a, wymierna &b);
+
+int main()
+{
+    wymierna a, b;
+    wczytaj(a);
+    przypisz(a, b);
+    skroc(a);
+    skroc(b);
+    odwroc(a);
+    wypisz(a, b);
+    sprawdz(a, b);
+
+    return 0;
+}
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.sync();
+}
+
+int NWD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return NWD(b, a % b);
+}
+
+void wczytaj(wymierna &a)
+{
+    cout << "\nPodpowiedz: nie mozesz wprowadzic 0, bo nie mozna dzielic przez 0 i odwrotnosc do 0 nie istnieje!" << endl;
+    cout << "Podpowiedz: inne znaki niz liczby calkowite sa ignorowane!" << endl;
+
+    string str_licznik, str_mianownik;
+    do
+    {
+        cout << "Podaj poprawny licznik: ";
+        cin >> str_licznik;
+        clearBuffer();
+        a.licznik = atoi(str_licznik.c_str());
+    } while (a.licznik == 0);
+
+    do
+    {
+        cout << "Podaj poprawny mianownik: ";
+        cin >> str_mianownik;
+        clearBuffer();
+        a.mianownik = atoi(str_mianownik.c_str());
+    } while (a.mianownik == 0);
+}
+
+void przypisz(wymierna &a, wymierna &b)
+{
+    b.licznik = a.licznik;
+    b.mianownik = a.mianownik;
+}
+
+void skroc(wymierna &a)
+{
+    int n;
+    n = NWD(a.licznik, a.mianownik);
+    a.licznik /= n;
+    a.mianownik /= n;
+}
+
+void odwroc(wymierna &a)
+{
+    int b = a.licznik;
+    a.licznik = a.mianownik;
+    a.mianownik = b;
+}
+
+void wypisz(wymierna &a, wymierna &b)
+{
+    cout << "Ulamek wymierny = " << b.licznik << "/" << b.mianownik << endl;
+    cout << "Ulamek odwrotny wymierny = " << a.licznik << "/" << a.mianownik << endl;
+}
+
+void sprawdz(wymierna &a, wymierna &b)
+{
+    if ((a.licznik * b.licznik) / (a.mianownik * b.mianownik) == 1)
+        cout << "Iloczyn = 1" << endl;
+    else
+        cout << "Iloczyn != 1" << endl;
+}
 
