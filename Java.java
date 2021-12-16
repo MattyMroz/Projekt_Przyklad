@@ -1140,4 +1140,108 @@ public class main3 {
 
 
 
+/////////////////////////
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj a:");
+        int a = scanner.nextInt();
+        System.out.println("Podaj b:");
+        int b = scanner.nextInt();
+        System.out.println("Podaj h:");
+        int c = scanner.nextInt();
+        double d = 3.14;
+        pole(a);
+        pole(a, b);
+        pole(a, d);
+        pole(a, b, c);
+        scanner.close();
+    }
+
+    public static void pole(int a) {
+        System.out.println("Pole kwadratu wynosi: " + a * a);
+    }
+
+    public static void pole(int a, int b) {
+        System.out.println("Pole prostokata wynosi: " + a * b);
+    }
+
+    public static void pole(int a, double d) {
+        System.out.println("Pole kola wynosi: " + d * a * a);
+    }
+
+    public static void pole(int a, int b, int c) {
+        System.out.println("Pole trojkata wynosi: " + (a + b + c) / 2);
+    }
+
+}
+//////////////////////////
+import java.util.Scanner;
+
+public class main2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj wyraz:");
+        String wyraz = scanner.nextLine();
+        System.out.println("Podaj prefiks:");
+        String prefiks = scanner.nextLine();
+        startsWith(wyraz, prefiks);
+        System.out.println(startsWith(wyraz, prefiks));
+        System.out.println(startsWith("Alibaba", "Ali"));
+        System.out.println(startsWith("Alibaba", "Alibaba"));
+        System.out.println(startsWith("Kot", "Pies"));
+        scanner.close();
+    }
+
+    public static boolean startsWith(String str1, String str2) {
+        if (str1.length() < str2.length()) {
+            return false;
+        }
+        for (int i = 0; i < str2.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+import java.util.Scanner;
+
+public class main3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // System.out.println("Podaj liczbe:");
+        // String liczba = scanner.nextLine();
+        // System.out.println(strToInt(liczba));
+        System.out.println(strToInt("-12"));
+        System.out.println(strToInt("+12"));
+        System.out.println(strToInt("0001"));
+        System.out.println(strToInt("991-234-23"));
+        System.out.println(strToInt("+zonk"));
+        System.out.println(strToInt(""));
+        System.out.println(strToInt("-12e5"));
+        System.out.println(strToInt("-12e-5"));
+        scanner.close();
+    }
+    // działa z notacją naukową
+
+    public static int strToInt(String liczba) {
+        int wynik = 0;
+        for (int i = 0; i < liczba.length(); i++) {
+            if (liczba.charAt(i) >= '0' && liczba.charAt(i) <= '9') {
+                wynik = wynik * 10 + liczba.charAt(i) - '0';
+
+            } else {
+                return wynik;
+            }
+        }
+        return wynik;
+    }
+
+}
+
+
 
