@@ -1208,9 +1208,10 @@ public class main2 {
     }
 }
 
+//////////
 import java.util.Scanner;
 
-public class main3 {
+public class Main3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         // System.out.println("Podaj liczbe:");
@@ -1224,24 +1225,53 @@ public class main3 {
         System.out.println(strToInt(""));
         System.out.println(strToInt("-12e5"));
         System.out.println(strToInt("-12e-5"));
+        // strToInt("-12") -> -12
+        // strToInt("+12") -> 12
+        // strToInt("0001") -> 1
+        // strToInt("991-234-23") -> 991
+        // strToInt("+zonk") -> 0
+        // strToInt("") -> 0
+        // strToInt("-12e5") -> -1200000
+        // strToInt("-12e-5") -> -12, bo int nie double
+        // jeśli po ciągu oznaczającum liczbe występuje e to znaczy że trzeba pomnożyć
+        // przez 10 do potędi liczby po znaku e i zamienić na inta
+        // jeśli napotka na inne znaki niż 1,2,3,4,5,6,7,8,9,0 to zwraca wynik resulut
         scanner.close();
     }
-    // działa z notacją naukową
 
-    public static int strToInt(String liczba) {
-        int wynik = 0;
-        for (int i = 0; i < liczba.length(); i++) {
-            if (liczba.charAt(i) >= '0' && liczba.charAt(i) <= '9') {
-                wynik = wynik * 10 + liczba.charAt(i) - '0';
+    public static int strToInt(String str) {
+        int result = 0, power = 0;
+        int sign = 1;
+        int i = 0;
 
+        if (str.length() == 0) {
+            return 0;
+        }
+
+        if (str.charAt(0) == '-') {
+            sign = -1;
+            i = 1;
+        } else if (str.charAt(0) == '+') {
+            i = 1;
+        }
+
+        for (; i < str.length(); i++) {
+            if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+                result = result * 10 + (str.charAt(i) - '0');
+            } else if (str.charAt(i) == 'e') {
+                i++;
+                for (; i < str.length(); i++) {
+                    if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+                        power = power * 10 + (str.charAt(i) - '0');
+                    } else {
+                        break;
+                    }
+                }
+                return result * sign * (int) Math.pow(10, power);
             } else {
-                return wynik;
+                return result * sign;
             }
         }
-        return wynik;
+        return result * sign;
     }
-
 }
-
-
-
