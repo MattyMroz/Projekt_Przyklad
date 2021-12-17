@@ -1750,3 +1750,53 @@ void sprawdz(wymierna &a, wymierna &b)
         cout << "Iloczyn != 1" << endl;
 }
 
+/////////////////////////////////
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool isPrimary(int n) // liczby pierwsze
+{
+    if (n < 2) // (n == 1)
+        return false;
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return false;
+    return true;
+}
+
+void divisors(int n) // dzielniki
+{
+    for (int i = 1; i <= n; i++)
+    {
+        if (n % i == 0)
+            cout << i << " ";
+    }
+}
+
+void divisorsPrim(int n) // dzielniki pierwsze
+{
+    for (int i = 1; i <= n; i++)
+    {
+        if (isPrimary(i) && n % i == 0)
+            cout << i << " ";
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Podaj liczbe: ";
+    cin >> n;
+    if (isPrimary(n))
+        cout << "Liczba jest pierwsza" << endl;
+    else
+        cout << "Liczba nie jest pierwsza" << endl;
+
+    cout << "Dzielniki liczby " << n << ": ";
+    divisors(n);
+
+    cout << "\nDzielniki liczby " << n << ", ktore sa liczbami pierwszymi: ";
+    divisorsPrim(n);
+    return 0;
+}
