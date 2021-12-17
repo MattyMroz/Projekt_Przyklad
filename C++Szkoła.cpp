@@ -1800,3 +1800,100 @@ int main()
     divisorsPrim(n);
     return 0;
 }
+
+///////////////////////////////// Zadania z liczbami pierwszymi
+// Skracanie ułamków
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool isPrimary(int n) // liczby pierwsze
+{
+    if (n < 2) // (n == 1)
+        return false;
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return false;
+    return true;
+}
+
+void zda1() // liczby pierwsze <100
+{
+    for (int i = 0; i < 100; i++)
+    {
+        if (isPrimary(i))
+            cout << i << " ";
+    }
+}
+
+void zda2() // 30 pierwszych liczby pierwszych
+{
+    int n = 0;
+    for (int i = 0; i < 1000; i++)
+    {
+        if (isPrimary(i))
+        {
+            cout << i << " ";
+            n++;
+        }
+        if (n < 30)
+            continue;
+        else
+            break;
+    }
+}
+
+void zad3(int n) // dzielniki pierwsze podanej liczby całkowitej dodatniej
+{
+    for (int i = 1; i <= n; i++)
+    {
+        if (isPrimary(i) && n % i == 0)
+            cout << i << " ";
+    }
+}
+
+// Dla każdej liczby pierwszej p w zakresie 0..sqrt(liczba):
+// Jeśli liczba % p == 0 i jednocześnie liczba/p jest liczbą pierwszą to liczba jest półpierwsza.
+bool zad4(int n)
+{
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (isPrimary(i) && n % i == 0 && isPrimary(n / i))
+            return true;
+    }
+    return false;
+}
+
+void zad5(int n) // liczby czynników pierwszych podanej liczby całkowitej dodatniej
+{
+    int j = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if (isPrimary(i) && n % i == 0)
+            j++;
+    }
+    cout << j;
+}
+
+int main()
+{
+    cout << "\n1. Liczby pierwsze < 100: ";
+    zda1();
+    cout << "\n2. 30 pierwszych liczb pierwszych: ";
+    zda2();
+    cout << "\nPodaj liczbe calkowita dodatnia: ";
+    int n;
+    cin >> n;
+    cout << "3. Dzielniki liczby " << n << ", ktore sa liczbami pierwszymi: ";
+    zad3(n);
+
+    if (zad4(n))
+        cout << "\n4. Liczba " << n << " jest polpierwsza";
+    else
+        cout << "\n4. Liczba " << n << " nie jest polpierwsza";
+
+    cout << "\n5. Liczba czynnikow pierwszych liczby " << n << ": ";
+    zad5(n);
+
+    return 0;
+}
