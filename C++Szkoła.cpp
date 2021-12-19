@@ -1801,8 +1801,7 @@ int main()
     return 0;
 }
 
-///////////////////////////////// Zadania z liczbami pierwszymi
-// Skracanie ułamków
+/////////////////////////////////////////////// Zadania z liczbami pierwszymi
 #include <iostream>
 #include <cmath>
 using namespace std;
