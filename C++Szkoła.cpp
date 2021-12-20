@@ -1948,7 +1948,7 @@ void welcome()
     cout << "Program wyswietla wszystkie liczby zaprzyjaznione zawierajace sie w przedziale <1,n>" << endl;
 }
 
-int download()
+int download() // liczba naturalna
 {
     string str;
     int n;
