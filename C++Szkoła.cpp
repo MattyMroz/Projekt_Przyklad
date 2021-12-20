@@ -1995,4 +1995,114 @@ void answer(int n)
         cout << "Nie znaleziono liczb zaprzyjaznionych w przedziale <1, " << n << ">!" << endl;
 }
 
+//////////////////////// Zadanie na 5
+// Program wyswietla czy liczba jest pierwsza, polpierwsza, zlozona, czy doskonala."
+#include <iostream>
+#include <cmath>
+using namespace std;
 
+void clearBuffer();
+void welcome();
+int download();
+bool isPrimary(int n);
+bool isHalfPrimary(int n);
+bool isComposite(int n);
+bool isPerfect(int n);
+void answer(int n);
+
+int main(int argc, char const *argv[])
+{
+
+    welcome();
+    int n = download();
+    answer(n);
+
+    return 0;
+}
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.sync();
+}
+
+void welcome()
+{
+    cout << "Witaj w programie jaka to liczba?" << endl;
+    cout << "Program wyswietla czy liczba jest pierwsza, polpierwsza, zlozona, czy doskonala." << endl;
+}
+
+int download() // liczba całkowita
+{
+    string str;
+    int n;
+    do
+    {
+        cout << "Podaj poprawna liczbe naturalna: ";
+        cin >> str;
+        clearBuffer();
+        n = atoi(str.c_str());
+        if (n == 0 && str[0] == '0')
+            break;
+    } while (n == 0);
+    return n;
+}
+
+bool isPrimary(int n)
+{
+    if (n < 2)
+        return false;
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return false;
+    return true;
+}
+
+bool isHalfPrimary(int n)
+{
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (isPrimary(i) && n % i == 0 && isPrimary(n / i))
+            return true;
+    }
+    return false;
+}
+
+bool isComposite(int n)
+{
+    if (n < 2)
+        return false;
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return true;
+    return false;
+}
+
+bool isPerfect(int n)
+{
+    if (n < 2)
+        return false;
+    int sum = 0;
+    for (int i = 1; i < n; i++)
+        if (n % i == 0)
+            sum += i;
+    if (sum == n)
+        return true;
+    return false;
+}
+
+void answer(int n)
+{
+    cout << "Liczba " << n << endl;
+    if (isPrimary(n))
+        cout << "Jest liczba pierwsza!" << endl;
+    if (isHalfPrimary(n))
+        cout << "Jest liczba polpierwsza!" << endl;
+    if (isComposite(n))
+        cout << "Jest liczba zlozona!" << endl;
+    if (isPerfect(n))
+        cout << "Jest liczba doskonala!" << endl;
+
+    if (isPrimary(n) == false && isHalfPrimary(n) == false && isComposite(n) == false && isPerfect(n) == false)
+        cout << "Nie jest liczba pierwsza, polpierwsza, zlozona i doskonala!" << endl;
+}
