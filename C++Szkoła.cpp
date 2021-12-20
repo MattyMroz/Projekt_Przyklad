@@ -1900,7 +1900,7 @@ int main()
 
 
 ///////////////// ZADANIE NA 6
-// Liczby zaprzyjaźnionew przedziale <1,n>
+// Liczby zaprzyjaźnione w przedziale <1,n>
 // Dla n = 100000 wynik:
 // 220 i 284
 // 1184 i 1210
@@ -1994,4 +1994,5 @@ void answer(int n)
     if (!isExist)
         cout << "Nie znaleziono liczb zaprzyjaznionych w przedziale <1, " << n << ">!" << endl;
 }
+
 
