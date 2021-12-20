@@ -1995,8 +1995,9 @@ void answer(int n)
         cout << "Nie znaleziono liczb zaprzyjaznionych w przedziale <1, " << n << ">!" << endl;
 }
 
-//////////////////////// Zadanie na 5
-// Program wyswietla czy liczba jest pierwsza, polpierwsza, zlozona, czy doskonala."
+
+//////////////////////// ZADANIE NA 5
+// Program wyswietla czy liczba jest pierwsza, polpierwsza, zlozona, czy doskonala.
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -2007,6 +2008,7 @@ int download();
 bool isPrimary(int n);
 bool isHalfPrimary(int n);
 bool isComposite(int n);
+void divisors(int n);
 bool isPerfect(int n);
 void answer(int n);
 
@@ -2078,6 +2080,15 @@ bool isComposite(int n)
     return false;
 }
 
+void divisors(int n)
+{
+    cout << "Dzielniki liczby " << n << " to: ";
+    for (int i = 1; i < n; i++) // <= n - wszystkie dzielniki || < n - dzielniki właściwe
+        if (n % i == 0)
+            cout << i << " ";
+    cout << endl;
+}
+
 bool isPerfect(int n)
 {
     if (n < 2)
@@ -2099,7 +2110,10 @@ void answer(int n)
     if (isHalfPrimary(n))
         cout << "Jest liczba polpierwsza!" << endl;
     if (isComposite(n))
+    {
         cout << "Jest liczba zlozona!" << endl;
+        divisors(n);
+    }
     if (isPerfect(n))
         cout << "Jest liczba doskonala!" << endl;
     if (isPrimary(n) == false && isHalfPrimary(n) == false && isComposite(n) == false && isPerfect(n) == false)
