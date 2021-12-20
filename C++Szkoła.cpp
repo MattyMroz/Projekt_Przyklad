@@ -2102,7 +2102,6 @@ void answer(int n)
         cout << "Jest liczba zlozona!" << endl;
     if (isPerfect(n))
         cout << "Jest liczba doskonala!" << endl;
-
     if (isPrimary(n) == false && isHalfPrimary(n) == false && isComposite(n) == false && isPerfect(n) == false)
         cout << "Nie jest liczba pierwsza, polpierwsza, zlozona i doskonala!" << endl;
 }
