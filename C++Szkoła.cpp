@@ -1896,3 +1896,102 @@ int main()
 
     return 0;
 }
+
+
+
+///////////////// ZADANIE NA 6
+// Liczby zaprzyjaźnionew przedziale <1,n>
+// Dla n = 100000 wynik:
+// 220 i 284
+// 1184 i 1210
+// 2620 i 2924
+// 5020 i 5564
+// 6232 i 6368
+// 10744 i 10856
+// 12285 i 14595
+// 17296 i 18416
+// 63020 i 76084
+// 66928 i 66992
+// 67095 i 71145
+// 69615 i 87633
+// 79750 i 88730
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void clearBuffer();
+void welcome();
+int download();
+int sumDivisors(int n);
+void answer(int n);
+
+int main(int argc, char const *argv[])
+{
+    welcome();
+    int n = download();
+    answer(n);
+    system("pause");
+    return 0;
+}
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.sync();
+}
+
+void welcome()
+{
+    cout << "Witaj w programie liczby zaprzyjaznione!" << endl;
+    cout << "Program wyswietla wszystkie liczby zaprzyjaznione zawierajace sie w przedziale <1,n>" << endl;
+}
+
+int download()
+{
+    string str;
+    int n;
+    do
+    {
+        cout << "Podaj poprawna liczbe naturalna: ";
+        cin >> str;
+        clearBuffer();
+        n = atoi(str.c_str());
+    } while (n <= 0);
+    // int n = 100000;
+    return n;
+}
+
+int sumDivisors(int n)
+{
+    int sum = 1;
+    for (int i = 2; i < n; i++)
+        if (n % i == 0)
+            sum += i;
+    return sum;
+}
+
+void answer(int n)
+{
+    int sum, sum2;
+    bool isExist = false;
+    vector<int> repeating;
+
+    cout << "Szukam liczb zaprzyjaznionych w przedziale <1, " << n << ">:" << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        sum = sumDivisors(i);
+        sum2 = sumDivisors(sum);
+        if (sum2 == i && i != sum <= n)
+            repeating.push_back(sum);
+        if (sum2 == i && i != sum && sum <= n && find(repeating.begin(), repeating.end(), i) == repeating.end())
+        {
+            cout << i << " i " << sum << endl;
+            isExist = true;
+        }
+    }
+    if (!isExist)
+        cout << "Nie znaleziono liczb zaprzyjaznionych w przedziale <1, " << n << ">!" << endl;
+}
+
