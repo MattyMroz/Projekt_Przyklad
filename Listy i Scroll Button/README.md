@@ -1,4 +1,3 @@
-![Obraz1](/img/code.png)
 ```HTML
 <!DOCTYPE html>
 <html lang="pl">
