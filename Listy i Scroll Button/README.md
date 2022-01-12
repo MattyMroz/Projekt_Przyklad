@@ -1,3 +1,4 @@
+# Kopiowanie
 ```HTML
 <!DOCTYPE html>
 <html lang="pl">
@@ -56,7 +57,7 @@
 </html>
 ```
 
-
+# Jak działa
 ```HTML
 <!DOCTYPE html>
 <html lang="pl">
