@@ -1,7 +1,9 @@
+// Przewijanie do danego elementu
 jQuery(function ($) {
     //zresetuj scrolla
     $.scrollTo(0);
 
+    // jeśli klikniesz id="link1" -> animacja przejścia do id="budowacrt"
     $('#link1').click(function () {
         $.scrollTo($('#budowacrt'), 500);
     });
@@ -53,6 +55,8 @@ jQuery(function ($) {
     });
 });
 
+// scroll button
+// jeśli klikniesz button -> animacja przejścia do początku body
 //pokaż podczas przewijania
 $(window).scroll(function () {
     if ($(this).scrollTop() > 300) $('.scrollup').fadeIn();
