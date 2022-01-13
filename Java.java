@@ -1275,3 +1275,107 @@ public class Main3 {
         return result * sign;
     }
 }
+
+
+///////////////////////////////////////// Tablice i random
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class main1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] tablica = new int[10];
+        // losowe liczby
+        Random random = new Random();
+        for (int i = 0; i < tablica.length; i++) {
+            tablica[i] = random.nextInt(20) - 10;
+        }
+        System.out.println(Arrays.toString(tablica));
+        // wyznaczy najmniejszy oraz największy element w tablicy
+        int min = tablica[0];
+        int max = tablica[0];
+        for (int i = 0; i < tablica.length; i++) {
+            if (tablica[i] < min) {
+                min = tablica[i];
+            }
+            if (tablica[i] > max) {
+                max = tablica[i];
+            }
+        }
+        System.out.println("Najmniejszy element tablicy to: " + min);
+        System.out.println("Najwiekszy element tablicy to: " + max);
+
+        // wyznaczy średnią arytmetyczną elementów tablicy
+        int suma = 0;
+        for (int i = 0; i < tablica.length; i++) {
+            suma += tablica[i];
+        }
+        System.out.println("Srednia arytmetyczna tablicy to: " + suma / tablica.length);
+
+        // wyznaczy ile elementów jest mniejszych, ile większych od średniej
+        int licznikmin = 0;
+        int licznikmax = 0;
+        for (int i = 0; i < tablica.length; i++) {
+            if (tablica[i] < suma / tablica.length) {
+                licznikmin++;
+            }
+            if (tablica[i] > suma / tablica.length) {
+                licznikmax++;
+            }
+        }
+
+        System.out.println("Liczba elementow mniejszych od sredniej arytmetycznej to: " + licznikmin);
+        System.out.println("Liczba elementow wiekszych od sredniej arytmetycznej to: " + licznikmax);
+
+        // wypisze na ekranie zawartość tablicy w odwrotnej kolejności, tj. od
+        // ostatniego do pierwszego
+        System.out.print("Tablica odwrotnie: ");
+        for (int i = 0; i < tablica.length; i++) {
+            System.out.print(tablica[tablica.length - 1 - i] + " ");
+        }
+
+        scanner.close();
+    }
+
+}
+
+/////////////////////////////// Tablice i random za pomocą math
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class main2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] tablica = new int[20];
+        // random math
+        for (int i = 0; i < tablica.length; i++) {
+            tablica[i] = (int) (Math.random() * 10);
+        }
+        System.out.println(Arrays.toString(tablica));
+        // random random
+        Random random = new Random();
+        for (int i = 0; i < tablica.length; i++) {
+            tablica[i] = random.nextInt(10);
+        }
+        System.out.println(Arrays.toString(tablica));
+
+        int licznik = 0;
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 0; j < tablica.length; j++) {
+                if (i == tablica[j]) {
+                    licznik++;
+                }
+            }
+            System.out.println(i + " razy " + licznik);
+            licznik = 0;
+
+        }
+
+        scanner.close();
+    }
+
+}
+
+
