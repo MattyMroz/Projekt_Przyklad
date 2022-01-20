@@ -1379,3 +1379,250 @@ public class main2 {
 }
 
 
+
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class main1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] array = new int[1000];
+        // losowe liczby
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000);
+        }
+
+        // sortowanie bąbelkowe
+        System.out.println(Arrays.toString(array));
+        long startTime = System.currentTimeMillis();
+        System.out.println(Arrays.toString(bubbleSort(array)));
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        // sortowanie przez wybór
+        System.out.println(Arrays.toString(array));
+        startTime = System.currentTimeMillis();
+        System.out.println(Arrays.toString(selectionSort(array)));
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        // sortowanie przez wstawianie
+        System.out.println(Arrays.toString(array));
+        startTime = System.currentTimeMillis();
+        System.out.println(Arrays.toString(insertionSort(array)));
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        // sortowanie przez scalanie
+        System.out.println(Arrays.toString(array));
+        startTime = System.currentTimeMillis();
+        // System.out.println(Arrays.toString(mergeSort(array)));
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        // sortowanie szybkie
+        System.out.println(Arrays.toString(array));
+        startTime = System.currentTimeMillis();
+        System.out.println(Arrays.toString(quickSort(array)));
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        scanner.close();
+    }
+
+    public static int[] bubbleSort(int[] array) { // sortowanie bąbelkowe
+        System.out.println("\n Bubble sort");
+        System.out.println("Sortowanie babelkowe");
+        int[] array2 = array.clone();
+        int temp;
+        for (int i = 0; i < array2.length; i++) {
+            for (int j = 0; j < array2.length - i - 1; j++) {
+                if (array2[j] > array2[j + 1]) {
+                    temp = array2[j];
+                    array2[j] = array2[j + 1];
+                    array2[j + 1] = temp;
+                }
+            }
+        }
+
+        return array2;
+    }
+
+    public static int[] selectionSort(int[] array) { // sortowanie przez wybór
+        System.out.println("\n Selection sort");
+        System.out.println("Sortowanie przez wybor");
+        int[] array2 = array.clone();
+
+        int minIndex, temp;
+        for (int i = 0; i < array2.length - 1; i++) {
+            minIndex = i;
+            for (int j = i + 1; j < array2.length; j++) {
+                if (array2[j] < array2[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            temp = array2[i];
+            array2[i] = array2[minIndex];
+            array2[minIndex] = temp;
+        }
+        return array2;
+    }
+
+    public static int[] insertionSort(int[] array) { // sortowanie przez wstawianie
+        System.out.println("\n Insertion sort");
+        System.out.println("Sortowanie przez wstawianie");
+        int[] array2 = array.clone();
+
+        int temp, j;
+        for (int i = 1; i < array2.length; i++) {
+            temp = array2[i];
+            for (j = i - 1; j >= 0 && array2[j] > temp; j--) {
+                array2[j + 1] = array2[j];
+            }
+            array2[j + 1] = temp;
+        }
+        return array2;
+    }
+
+// SORT-SCAL(T, p, r):
+// JEŚLI p < r:
+// q → (p+r)/2
+// SORT-SCAL(T, p, q)
+// SORT-SCAL(T, q+1, r)
+// SCALANIE(T, p, q, r)
+
+    // public static int[] mergeSort(int[] array) { // sortowanie przez scalanie
+    //     System.out.println("\n Merge sort");
+    //     System.out.println("Sortowanie przez scalanie");
+    //     int[] array2 = array.clone();
+    //     int[] array3 = new int[array2.length];
+    //     mergeSort(array2, array3, 0, array2.length - 1);
+    //     return array3;
+    // }
+
+    // public static void mergeSort(int[] array) {
+    //     if (array.length > 1) {
+    //         int middle = array.length / 2;
+    //         int[] left = Arrays.copyOfRange(array, 0, middle);
+    //         int[] right = Arrays.copyOfRange(array, middle, array.length);
+    //         mergeSort(left);
+    //         mergeSort(right);
+    //         merge(array, left, right);
+    //     }
+    // }
+
+    public static int[] quickSort(int[] array) { // sortowanie szybkie
+        System.out.println("Quick sort");
+        System.out.println("Sortowanie szybkie");
+        int[] array2 = array.clone();
+
+        for (int i = 0; i < array2.length; i++) {
+            int pivot = array2[i];
+            int j = i - 1;
+            for (int k = i + 1; k < array2.length; k++) {
+                if (array2[k] < pivot) {
+                    j++;
+                    int temp = array2[j];
+                    array2[j] = array2[k];
+                    array2[k] = temp;
+                }
+            }
+            int temp = array2[j + 1];
+            array2[j + 1] = array2[i];
+            array2[i] = temp;
+
+        }
+        return array2;
+    }
+
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////// sort merge
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class main2 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int[] array = new int[1000];
+        int left = 0;
+        int right = array.length - 1;
+        // losowe liczby
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000);
+        }
+
+        // merge sort
+        System.out.println("\n Merge sort");
+        System.out.println("Sortowanie przez scalanie");
+        System.out.println(Arrays.toString(array));
+        long startTime = System.currentTimeMillis();
+
+        mergeSort(array, left, right);
+        System.out.println(Arrays.toString(array));
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+
+        scanner.close();
+    }
+
+    public static void mergeSort(int[] array, int left, int right) {
+
+        if (left < right) {
+            int middle = (left + right) / 2;
+            mergeSort(array, left, middle);
+            mergeSort(array, middle + 1, right);
+            merge(array, left, middle, right);
+        }
+
+    }
+
+    public static int[] merge(int[] array, int left, int middle, int right) {
+        int[] array2 = array.clone();
+        int[] array3 = new int[array2.length];
+        int i = left, j = middle + 1, k = left;
+        while (i <= middle && j <= right) {
+            if (array2[i] < array2[j]) {
+                array3[k] = array2[i];
+                i++;
+            } else {
+                array3[k] = array2[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= middle) {
+            array3[k] = array2[i];
+            i++;
+            k++;
+        }
+        while (j <= right) {
+            array3[k] = array2[j];
+            j++;
+            k++;
+        }
+        for (int l = left; l <= right; l++) {
+            array[l] = array3[l];
+        }
+        return array;
+    }
+
+}
+
+
+
