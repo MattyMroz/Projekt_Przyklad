@@ -1997,3 +1997,58 @@ public class main1 {
 
 }
 
+
+
+////////////////////////////////////////// Bąbelkowe
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class main2 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int[] array = new int[10];
+
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000);
+        }
+
+        int[] array2 = array.clone();
+        System.out.println("\nTablica nieposortowana:");
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Bubble sort - Sortowanie babelkowe: ");
+        long startTime = System.currentTimeMillis();
+        bubbleSort(array2);
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+
+
+        array2 = array.clone();
+
+
+
+        scanner.close();
+    }
+
+    public static void bubbleSort(int[] array){
+        int temp;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+
+    }
+
+
+}
+
