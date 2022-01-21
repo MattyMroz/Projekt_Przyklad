@@ -2052,3 +2052,87 @@ public class main2 {
 
 }
 
+
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class main2 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int[] array = new int[10];
+
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000);
+        }
+
+        int[] array2 = array.clone();
+        System.out.println("\nTablica nieposortowana:");
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Bubble sort - Sortowanie babelkowe: ");
+        long startTime = System.currentTimeMillis();
+        bubbleSort(array2);
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        array2 = array.clone();
+        System.out.println("\nTablica nieposortowana:");
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Selection sort - Sortowanie przez wybor: ");
+        startTime = System.currentTimeMillis();
+        selectionSort(array2);
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Czas wykonania: " + duration + " ms");
+
+        array2 = array.clone();
+        System.out.println("\nTablica nieposortowana:");
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Insertion sort - Sortowanie przez wstawianie: ");
+        startTime = System.currentTimeMillis();
+        insertionSort(array2);
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        System.out.println(Arrays.toString(array2));
+        System.out.println("Czas wykonania: " + duration + " ms");
+        
+
+        scanner.close();
+    }
+
+    public static void bubbleSort(int[] array) {
+        int temp;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+
+    }
+
+    public static void selectionSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int min = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
+            }
+            int temp = array[i];
+            array[i] = array[min];
+            array[min] = temp;
+        }
+    }
+
+}
+
+
