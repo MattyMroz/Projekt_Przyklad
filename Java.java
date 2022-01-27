@@ -1569,5 +1569,49 @@ public class Main {
 
 }
 
+// Liczby if (tab = względnie pierwsze (NWD)): + else . dla tablicy [n][n]
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int n = 0;
+        while (n <= 0) {
+            System.out.println("Enter the number of elements in the array:");
+            n = scanner.nextInt();
+        }
+
+        boolean[][] array = new boolean[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                // System.out.print(i + " " + j);
+                if (NWD(i + 1, j + 1) == 1) {
+                    array[i][j] = true;
+                } else {
+                    array[i][j] = false;
+                }
+                // System.out.print(array[i][j] + " ");
+                if (array[i][j]) {
+                    System.out.print("+ ");
+                } else {
+                    System.out.print(". ");
+                }
+            }
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+
+    // NWD
+    public static int NWD(int a, int b) {
+        if (b == 0)
+            return a;
+        return NWD(b, a % b);
+    }
+}
+
 
 
