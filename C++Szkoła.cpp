@@ -2119,3 +2119,155 @@ void answer(int n)
     if (isPrimary(n) == false && isHalfPrimary(n) == false && isComposite(n) == false && isPerfect(n) == false)
         cout << "Nie jest liczba pierwsza, polpierwsza, zlozona i doskonala!" << endl;
 }
+
+
+
+///////////////////////////////////// Palindromy
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <vector>
+using namespace std;
+
+void clearBuffer();
+bool Palindrom(string wyraz);  // Takie same litery
+bool Palindrom2(string wyraz); // Niezależnie od wielkości litery
+void YesNo(string wyraz);      // Wywołąnie 2 powyższych funkcji
+void Zdanie(string zdanie);    // Palindrom z zdania - ignoruje spacje
+void WyrazyWZdanieu();         // Czy wszystkie wyrazy w tym zdaniu składają się z tej samej liczby liter oraz czy wszystkie są palindromami. Jeśli tak to wypisz "Tak", jeśli nie to "Nie".
+void LiczbyPalindromiczne();   // Czy wszystkie liczby palindromiczne w zakresie 100..999.
+
+main()
+{
+    string wyraz;
+    cout << "Podaj wyraz: ";
+    cin >> wyraz;
+    YesNo(wyraz);
+
+    clearBuffer();
+
+    string zdanie;
+    cout << "\nPodaj zdanie: ";
+    getline(cin, zdanie);
+    Zdanie(zdanie);
+
+    WyrazyWZdanieu();
+    LiczbyPalindromiczne();
+
+    // wyraz.find("a");
+    // cout << wyraz.find("a") << endl;
+
+    // wyraz.substr(0, 2);
+    // cout << wyraz.substr(0, 2) << endl;
+
+    // wyraz.erase(0, 2);
+    // cout << wyraz << endl;
+
+    return 0;
+}
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.sync();
+}
+
+bool Palindrom(string wyraz) // Takie same litery
+{
+    for (int i = 0; i < wyraz.length() / 2; i++)
+    {
+        if (wyraz[i] != wyraz[wyraz.length() - 1 - i])
+            return false;
+    }
+    return true;
+}
+
+bool Palindrom2(string wyraz) // Niezależnie od wielkości litery
+{
+
+    for (int i = 0; i < wyraz.length() / 2; i++)
+    {
+        if (tolower(wyraz[i]) != tolower(wyraz[wyraz.length() - 1 - i]))
+            return false;
+    }
+    return true;
+}
+
+void YesNo(string wyraz)
+{
+    if (Palindrom(wyraz))
+        cout << "TAK" << endl;
+    else
+        cout << "NIE" << endl;
+
+    if (Palindrom2(wyraz))
+        cout << "TAK" << endl;
+    else
+        cout << "NIE" << endl;
+}
+
+void Zdanie(string zdanie)
+{
+    string wyraz;
+    for (int i = 0; i < zdanie.size(); i++)
+    {
+        if (zdanie[i] == ' ')
+            continue;
+        wyraz += zdanie[i];
+        if (i == zdanie.size() - 1)
+            YesNo(wyraz);
+    }
+}
+
+void WyrazyWZdanieu()
+{
+    int licznik = 0;
+    string zdanie;
+    vector<string> wyrazy;
+    bool ok1 = true, ok2 = true;
+    cout << "\nPodaj zdanie: ";
+    getline(cin, zdanie);
+
+    // Przypisywanie wyrazów do wektora
+    for (int i = 0; i < zdanie.length(); i++)
+    {
+        if (zdanie[i] == ' ')
+        {
+            wyrazy.push_back(zdanie.substr(licznik, i - licznik));
+            licznik = i + 1;
+        }
+    }
+    wyrazy.push_back(zdanie.substr(licznik, zdanie.length() - licznik));
+
+    // Sprawdzanie czy wszystkie wyrazy są palindromami i czy wszystkie wyrazy składają się z tej samej liczby liter
+    for (int i = 0; i < wyrazy.size(); i++)
+    {
+        if (Palindrom2(wyrazy[i]) == false)
+        {
+            ok1 = false;
+            break;
+        }
+        if (wyrazy[0].length() != wyrazy[i].length())
+        {
+            ok2 = false;
+            break;
+        }
+    }
+
+    if (ok1 == true && ok2 == true)
+        cout << "TAK - zdanie sklada sie z palindromow i wszystkie wyrazy maja taka sama dlugosc" << endl;
+    else
+        cout << "NIE - zdanie nie sklada sie z palindromow lub nie wszystkie wyrazy maja taka sama dlugosc" << endl;
+}
+
+void LiczbyPalindromiczne()
+{
+    cout << "\nTrzycyfrowe liczby palindromiczne" << endl;
+    for (int i = 100; i <= 999; i++)
+    {
+        if (Palindrom2(to_string(i)))
+            cout << i << " ";
+    }
+}
+
+
