@@ -1614,4 +1614,66 @@ public class Main {
 }
 
 
+/////////////////////////////////////////////// Emerytura
+import java.util.Scanner;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        emerytura("emerytura.txt");
+
+        scanner.close();
+    }
+
+    public static void emerytura(String nazwaPliku) {
+        File file = new File(nazwaPliku);
+        boolean exists = file.exists();
+        if (exists) {
+            System.out.println("Plik istnieje");
+        } else {
+            System.out.println("Plik nie istnieje");
+        }
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] split = line.split(" ");
+                String imie = split[0];
+                String nazwisko = split[1];
+                String plec = split[2];
+                int wiek = Integer.parseInt(split[3]);
+                int latDoEmerytury = 0;
+                if (plec.equals("M")) {
+                    latDoEmerytury = 65 - wiek;
+                    System.out.println(nazwisko + " " + imie + " " + latDoEmerytury);
+                    // zapisz dane do pliku menzczyzni.txt
+                    FileWriter fileWriter = new FileWriter("mezczyzni.txt", true);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    bufferedWriter.write(nazwisko + " " + imie + " " + latDoEmerytury + "\n");
+                    bufferedWriter.close();
+                } else {
+                    latDoEmerytury = 60 - wiek;
+                    System.out.println(nazwisko + " " + imie + " " + latDoEmerytury);
+                    // zapisz dane do pliku kobiety.txt
+                    FileWriter fileWriter = new FileWriter("kobiety.txt", true);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    bufferedWriter.write(nazwisko + " " + imie + " " + latDoEmerytury + "\n");
+                    bufferedWriter.close();
+                }
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Plik nie istnieje");
+        } catch (IOException ex) {
+            System.out.println("Błąd odczytu");
+        }
+    }
+}
+
+
+
 
