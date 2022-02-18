@@ -2270,4 +2270,189 @@ void LiczbyPalindromiczne()
     }
 }
 
+//////////////// Szyfr cezara
+#include <iostream>
+#include <string>
+using namespace std;
+
+void caesarEncrypt(string text, int kay);
+void caesarDecrypt(string text, int kay);
+
+int main(int argc, char const *argv[])
+{
+    string text;
+    int kay, choice;
+
+    cout << "Podaj tekst: ";
+    getline(cin, text);
+
+    cout << "Podaj klucz: ";
+    cin >> kay;
+    while (kay < 0 || kay > 25)
+    {
+        cout << "Klucz musi byc w przedziale 0-25.\nPodaj ponownie: ";
+        cin >> kay;
+    }
+
+    cout << "1. Szyfrowanie\n2. Deszyfrowanie\n";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        caesarEncrypt(text, kay);
+        break;
+    case 2:
+        caesarDecrypt(text, kay);
+        break;
+    default:
+        cout << "Nie ma takiej opcji";
+        break;
+    }
+
+    return 0;
+}
+
+void caesarEncrypt(string text, int kay)
+{
+    for (int i = 0; i < text.length(); i++)
+    {
+        text[i] = toupper(text[i]);
+        if (text[i] >= 'A' && text[i] <= 'Z')
+        {
+            text[i] = ((text[i] - 'A' + kay) % 26) + 'A';
+        }
+    }
+    cout << text << endl;
+}
+
+void caesarDecrypt(string text, int kay)
+{
+    for (int i = 0; i < text.length(); i++)
+    {
+        text[i] = toupper(text[i]);
+        if (text[i] >= 'A' && text[i] <= 'Z')
+        {
+            text[i] = ((text[i] - 'A' - kay) % 26) + 'A';
+            if (text[i] < 'A')
+            {
+                text[i] = 'Z' - 'A' + text[i] + 1;
+            }
+        }
+    }
+    cout << text << endl;
+}
+
+// Psełdo kod
+// Krok 1: text <- tekst do zaszyfrowania
+// Krok 2: kay <- klucz
+// Krok 3: Jeśli kay < 0 lub > 25 powrót do kroku 2
+// Krok 4: choice <- 1 lub 2 (wybór opcji szyfrowanie lub deszyfrowanie)
+// Krok 5: Jeśli choice != 1 i choice != 2, koniec
+// Krok 6: Jeśli choice = 1, to:
+// Krok 6.1: Wywołanie caesarEncrypt(text, kay)
+// Krok 6.2: i <- 0
+// Krok 6.3: Jeśli i < długość tekstu, koniec
+// Krok 6.4: text[i] <- text[i].toupper() - zamiana na duże litery
+// Krok 6.5: Jeśli text[i] < 'A' i text[i] > 'Z', to idz do kroku 6.7
+// Krok 6.6: text[i] <- (text[i] - 'A' + kay) % 26 + 'A'
+// Krok 6.7: i <- i + 1
+// Krok 6.8: Idź do kroku 6.3
+// Krok 7: Jeśli choice = 2, to:
+// Krok 7.1: Wywołanie caesarDecrypt(text, kay)
+// Krok 7.2: i <- 0
+// Krok 7.3: Jeśli i < długość tekstu, koniec
+// Krok 7.4: text[i] <- text[i].toupper() - zamiana na duże litery
+// Krok 7.5: Jeśli text[i] < 'A' i text[i] > 'Z', to idz do kroku 7.8
+// Krok 7.6: text[i] <- (text[i] - 'A' - kay) % 26 + 'A'
+// Krok 7.7: Jeśli text[i] < 'A', to text[i] <- 'Z' - 'A' + text[i] + 1
+// Krok 7.8: i <- i + 1
+// Krok 7.9: Idź do kroku 7.3
+
+
+
+
+//////////////////////// Szyfr cezara txt
+
+
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+string caesarEncryptTxt(string text, int kay);
+string caesarDecryptTxt(string text, int kay);
+
+int main()
+{
+    ifstream file;
+    ofstream file2;
+    string text, text2;
+    int choice, kay;
+
+    file.open("zadanie53.txt");
+    file2.open("zadanie53_out.txt");
+
+    cout << "Podaj  klucz: ";
+    cin >> kay;
+
+    cout << "1. Szyfrowanie\n2. Deszyfrowanie\n";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        while (!file.eof())
+        {
+            getline(file, text);
+            text2 = caesarEncryptTxt(text, kay);
+            file2 << text2 << endl;
+        }
+        break;
+    case 2:
+        while (!file.eof())
+        {
+            getline(file, text);
+            text2 = caesarDecryptTxt(text, kay);
+            file2 << text2 << endl;
+        }
+        break;
+    default:
+        cout << "Nie ma takiej opcji";
+        break;
+    }
+    file2.close();
+    file.close();
+
+    return 0;
+}
+
+string caesarEncryptTxt(string text, int kay)
+{
+    for (int i = 0; i < text.length(); i++)
+    {
+        text[i] = toupper(text[i]);
+        if (text[i] >= 'A' && text[i] <= 'Z')
+        {
+            text[i] = ((text[i] - 'A' + kay) % 26) + 'A';
+        }
+    }
+    return text;
+}
+string caesarDecryptTxt(string text, int kay)
+{
+    for (int i = 0; i < text.length(); i++)
+    {
+        text[i] = toupper(text[i]);
+        if (text[i] >= 'A' && text[i] <= 'Z')
+        {
+            text[i] = ((text[i] - 'A' - kay) % 26) + 'A';
+            if (text[i] < 'A')
+            {
+                text[i] = 'Z' - 'A' + text[i] + 1;
+            }
+        }
+    }
+    return text;
+}
+
+
 
