@@ -2454,5 +2454,78 @@ string caesarDecryptTxt(string text, int kay)
     return text;
 }
 
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
 
+const string lowercaseAlphabetPL = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+const string uppercaseAlphabetPL = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";
+
+char Decrypt(char letter, int kay);
+
+int main()
+{
+    ifstream file;
+    ofstream file2;
+    string text, text2;
+    int kay, kay2;
+
+    file.open("text.txt");
+    file2.open("text2.txt");
+
+    cout << "Podaj klucz dla miejsc nieparzystych: ";
+    cin >> kay;
+
+    cout << "Podaj klucz dla miejsc parzystych: ";
+    cin >> kay2;
+
+    cout << lowercaseAlphabetPL << endl;
+
+    while (!file.eof())
+    {
+        // jeśli miejsce litery jest nieparzyste to zostanie urzyty klucz 1 a jeśli parzyste to klucz 2
+        getline(file, text);
+
+        for (int i = 0; i < text.length(); i++)
+        {
+            if (i % 2 == 0)
+            {
+                text2 += Decrypt(text[i], kay);
+            }
+            else
+            {
+                text2 += Decrypt(text[i], kay2);
+            }
+        }
+        cout << "Po rozszyfrowaniu: " + text2 << endl;
+        file2 << text2 << endl;
+        text2 = "";
+
+    }
+    file2.close();
+    file.close();
+
+    return 0;
+}
+
+char Decrypt(char letter, int kay)
+{
+    int index = lowercaseAlphabetPL.find(letter);
+    if (index >= 0 && index <= 34){
+        if((index - kay) % 35 < 0){
+            return lowercaseAlphabetPL[35 + (index - kay)];
+        }
+        else
+            return lowercaseAlphabetPL[(index - kay) % 34];
+    }
+    index = uppercaseAlphabetPL.find(letter);
+    if (index >= 0 && index <= 34){
+        if((index - kay) % 35 < 0)
+            return uppercaseAlphabetPL[35 + (index - kay)];
+        else
+            return uppercaseAlphabetPL[(index - kay) % 35];
+    }
+    return letter;
+}
 
