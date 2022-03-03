@@ -1675,5 +1675,120 @@ public class Main {
 }
 
 
+/////////////////////////////////////// Klasy 
+// W main1.java
+import java.util.Scanner;
+
+public class main1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Podaj pierwsza liczbe: ");
+        MyNumber myNumber = new MyNumber(scanner.nextInt());
+        System.out.print("Podaj druga liczbe: ");
+        MyNumber myNumber2 = new MyNumber(scanner.nextInt());
+
+        System.out.println("Suma = " + myNumber.add(myNumber2.myNymber, myNumber.myNymber));
+        System.out.println("Roznica = " + myNumber.subtract(myNumber2.myNymber, myNumber.myNymber));
+        System.out.println("Pierwiastek kwadratowy = " + myNumber.sqrt());
+        System.out.println("Potega = " + myNumber.pow(myNumber.myNymber, myNumber2.myNymber));
+        System.out.println("Czy liczba jest parzysta? " + myNumber.isEven());
+        System.out.println("Czy liczba jest nieparzysta? " + myNumber.isOdd());
+
+        System.out.println("");
+
+        System.out.println("Pole prostokata = " + new Prostokat(myNumber.myNymber, myNumber2.myNymber).pole());
+        System.out.println("Obwod prostokata = " + new Prostokat(myNumber.myNymber, myNumber2.myNymber).obwod());
+        System.out.println("Przekatna prostokata = " + new Prostokat(myNumber.myNymber, myNumber2.myNymber).przekatna());
+
+        scanner.close();
+    }
+
+}
+
+	
+
+// W MyNumber.java
+public class MyNumber {
+    int myNymber;
+
+    public MyNumber(int myNymber) {
+        this.myNymber = myNymber;
+    }
+
+    public boolean isOdd() {
+        if (myNymber % 2 == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean isEven() {
+        if (myNymber % 2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public double sqrt() {
+        return Math.sqrt(myNymber);
+    }
+
+    public double pow(int n, int m) {
+        int result = 1;
+        for (int i = 0; i < m; i++) {
+            result *= n;
+        }
+        return result;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+
+    public double subtract(double a, double b) {
+        return a - b;
+    }
+}
+
+
+
+// W Prostakat.java
+public class Prostokat {
+    public int a, b;
+
+    public Prostokat(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public int pole() {
+        return a * b;
+    }
+
+    public int obwod() {
+        return 2 * (a + b);
+    }
+
+    public double przekatna() {
+        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
