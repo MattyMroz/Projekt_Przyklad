@@ -1684,26 +1684,25 @@ public class main1 {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Podaj pierwsza liczbe: ");
-        MyNumber myNumber = new MyNumber(scanner.nextInt());
+        MyNumber a = new MyNumber(scanner.nextInt());
         System.out.print("Podaj druga liczbe: ");
-        MyNumber myNumber2 = new MyNumber(scanner.nextInt());
+        MyNumber b = new MyNumber(scanner.nextInt());
 
-        System.out.println("Suma = " + myNumber.add(myNumber2.myNymber, myNumber.myNymber));
-        System.out.println("Roznica = " + myNumber.subtract(myNumber2.myNymber, myNumber.myNymber));
-        System.out.println("Pierwiastek kwadratowy = " + myNumber.sqrt());
-        System.out.println("Potega = " + myNumber.pow(myNumber.myNymber, myNumber2.myNymber));
-        System.out.println("Czy liczba jest parzysta? " + myNumber.isEven());
-        System.out.println("Czy liczba jest nieparzysta? " + myNumber.isOdd());
+        System.out.println("Suma: " + a.add(a.myNymber, b.myNymber));
+        System.out.println("Roznica: " + a.subtract(a.myNymber, b.myNymber));
+        System.out.println("Pierwiastek: " + a.sqrt());
+        System.out.println("Potega: " + a.pow(a.myNymber, b.myNymber));
+        System.out.println("Czy liczba jest parzysta: " + a.isEven());
+        System.out.println("Czy liczba jest nieparzysta: " + a.isOdd());
 
         System.out.println("");
 
-        System.out.println("Pole prostokata = " + new Prostokat(myNumber.myNymber, myNumber2.myNymber).pole());
-        System.out.println("Obwod prostokata = " + new Prostokat(myNumber.myNymber, myNumber2.myNymber).obwod());
-        System.out.println("Przekatna prostokata = " + new Prostokat(myNumber.myNymber, myNumber2.myNymber).przekatna());
+        System.out.println("Pole prostokata: " + new Prostokat(a.myNymber, b.myNymber).pole());
+        System.out.println("Obwod prostokata: " + new Prostokat(a.myNymber, b.myNymber).obwod());
+        System.out.println("Przekatna prostokata: " + new Prostokat(a.myNymber, b.myNymber).przekatna());
 
         scanner.close();
     }
-
 }
 
 	
