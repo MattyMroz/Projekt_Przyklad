@@ -2585,5 +2585,131 @@ char Decrypt(char letter, int kay)
         }
     }
 }
+/////////////////////////
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
 
+using namespace std;
+
+const string lowercaseAlphabetPL[35] = {"a", "ą", "b", "c", "ć", "d", "e", "ę", "f", "g", "h", "i", "j", "k", "l", "ł", "m", "n", "ń", "o", "ó", "p", "q", "r", "s", "ś", "t", "u", "v", "w", "x", "y", "z", "ź", "ż"};
+
+const string uppercaseAlphabetPL[35] = {"A", "Ą", "B", "C", "Ć", "D", "E", "Ę", "F", "G", "H", "I", "J", "K", "L", "Ł", "M", "N", "Ń", "O", "Ó", "P", "Q", "R", "S", "Ś", "T", "U", "V", "W", "X", "Y", "Z", "Ź", "Ż"};
+
+string Decrypt(char letter, int kay);
+
+int main(int argc, char const *argv[])
+{
+    ifstream file("text.txt");
+    ofstream file2("text2.txt");
+
+    int kay, kay2;
+    cout << "Podaj klucz dla miejsc parzystych: ";
+    cin >> kay;
+    cout << "Podaj klucz dla miejsc nieparzystych: ";
+    cin >> kay2;
+
+    string text, text2;
+
+    while (!file.eof())
+    {
+        getline(file, text);
+        for (int i = 0; i < text.length(); i++)
+        {
+            if (i % 2 == 0)
+            {
+                cout << text[i] << " ";
+                text2 += Decrypt(text[i], kay);
+            }
+            else
+            {
+                cout << text[i];
+                text2 += Decrypt(text[i], kay2);
+            }
+        }
+        file2 << text2 << endl;
+        text2 = "";
+    }
+    file2.close();
+    file.close();
+
+    return 0;
+}
+
+string Decrypt(char letter, int kay)
+{
+    string decryptedLetter;
+    decryptedLetter += letter;
+    for (int i = 0; i < 35; i++)
+    {
+        if (decryptedLetter == lowercaseAlphabetPL[i])
+        {
+            if (i - kay < 0)
+            {
+                decryptedLetter = lowercaseAlphabetPL[i - kay + 35];
+            }
+            else
+            {
+                decryptedLetter = lowercaseAlphabetPL[i - kay];
+            }
+        }
+        else if (decryptedLetter == uppercaseAlphabetPL[i])
+        {
+            if (i - kay < 0)
+            {
+                decryptedLetter = uppercaseAlphabetPL[i - kay + 35];
+            }
+            else
+            {
+                decryptedLetter = uppercaseAlphabetPL[i - kay];
+            }
+        }
+    }
+    return decryptedLetter;
+}
+
+// string decryptedLetter = "";
+// decryptedLetter += letter;
+// int index = 0;
+// while (decryptedLetter != lowercaseAlphabetPL[index])
+// {
+//     index++;
+// }
+
+// if (index >= 0 && index <= 34)
+// {
+//     if (index + kay > 34)
+//     {
+//         return lowercaseAlphabetPL[index - kay + 35];
+//     }
+//     else
+//     {
+//         return lowercaseAlphabetPL[index - kay];
+//     }
+// }
+// else
+// {
+//     index = 0;
+//     while (decryptedLetter != uppercaseAlphabetPL[index])
+//     {
+//         index++;
+//     }
+
+//     if (index >= 0 && index <= 34)
+//     {
+//         if (index + kay > 34)
+//         {
+//             return uppercaseAlphabetPL[index - kay + 35];
+//         }
+//         else
+//         {
+//             return uppercaseAlphabetPL[index - kay];
+//         }
+//     }
+//     else
+//     {
+//         return decryptedLetter;
+//     }
+// }
 			
