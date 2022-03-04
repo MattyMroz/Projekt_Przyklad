@@ -2494,9 +2494,96 @@ def main():
             else:
                 text2 += Decrypt(text[i], kay2)
         print("Po rozszyfrowaniu: " + text2.strip())
-        file2.write(text2)
+        file2.write(text2.strip() + "\n")
         text2 = ""
     file.close()
     file2.close()
 
-main()
+main()	
+			
+/////////// C++
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+
+using namespace std;
+
+char Decrypt(char letter, int kay);
+
+int main(int argc, char const *argv[])
+{
+    ifstream file("text.txt");
+    ofstream file2("text2.txt");
+
+    int kay, kay2;
+    cout << "Podaj klucz dla miejsc parzystych: ";
+    cin >> kay;
+    cout << "Podaj klucz dla miejsc nieparzystych: ";
+    cin >> kay2;
+
+    string text, text2;
+
+    while (!file.eof())
+    {
+        getline(file, text);
+        text2 = "";
+        for (int i = 0; i < text.length(); i++)
+        {
+            if (i % 2 == 0)
+            {
+                text2 += Decrypt(text[i], kay);
+            }
+            else
+            {
+                text2 += Decrypt(text[i], kay2);
+            }
+        }
+        file2 << text2 << endl;
+        text2 = "";
+    }
+    file2.close();
+    file.close();
+
+    return 0;
+}
+
+char Decrypt(char letter, int kay)
+{
+    string lowercaseAlphabetPL = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+    string uppercaseAlphabetPL = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";
+
+    int index = lowercaseAlphabetPL.find(letter);
+    if (index >= 0 && index <= 34)
+    {
+        if ((index - kay) % 35 < 0)
+        {
+            return lowercaseAlphabetPL[35 + (index - kay) % 35];
+        }
+        else
+        {
+            return lowercaseAlphabetPL[(index - kay) % 35];
+        }
+    }
+    else
+    {
+        index = uppercaseAlphabetPL.find(letter);
+        if (index >= 0 && index <= 34)
+        {
+            if ((index - kay) % 35 < 0)
+            {
+                return uppercaseAlphabetPL[35 + (index - kay) % 35];
+            }
+            else
+            {
+                return uppercaseAlphabetPL[(index - kay) % 35];
+            }
+        }
+        else
+        {
+            return letter;
+        }
+    }
+}
+
+			
