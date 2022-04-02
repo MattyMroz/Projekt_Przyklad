@@ -2859,12 +2859,6 @@ string vigenereDecrypt(string arrayVigenere[], string text, string key)
     return vigenereDecrypt;
 }
 
-void clearBuffer()
-{
-    cin.clear();
-    cin.sync();
-}
-
 // PS. PYTHON LEPSZY
 
 			
