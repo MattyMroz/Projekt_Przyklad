@@ -2861,4 +2861,150 @@ string vigenereDecrypt(string arrayVigenere[], string text, string key)
 
 // PS. PYTHON LEPSZY
 
+/////////////////////////////// Szukanie liczby
+#include <iostream>
+#include <string>
+#include <ctime>
+
+using namespace std;
+
+void randomize(int *array, int size);
+void writeArray(int *array, int size);
+bool findLinary(int *array, int size, int number);
+bool findBinary(int *array, int size, int number);
+void minMax(int *array, int size);
+void findNumMaxSumOfDigits(int *array, int size);
+
+int main()
+{
+    // Zadanie1
+    cout << "N = ";
+    int size = 200, number;
+    // cin >> size;
+    int *array = new int[size];
+    randomize(array, size);
+    cout << "\n";
+
+    writeArray(array, size);
+    cout << "\nPodaj szukana liczbe: ";
+    cin >> number;
+
+    if (findLinary(array, size, number))
+        cout << "Liczba znajduje sie w tablicy\n";
+    else
+        cout << "Liczba nie znajduje sie w tablicy\n";
+
+    // Zadanie2
+    for (int i = 0; i < size; i++)
+        array[i] = i;
+
+    writeArray(array, size);
+    cout << "\nPodaj szukana liczbe: ";
+    cin >> number;
+
+    if (findBinary(array, size, number))
+        cout << "Liczba znajduje sie w tablicy\n";
+    else
+        cout << "Liczba nie znajduje sie w tablicy\n";
+
+    // Zadanie 3
+    minMax(array, size);
+
+    // Zadanie4
+    cout << "\n";
+    randomize(array, size);
+    writeArray(array, size);
+    cout << "\n";
+    findNumMaxSumOfDigits(array, size);
+
+    delete[] array;
+
+    return 0;
+}
+
+void randomize(int *array, int size)
+{
+    srand(time(NULL));
+    for (int i = 0; i < size; i++)
+    {
+        // array[i] = rand() % 100;
+        array[i] = rand() % 1000000000;
+        ;
+    }
+}
+
+void writeArray(int *array, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << array[i] << " ";
+    }
+}
+
+bool findLinary(int *array, int size, int number)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (array[i] == number)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool findBinary(int *array, int size, int number)
+{
+    int left = 0, right = size - 1, middle;
+    while (left <= right)
+    {
+        middle = (left + right) / 2;
+        if (array[middle] == number)
+            return true;
+        else if (array[middle] < number)
+            left = middle + 1;
+        else
+            right = middle - 1;
+    }
+    return false;
+}
+
+void minMax(int *array, int size)
+{
+    int min = array[0], max = array[0];
+    for (int i = 0; i < size; i++)
+    {
+        if (array[i] < min)
+            min = array[i];
+        if (array[i] > max)
+            max = array[i];
+    }
+    cout << "Min: " << min << " Max: " << max;
+}
+
+void findNumMaxSumOfDigits(int *array, int size)
+{
+    int max = array[0], sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum = 0;
+        for (int j = 0; j < size; j++)
+        {
+            if (array[i] == array[j])
+            {
+                sum += array[j];
+            }
+        }
+        if (sum > max)
+            max = sum;
+    }
+    cout << "Max suma cyfr: " << max;
+}
+
+//////////////////////////////////////////////
+
+		  
+		
+		  
+		  
 			
