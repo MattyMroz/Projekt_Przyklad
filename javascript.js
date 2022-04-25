@@ -178,19 +178,57 @@ srednia();
 
 
 // zaokrąglanie liczb 2 metody
-    var x= 100.96756432;
+var x= 100.96756432;
 
-    Number.prototype.round = function(places) {
-        return +(Math.round(this + "e+" + places) + "e-" + places);
-    }
+Number.prototype.round = function(places) {
+    return +(Math.round(this + "e+" + places) + "e-" + places);
+}
 
-    Number.prototype.toFixedDown = function(digits) {
-        var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
-            m = this.toString().match(re);
-        return m ? parseFloat(m[1]) : this.valueOf();
-    }
+Number.prototype.toFixedDown = function(digits) {
+    var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+        m = this.toString().match(re);
+    return m ? parseFloat(m[1]) : this.valueOf();
+}
 
-    document.write(x.round(3));
-    document.write(x.toFixedDown(3));
+document.write(x.round(3));
+document.write(x.toFixedDown(3));
+
+
+
+
+
+
+
+
+// wstępne wysyłanie formularza 
+ody>
+    <!-- podstawowy formularz -->
+    <form action="index.php" method="post">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="surname" placeholder="surname">
+        <input type="text" name="email" placeholder="email">
+        <input type="text" name="phone" placeholder="phone">
+        <input type="submit" value="submit">
+    </form>
+
+</body>
+<script>
+    // jeśli miejsca są pustre to napisz alert
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.querySelector('input[name="name"]').value;
+        var surname = document.querySelector('input[name="surname"]').value;
+        var email = document.querySelector('input[name="email"]').value;
+        var phone = document.querySelector('input[name="phone"]').value;
+
+        if (name == '' || surname == '' || email == '' || phone == '') {
+            alert('Wypełnij wszystkie pola');
+        } else {
+            this.submit();
+        }
+    });
+
+</script>
 
 
