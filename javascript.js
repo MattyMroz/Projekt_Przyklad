@@ -174,3 +174,23 @@ function srednia() {
 }
 srednia();
 
+
+
+
+// zaokrąglanie liczb 2 metody
+    var x= 100.96756432;
+
+    Number.prototype.round = function(places) {
+        return +(Math.round(this + "e+" + places) + "e-" + places);
+    }
+
+    Number.prototype.toFixedDown = function(digits) {
+        var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+            m = this.toString().match(re);
+        return m ? parseFloat(m[1]) : this.valueOf();
+    }
+
+    document.write(x.round(3));
+    document.write(x.toFixedDown(3));
+
+
