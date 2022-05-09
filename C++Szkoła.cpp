@@ -3002,9 +3002,130 @@ void findNumMaxSumOfDigits(int *array, int size)
 }
 
 //////////////////////////////////////////////
+// Najdłuższe wspólne podciągi
 
-		  
-		
-		  
-		  
-			
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+const int N = 20;
+void drawNumbers(int A[]);
+void writeNumbers(int A[]);
+int lengthOfLongestIncreasingSubsequence(int A[]);
+void writeLAST_LongestIncreasingSubsequence(int A[]);
+void writeALL_LongestIncreasingSubsequence(int A[]);
+
+int main(int argc, char const *argv[])
+{
+    srand(time(NULL));
+    int A[N];
+    drawNumbers(A);
+    writeNumbers(A);
+    cout << "Dlugosc najdluzszego spojnego podciagu rosnacego: " << lengthOfLongestIncreasingSubsequence(A) << endl;
+
+    writeLAST_LongestIncreasingSubsequence(A);
+    writeALL_LongestIncreasingSubsequence(A);
+
+    return 0;
+}
+
+void drawNumbers(int A[])
+{
+    for (size_t i = 0; i < N; i++)
+        A[i] = rand() % 21 - 10; // rand() % ile_liczb_w_przedziale + początek_przedziału
+
+    // A[0] = 0;
+    // A[1] = 0;
+    // A[2] = 1;
+    // A[3] = 2;
+    // A[4] = 1;
+    // A[5] = 2;
+    // A[6] = 3;
+    // A[7] = 1;
+    // A[8] = 2;
+    // A[9] = 4;
+}
+
+void writeNumbers(int A[])
+{
+    for (size_t i = 0; i < N; i++)
+        cout << A[i] << " ";
+    cout << endl;
+}
+
+int lengthOfLongestIncreasingSubsequence(int A[])
+{
+    int maxLength = 1, currentLength = 1;
+    for (int i = 1; i < N; i++)
+    {
+        if (A[i] > A[i - 1]) // niemalejący >=
+        {
+            currentLength++;
+            if (currentLength > maxLength)
+                maxLength = currentLength;
+        }
+        else
+        {
+            currentLength = 1;
+        }
+    }
+    return maxLength;
+}
+
+void writeLAST_LongestIncreasingSubsequence(int A[])
+{
+    int maxLength = 1, currentLength = 1, maxStart = 0, currentStart = 0;
+    for (int i = 1; i < N; i++)
+    {
+        if (A[i] > A[i - 1])  // niemalejący >=
+        {
+            currentLength++;
+            if (currentLength >= maxLength) // > pierwszy
+            {
+                maxLength = currentLength;
+                maxStart = currentStart;
+            }
+        }
+        else
+        {
+            currentLength = 1;
+            currentStart = i;
+        }
+    }
+    cout << "Ostatni najdluzszy spojny podciag rosnacy: ";
+    for (int i = maxStart; i < maxStart + maxLength; i++)
+        cout << A[i] << " ";
+    cout << endl;
+}
+
+void writeALL_LongestIncreasingSubsequence(int A[])
+{
+    cout << "Wszyskie najdluzsze spojne podciagi rosnace:" << endl;
+    int maxLength = 1, currentLength = 1, maxStart = 0, currentStart = 0;
+    for (int i = 1; i < N; i++)
+    {
+        if (A[i] > A[i - 1])  // niemalejący >=
+        {
+            currentLength++;
+            if (currentLength >= maxLength) // > pierwszy
+            {
+                maxLength = currentLength;
+                maxStart = currentStart;
+            }
+
+            if (currentLength >= maxLength && maxLength == lengthOfLongestIncreasingSubsequence(A))
+            {
+                for (int i = maxStart; i < maxStart + maxLength; i++)
+                    cout << A[i] << " ";
+                cout << endl;
+            }
+        }
+        else
+        {
+            currentLength = 1;
+            currentStart = i;
+        }
+    }
+}
