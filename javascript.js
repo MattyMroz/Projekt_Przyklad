@@ -200,38 +200,77 @@ document.write(x.toFixedDown(3));
 
 
 
-// wstępne wysyłanie formularza 
-ody>
-    <!-- podstawowy formularz -->
+/////////////////// wysyłanie formularza 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        label,
+        input.btn {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
     <form action="index.php" method="post">
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="surname" placeholder="surname">
-        <input type="text" name="email" placeholder="email">
-        <input type="text" name="phone" placeholder="phone">
-        <input type="submit" value="submit">
+        <label for="imie">Imie</label>
+        <input type="text" name="imie" id="imie">
+        <label for="nazwisko">Nazwisko</label>
+        <input type="text" name="nazwisko" id="nazwisko">
+        <label for="pesel">Pesel</label>
+        <input type="text" name="pesel" id="pesel">
+        <input type="submit" value="Wyslij" class="btn">
     </form>
 
+    <script src="src/javascript.js"></script>
+    <script>
+        const imie = document.getElementById('imie');
+        const nazwisko = document.getElementById('nazwisko');
+        const pesel = document.getElementById('pesel');
+        const btn = document.getElementsByClassName('btn')[0];
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (imie.value.length < 1) {
+                alert('Imie jest za krótkie');
+                imie.focus();
+                return;
+            }
+            if (nazwisko.value.length < 1) {
+                alert('Nazwisko jest za krótkie');
+                nazwisko.focus();
+                return;
+            }
+            if (pesel.value.length != 11) {
+                alert('Pesel musi miec 11 znakow');
+                pesel.focus();
+                return;
+            }
+            this.form.submit();
+
+        });
+    </script>
 </body>
-<script>
-    // jeśli miejsca są pustre to napisz alert
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var name = document.querySelector('input[name="name"]').value;
-        var surname = document.querySelector('input[name="surname"]').value;
-        var email = document.querySelector('input[name="email"]').value;
-        var phone = document.querySelector('input[name="phone"]').value;
+</html>
 
-        if (name == '' || surname == '' || email == '' || phone == '') {
-            alert('Wypełnij wszystkie pola');
-        } else {
-            this.submit();
-        }
-    });
 
-</script>
 
-// FABRYKA SAMOCHODÓW
+
+
+
+
+///////////////// FABRYKA SAMOCHODÓW
     <script>
         var CarPlant = {
             numProducedCars: 0,
@@ -252,3 +291,37 @@ ody>
             }
         };
     </script>
+
+
+// zakupy
+    <script>
+        let ShopingCart = {
+            items: [],
+            add: function(name, price) {
+                this.items.push({
+                    name: name,
+                    price: price
+                });
+            },
+            printInfo: function() {
+                let finalPrice = 0;
+                for (let i = 0; i < this.items.length; i++) {
+                    let element = this.items[i];
+                    finalPrice += element.price;
+                    console.log(element.name + ": " + element.price);
+                }
+                console.log("Total price: " + finalPrice);
+            }
+        }
+
+        ShopingCart.add("Milk", 1.5);
+        ShopingCart.add("Bread", 2);
+        ShopingCart.add("Eggs", 3);
+
+        ShopingCart.printInfo();
+    </script>
+
+
+
+
+//////////////////////
