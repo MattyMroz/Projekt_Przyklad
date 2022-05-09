@@ -12,7 +12,8 @@ typeof []; // object
 // nigdy nie zostanie poprawiony
 typeof null; // object
 
-
+var b = 123;
+let txt `tekst ${b}, ${23 + 23 * 1} `; // Operacje na stringu
 
 /////////////////////////////////
 function Klient(nazwisko, imie) {
