@@ -29,6 +29,44 @@ if( age >= 18){
     data="nieletni";
 }
 
+/////////////// przecinek w pętli
+for(let i = 0, j = 5; i < 5; i++, j--){
+    console.log("i:" + i + "j:" + j);
+}
+/*
+i:0 j:5
+1:1 j:4
+i:2 j:3
+i:3 j:2
+i:4 j:1
+*/
+
+var c = +"27"; // operator+konwertuje operand na liczbę, c=27
+var d = -"27"; // number: -27
+var e = void 0; // void wywołuje wyrażenieizwraca undefined var
+
+
+// Operatory relacyjne
+let obj{num: 10 };
+if( "num" in obj) console.log (" zmienna numwobj"); // zmienna num jestwobj
+let arr ["one", "two", "three"];
+if(1in arr)console.log("indeks1jestwtablicy");
+if( "length" in arr)console.log("właściwość length jestwtablicy");
+
+////////////// Błąd zmiennych globalnych i lokalnych
+function check(){
+    "use strict";
+   AnewNum 200; // normalnie stanie się zmienną globalną, ale powyższa linia temu zapobiega i jest ok
+}
+
+
+
+
+
+
+
+
+
 
 /////////////////////////////////
 function Klient(nazwisko, imie) {
