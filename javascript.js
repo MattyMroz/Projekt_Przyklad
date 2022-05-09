@@ -1,3 +1,20 @@
+typeof 23; // number
+typeof "tekst"; // string
+typeof "45"; // string
+typeof true; // boolean
+typeof{data:10 }; // object
+typeof undefined; // undefined
+typeof 1n; // bigint
+typeof Symbol(); // symbol
+typeof function (){}; // function
+typeof []; // object
+// objectwtypeof dla null to błądwJavaScript, który
+// nigdy nie zostanie poprawiony
+typeof null; // object
+
+
+
+/////////////////////////////////
 function Klient(nazwisko, imie) {
     this.nazwisko_k = nazwisko;
     this.imie_k = imie;
