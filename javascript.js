@@ -59,6 +59,8 @@ function check(){
    AnewNum 200; // normalnie stanie się zmienną globalną, ale powyższa linia temu zapobiega i jest ok
 }
 // ale teraz jest słowo let i jest to deklaracja zmiennej lokalnej co za tym idzie niweluje ona będy które może powodować var - zmienna globalna
+// tak samo w const
+czyli używac let i const i będzie ok
 
 
 
