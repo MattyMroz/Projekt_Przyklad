@@ -293,17 +293,41 @@ document.write(x.toFixedDown(3));
     </script>
 
 
-// zakupy
+////////////////////////// sklep
     <script>
         let ShopingCart = {
             items: [],
-            add: function(name, price) {
+            add: function (name, price) {
                 this.items.push({
                     name: name,
                     price: price
                 });
             },
-            printInfo: function() {
+            remove: function (name) {
+                for (let i = 0; i < this.items.length; i++) {
+                    if (this.items[i].name === name) {
+                        this.items.splice(i, 1);
+                    }
+                }
+            },
+
+            removeByIndex: function (index) {
+                this.items.splice(index, 1);
+            },
+
+            getTotal: function () {
+                let total = 0;
+                for (let i = 0; i < this.items.length; i++) {
+                    total += this.items[i].price;
+                }
+                return total;
+            },
+
+            getItems: function () {
+                return this.items;
+            },
+
+            printInfo: function () {
                 let finalPrice = 0;
                 for (let i = 0; i < this.items.length; i++) {
                     let element = this.items[i];
@@ -319,6 +343,16 @@ document.write(x.toFixedDown(3));
         ShopingCart.add("Eggs", 3);
 
         ShopingCart.printInfo();
+
+        ShopingCart.remove("Milk");
+        ShopingCart.printInfo();
+
+        ShopingCart.removeByIndex(1);
+        ShopingCart.printInfo();
+
+
+        console.log(ShopingCart.getItems());
+        console.log(ShopingCart.getTotal());
     </script>
 
 
