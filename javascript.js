@@ -13,7 +13,22 @@ typeof []; // object
 typeof null; // object
 
 var b = 123;
-let txt `tekst ${b}, ${23 + 23 * 1} `; // Operacje na stringu
+let txt `tekst ${b}, 
+${23 + 23 * 1} 
+zachowanie Enterów`; // Operacje na stringu
+
+
+
+///////////// krótki if
+let age=18;
+let data(age >= 18)?"dorosły":"nieletni";
+// tosamo CO
+if( age >= 18){
+    data="dorosły";
+}else{
+    data="nieletni";
+}
+
 
 /////////////////////////////////
 function Klient(nazwisko, imie) {
