@@ -231,4 +231,24 @@ ody>
 
 </script>
 
+// FABRYKA SAMOCHODÓW
+    <script>
+        var CarPlant = {
+            numProducedCars: 0,
+            carsArr: [],
+            makeCar: function (brand, model, year) {
+                var car = {
+                    brand: brand,
+                    model: model,
 
+                    year: year
+                };
+                this.numProducedCars++;
+                this.carsArr.push(car);
+                return car;
+            },
+            printStats: function () {
+                console.log("Ilość wyprodukowanych aut:" + this.numProducedCars);
+            }
+        };
+    </script>
