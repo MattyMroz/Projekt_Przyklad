@@ -1993,6 +1993,218 @@ public class Main {
 
 
 
+//////////////////////////////// Zapisywanie do pliku 
+
+Main.java
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.*;
+
+public class Main {
+    public static void zapiszZamowienia(ArrayList<Zamowienie> zamowienia) {
+        try {
+            FileOutputStream fos = new FileOutputStream("zamowienia.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(zamowienia);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void odczytajZPliku() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("zamowienia.txt"));
+
+            ArrayList<Zamowienie> zamowienia = (ArrayList<Zamowienie>) ois.readObject();
+
+            for (Zamowienie z : zamowienia) {
+                System.out.println(z);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Pozycje
+        System.out.println("==============================");
+        Pozycja p1 = new Pozycja("Chleb", 5, 3.5);
+        System.out.println(p1);
+        System.out.println("Wartosc pozycji z rabatem: " + p1.obliczWartoscZRabatem() + " zl");
+        System.out.println("==============================");
+        Pozycja p2 = new Pozycja("Cukier", 3, 4);
+        System.out.println(p2);
+        System.out.println("Wartosc pozycji z rabatem: " + p2.obliczWartoscZRabatem() + " zl");
+        System.out.println("==============================");
+        Pozycja p = new Pozycja("Mleko", 20, 2.5);
+        System.out.println(p);
+        System.out.println("Wartosc pozycji z rabatem: " + p.obliczWartoscZRabatem() + " zl");
+
+        // Zamowienie
+        System.out.println("==============================");
+        System.out.println("==============================");
+        Zamowienie z = new Zamowienie();
+        z.dodajPozycje(p1);
+        z.dodajPozycje(p2);
+        z.dodajPozycje(p1);
+        System.out.println(z);
+        System.out.println("==============================");
+        Zamowienie z2 = new Zamowienie();
+        z2.dodajPozycje(p);
+        z2.dodajPozycje(p);
+        System.out.println(z2);
+        // z.usunPozycje(0);
+        // System.out.println(z);
+        // System.out.println("==============================");
+        // Pozycja p3 = z.pobierzPozycje(0);
+        // System.out.println(p3);
+        // System.out.println("==============================");
+        // z.edytujPozycje(0, p2);
+        // System.out.println(z);
+        // System.out.println("==============================");
+        // System.out.println("Wartosc zamowienia: " + z.obliczWartosc() + " zl");
+        // System.out.println("==============================");
+
+        // Tablica zamówień
+        ArrayList<Zamowienie> zamowienia = new ArrayList<Zamowienie>();
+        zamowienia.add(z);
+        zamowienia.add(z2);
+
+        zapiszZamowienia(zamowienia);
+        odczytajZPliku();
+        scanner.close();
+    }
+
+}
+
+
+Pozycje.java
+
+import java.io.*;
+
+public class Pozycja implements Serializable {
+    public String nazwaTowaru;
+    public int ileSztuk;
+    public double cena;
+
+    public Pozycja(String nazwaTowaru, int ileSztuk, double cena) {
+        this.nazwaTowaru = nazwaTowaru;
+        this.ileSztuk = ileSztuk;
+        this.cena = cena;
+    }
+
+    public double obliczWartosc() {
+        return ileSztuk * cena;
+    }
+
+    public String toString() {
+        return String.format(nazwaTowaru + " " + cena + " zl " + ileSztuk + " szt. " + obliczWartosc() + " zl");
+    }
+
+    public double obliczWartoscZRabatem() {
+        double wartosc = obliczWartosc();
+        if (ileSztuk >= 20) {
+            wartosc = wartosc * 0.85;
+        } else if (ileSztuk >= 10) {
+            wartosc = wartosc * 0.9;
+        } else if (ileSztuk >= 5) {
+            wartosc = wartosc * 0.95;
+        }
+        return wartosc;
+    }
+}
+
+
+Zamówienia.java
+import java.util.ArrayList;
+import java.io.*;
+
+public class Zamowienie implements Serializable {
+    ArrayList<Pozycja> pozycje = new ArrayList<Pozycja>();
+    // Tabliza zmówień
+    ArrayList<Zamowienie> zamowienia = new ArrayList<Zamowienie>();
+
+    public void dodajPozycje(Pozycja p) {
+        boolean dodano = false;
+        for (Pozycja pozycja : pozycje) {
+            if (pozycja.nazwaTowaru.equals(p.nazwaTowaru)) {
+                pozycja.ileSztuk += p.ileSztuk;
+                dodano = true;
+            }
+        }
+        if (!dodano) {
+            pozycje.add(p);
+        }
+    }
+
+    public int ileSztuk() {
+        int ileSztuk = 0;
+        for (Pozycja pozycja : pozycje) {
+            ileSztuk += pozycja.ileSztuk;
+        }
+        return ileSztuk;
+    }
+
+    public double obliczWartosc() {
+        double wartosc = 0;
+        for (Pozycja pozycja : pozycje) {
+            wartosc += pozycja.obliczWartosc();
+        }
+        if (ileSztuk() >= 20) {
+            wartosc = wartosc * 0.85;
+        } else if (ileSztuk() >= 10) {
+            wartosc = wartosc * 0.9;
+        } else if (ileSztuk() >= 5) {
+            wartosc = wartosc * 0.95;
+        }
+        return wartosc;
+    }
+
+    public double rabat() {
+        double wartosc = 0;
+        for (Pozycja pozycja : pozycje) {
+            wartosc += pozycja.obliczWartosc();
+        }
+        if (ileSztuk() >= 20) {
+            wartosc = wartosc * 0.15;
+        } else if (ileSztuk() >= 10) {
+            wartosc = wartosc * 0.1;
+        } else if (ileSztuk() >= 5) {
+            wartosc = wartosc * 0.05;
+        }
+        return wartosc;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Pozycja p : pozycje) {
+            sb.append(p.toString() + "\n");
+        }
+        sb.append("Wartosc zamowienia: " +
+
+                String.format("%.2f", obliczWartosc())
+                + " zl" + ", rabat: " + rabat() + " zl");
+        return sb.toString();
+    }
+
+    public void usunPozycje(int indeks) {
+        pozycje.remove(indeks);
+    }
+
+    public Pozycja pobierzPozycje(int indeks) {
+        return pozycje.get(indeks);
+    }
+
+    public void edytujPozycje(int indeks, Pozycja p) {
+        pozycje.set(indeks, p);
+    }
+}
 
 
 
