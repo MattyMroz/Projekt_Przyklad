@@ -3132,7 +3132,238 @@ void writeALL_LongestIncreasingSubsequence(int A[])
 
 /////////////////////////////////////////////
 
-		  
+	// # Szyfr Vigenère’a
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int array_size;
+string uppercaseAlphabetPL;
+
+void createGlobalVariables();                                            // Tworzenie zmiennych globalnych
+string vigenereEncrypt(string arrayVigenere[], string text, string key); // Szyfrowanie
+string vigenereDecrypt(string arrayVigenere[], string text, string key); // Deszyfrowanie
+
+int main(int argc, char const *argv[])
+{
+    // Tworzenie polskiej tablicy Vigenere'a
+    createGlobalVariables();
+    string arrayVigenere[array_size];
+
+    // Zrobienie tablicy Vigenere’a
+    for (int i = 0; i < array_size; i++)
+        arrayVigenere[i] = uppercaseAlphabetPL.substr(i, 35) + uppercaseAlphabetPL.substr(0, i);
+
+    // Wyświetlanie tablicy Vigenere’a
+    // for (int i = 0; i < array_size; i++)
+    //     cout << arrayVigenere[i] << endl;
+    ifstream file("text.txt");
+    ofstream file2("text2.txt");
+    string text, key;
+
+    cout << "\n================" << endl;
+    cout << "Szyfr Vigenere'a" << endl;
+    cout << "Witaj w programie szyfrowania i deszyfrowywania tekstu za pomoca szyfru Vigenere'a" << endl;
+    cout << "UWAGA! Zanim rozpoczniesz kozystanie z programu zapoznaj sie z dokumentacja :')" << endl;
+    cout << "======MENU======" << endl;
+    cout << "1. Szyfrowanie" << endl;
+    cout << "2. Deszyfrowanie" << endl;
+    cout << "3. Dokumentacja" << endl;
+    cout << "4. Wyjscie" << endl;
+    cout << "================" << endl;
+    cout << "Wybierz opcje:" << endl;
+
+    int choice;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        cout << "1. Szyfrowanie" << endl;
+        while (!file.eof())
+        {
+            getline(file, text);
+            getline(file, key);
+            file2 << vigenereEncrypt(arrayVigenere, text, key) << endl;
+            file2 << key << endl;
+        }
+        break;
+    case 2:
+        cout << "2. Deszyfrowanie" << endl;
+        while (!file.eof())
+        {
+            getline(file, text);
+            getline(file, key);
+            file2 << vigenereDecrypt(arrayVigenere, text, key) << endl;
+            file2 << key << endl;
+        }
+        break;
+    case 3:
+        cout << "================" << endl;
+        cout << "==DOKUMENTACJA==" << endl;
+        cout << "================" << endl;
+        cout << "1. Program korzysta z 3 plikow tekstowych: alphabet.txt, text.txt i text2.txt " << endl;
+        cout << "2. alphabet.txt - wprowadzony tam jest alfabet na podstawie ktorego powstaje tabela sluzaca do szyfrowania lub deszyfrowania" << endl;
+        cout << "3. text.txt - w nieparzystych liniach piszemy tekst do szyfrowania lub deszyfrowania, a w parzystych klucz szyfryjacy lub deszyfryjacy, UWAGA za ostatnia linia (linia z kluczam) nie powinna znajdowac sie zadna nowa linia (np. ENTER)" << endl;
+        cout << "4. text2.txt - po urychomieniu programu w nieparzystych liniach znajdzie sie zaszyfrowana lub odszyfrowana wiadomosc, a w parzystych klucz szyfryjacy lub deszyfryjacy na podstawie ktorego wygenerowana byla wiadomosc" << endl;
+        cout << "5. Aby sprawdzic poprawnosc programu przekopiuj uzyskana zawartosc pliku text2.txt do pliku text.txt - powinienesc uzyskac pierwotna wiadomosc" << endl;
+        cout << "6. UWAGA szyfrowane i deszyfrowane sa tylko znaki umieszczone w pliku alphabet.txt, co za tym idzie, tam gdzie one nie wystepuja, znaki musza buc takie same na odpowiadajacych sobie miejscach w tekscie i kluczu - przydatna wiedza, gdy klucz jest krotszy do tekstu" << endl;
+        cout << "7. UWAGA program nie sprawdza, czy wprowadzony klucz jest poprawny" << endl;
+        cout << "8. UWAGA program nie sprawdza, czy wprowadzony tekst jest poprawny" << endl;
+        cout << "9. Przyklad poprawnego tekstu i klucza, ktory nalezy umiescic w pliku text.txt" << endl;
+        cout << "================" << endl;
+        cout << "Tekst do szyfrowania: .MATEUSZ I .KAMIL" << endl;
+        cout << "Klucz: .MATEUSZ I .KAMIL" << endl;
+        cout << "Tekst po szyfrowaniu: .ZANJOKW Q .TAZQV" << endl;
+        cout << "================" << endl;
+        cout << "Tekst do odszyfrowania: .ZANJOKW Q .TAZQV" << endl;
+        cout << "Klucz: .MATEUSZ I .KAMIL" << endl;
+        cout << "Tekst po deszyfrowaniu: .MATEUSZ I .KAMIL" << endl;
+        cout << "================" << endl;
+        cout << "KRYPTOANALIZA" << endl;
+        cout << "Metoda zlamania opierala sie na obserwacji, ze powtorzenia w szyfrogramie moga odpowiadac powtorzeniom w tekscie jawnym i kluczu. To z kolei ulatwialo odgadniecie dlugosci klucza, nastepnie samego klucza i odszyfrowania szyfrogramu." << endl;
+        cout << "Bezwarunkowe bezpieczenstwo" << endl;
+        cout << "Szyfr Vigenere’a moze byc szyfrem nie do zlamania (zostalo to udowodnione w 1949 przez Claude’a Elwooda Shannona) przy zachowaniu trzech regul:\nklucz uzyty do szyfrowania wiadomosci musi byc dluzszy lub rowny szyfrowanej wiadomosci;\nklucz musi byc wygenerowany w sposob calkowicie losowy(nie moze istniec sposob na odtworzenie klucza na podstawie znajomosci dzialania generatorow liczb pseudolosowych);\nklucz nie moze byc uzyty do zaszyfrowania wiecej niz jednej wiadomosci. Dodatkowo jest wymagane, aby osoba znajaca klucz nikomu go nie zdradzila." << endl;
+        cout << "================" << endl;
+        break;
+    default:
+        cout << "Nie ma takiej opcji";
+        break;
+    }
+
+    file2.close();
+    file.close();
+    return 0;
+}
+
+void createGlobalVariables()
+{
+    ifstream file;
+    file.open("alphabet.txt"); // Zawartość AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ
+    if (!file.is_open())
+        cout << "Nie udalo sie otworzyc pliku alphabet.txt" << endl;
+    getline(file, uppercaseAlphabetPL);
+    file.close();
+
+    array_size = uppercaseAlphabetPL.length();
+}
+
+string vigenereEncrypt(string arrayVigenere[], string text, string key)
+{
+    // Wyświetlanie tablicy Vigenere’a
+    // for (int i = 0; i < array_size; i++)
+    //     cout << arrayVigenere[i] << endl;
+
+    // cout << text << endl;
+    // cout << key << endl;
+    // cout << endl;
+
+    // string vigenereEncrypt = "";
+    // for (int i = 0; i < text.length(); i++)
+    // {
+    //     int indexLetter = uppercaseAlphabetPL.find(text[i]);
+    //     int indexKey = uppercaseAlphabetPL.find(key[i]);
+
+    //     if (indexLetter >= 0 && indexLetter <= 34)
+    //         vigenereEncrypt += arrayVigenere[indexLetter][indexKey];
+    //     else
+    //         vigenereEncrypt += text[i];
+    // }
+    // cout << "Poprawny wynik zapisano w pliku text2.txt: " << vigenereEncrypt << endl;
+    // return vigenereEncrypt;
+
+    string vigenereEncrypt = "";
+    // vektor notAlfabet
+    vector<int> notAlfabet;
+
+    key.erase(remove(key.begin(), key.end(), ' '), key.end());
+
+    // Usuwa znaki nie bedace literami otworzyc pliku alphabet.txt i zapisac do stringa uppercaseAlphabetPL oraz zapisuje numer indeksu tego znaku, a w drugiej tablicy zapisuje ten znak
+    // Przy zwracaniu stringa to bliku tekstowego text2.txt spowrotem dodawane są zanki nie bedoce literami
+
+    for (int i = 0; i < text.length(); i++)
+    {
+        int indexLetter = uppercaseAlphabetPL.find(text[i]);
+        int indexKey = uppercaseAlphabetPL.find(key[i % key.length()]);
+
+        if (indexLetter >= 0 && indexLetter <= 34)
+        {
+            vigenereEncrypt += arrayVigenere[indexLetter][indexKey];
+        }
+        else
+        {
+            notAlfabet.push_back(i);
+        }
+    }
+
+    // wypisz notAlfabet
+    for (int i = 0; i < notAlfabet.size(); i++)
+    {
+        cout << notAlfabet[i] << endl;
+    }
+    // // zapis poprawny wynik do pliku text2.txt
+    // for (int i = 0; i < notAlfabet.length(); i++)
+    // {
+    //     if (i % 2 == 0)
+    //     {
+    //         int index = stoi(notAlfabet.substr(i, 2));
+    //         vigenereEncrypt += text[index];
+    //     }
+    // }
+    // cout << "Poprawny wynik zapisano w pliku text2.txt: " << vigenereEncrypt << endl;
+    return vigenereEncrypt;
+
+    // for (int i = 0; i < text.length(); i++)
+    // {
+    //     int indexLetter = uppercaseAlphabetPL.find(text[i]);
+    //     int indexKey = uppercaseAlphabetPL.find(key[i]);1
+
+    //     if (indexLetter >= 0 && indexLetter <= 34)
+    //         vigenereEncrypt += arrayVigenere[indexLetter][indexKey];
+    //     else
+    //     {
+    //         notAlfabet += to_string(indexLetter);
+    //         notAlfabet += text[i];
+    //     }
+    // }
+    // cout << "Poprawny wynik zapisano w pliku text2.txt: " << vigenereEncrypt << endl;
+    // return vigenereEncrypt;
+}
+
+string vigenereDecrypt(string arrayVigenere[], string text, string key)
+{
+    // Wyświetlanie tablicy Vigenere’a
+    // for (int i = 0; i < array_size; i++)
+    //     cout << arrayVigenere[i] << endl;
+
+    // cout << text << endl;
+    // cout << key << endl;
+    // cout << endl;
+
+    string vigenereDecrypt = "";
+    for (int i = 0; i < text.length(); i++)
+    {
+        int indexLetter = uppercaseAlphabetPL.find(text[i]);
+        int indexKey = uppercaseAlphabetPL.find(key[i]);
+
+        if (indexLetter >= 0 && indexLetter <= 34)
+        {
+            for (int j = 0; j < array_size; j++)
+                if (arrayVigenere[indexKey][j] == text[i])
+                    vigenereDecrypt += uppercaseAlphabetPL[j];
+        }
+        else
+            vigenereDecrypt += text[i];
+    }
+    cout << "Poprawny wynik zapisano w pliku text2.txt: " << vigenereDecrypt << endl;
+    return vigenereDecrypt;
+}
+
+// PS. PYTHON LEPSZY
 		  
 		  
 		 
