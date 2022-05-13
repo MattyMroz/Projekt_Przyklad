@@ -432,7 +432,7 @@ document.write(x.toFixedDown(3));
 
 
 
-//////////////////////
+////////////////////// Galeria
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -472,60 +472,58 @@ document.write(x.toFixedDown(3));
             transition: .2s linear;
         }
 
-        /* 
+        /*
         body::-webkit-scrollbar {
             display: none;
         } */
 
 
         body {
-            overflow: hidden;
-            background: #303030;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: #333;
+            background-color: rgb(56, 56, 56);
         }
 
         .pictures {
+            /* background-color: blueviolet; */
             width: 100%;
-            height: 100%;
-            /* overflow: hidden; */
-            /* background: #ff0000; */
+            height: 1000px;
         }
 
         .big__img__div {
-            padding-top: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
+            margin: auto;
+            width: 1000px;
+            height: 600px;
+            padding: 50px 0;
         }
 
         #big__img {
-            width: 70%;
-            height: 70%;
+            width: 100%;
+            height: 100%;
             cursor: pointer;
-            border: 2px solid rgb(0, 0, 0);
-            border-radius: 25px;
+            border: 2px solid black;
+            border-radius: 10px;
         }
 
         .small__img__div {
-            padding-top: 100px;
+            margin: auto;
+            width: 100%;
+            height: 400px;
+            /* background-color: red; */
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
-            padding-bottom: 100px;
+        }
+
+        .small__img__div div {
+            width: 600px;
+            height: 300px;
         }
 
         .small__img {
-            width: 30%;
-            height: 30%;
+            width: 100%;
+            height: 100%;
             cursor: pointer;
-            margin: 40px;
-            border: 2px solid rgb(0, 0, 0);
-            border-radius: 25px;
+            border: 2px solid black;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -537,13 +535,15 @@ document.write(x.toFixedDown(3));
             <img id="big__img" src="https://picsum.photos/1000/500?grayscale" alt="obraz1">
         </div>
         <div class="small__img__div">
-
-            <img class="small__img" src="https://picsum.photos/1000/500" alt="obraz2">
-
-            <img class="small__img" src="https://picsum.photos/seed/picsum/1000/500" alt="obraz3">
-
-            <img class="small__img" src="https://picsum.photos/id/237/1000/500" alt="obraz4">
-
+            <div>
+                <img class="small__img" src="https://picsum.photos/1000/500" alt="obraz2">
+            </div>
+            <div>
+                <img class="small__img" src="https://picsum.photos/seed/picsum/1000/500" alt="obraz3">
+            </div>
+            <div>
+                <img class="small__img" src="https://picsum.photos/id/237/1000/500" alt="obraz4">
+            </div>
         </div>
     </div>
 
@@ -556,52 +556,27 @@ document.write(x.toFixedDown(3));
     <script src="assets/js/main.js"></script>
 
     <script>
-        // =============== GALERIA ===============
         $(".small__img").click(function () {
 
-            // .fadeOut()
-            // .fadeIn()
+            // podmiana małedo na duży i dużego na mały przy kliknięciu ze znikaniem i pojawianiem się 
 
+            let big__img = $("#big__img");
+            let small__img = $(this);
+            let big__img__src = big__img.attr("src");
 
-            // $('.min').on('click', function () {
-            //     var zm = $(this).data('duzy')
-            //     $('.max').fadeOut();
-            //     setTimeout(function () {
-            //         $('.max').attr("src", zm)
-            //     }, 400);
-            //     $('.max').fadeIn();
-            // })
+            big__img.fadeOut(400);
+            small__img.fadeOut(400);
 
-            // let small__img = $(this).attr("src");
-            // let img_big = $("#big__img").attr("src");
-            // $("#big__img").fadeOut();
-            // setTimeout(function () {
-            //     $("#big__img").attr("src", $(this).attr("src"));
-            //     $(this).attr("src", img_big);
-            // }, 400);
-            // $("#big__img").fadeIn();
-
-            let small = $(this);
-            let small__img = $(this).attr("src");
-            let img_big = $("#big__img").attr("src");
-
-
-            $("#big__img").fadeOut();
-            small.fadeOut();
             setTimeout(function () {
-                $("#big__img").attr("src", small__img);
-                small.attr("src", img_big);
-            }, 600);
-            $("#big__img").fadeIn();
-            small.fadeIn();
+                big__img.attr("src", small__img.attr("src"));
+                small__img.attr("src", big__img__src);
+            }, 500);
 
-
-
+            big__img.fadeIn(500);
+            small__img.fadeIn(500);
         });
     </script>
 
 </body>
 
 </html>
-
-
