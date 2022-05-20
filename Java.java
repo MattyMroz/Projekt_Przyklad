@@ -2210,6 +2210,412 @@ public class Zamowienie implements Serializable {
 
 
 
+// Samochody i podklasy (nazwy plików ja klasy)
+import java.util.Scanner;
 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 1 osobowy 1 dostawczy 1 motocykl i 1 maszyna robocza
+
+        Osobowe o1 = new Osobowe("ABC123", "ABC123", "Czerwony", 10000, 10, 10, 10, 4, 5, "diesla");
+        Dostawcze d1 = new Dostawcze("ABC123", "ABC123", "Czerwony", 10000, 10, 10, 10, 4, 5, "diesla", "Dostawcze",
+                "Ford", "Focus");
+
+        MaszynyRobocze mr1 = new MaszynyRobocze("ABC123", "ABC123", "Czerwony", 10000, 10, 10, 10, 4, 5,
+                "benzyna", "Dostawcze",
+                "Ford", "Focus", 6, "2.0", 1000);
+
+        Motocykle m1 = new Motocykle("ABC123", "ABC123", "Czerwony", 10000, 10, 10, 10, "Motocykl", "Yamaha",
+                "YZF-R6", "elektryczny");
+
+        System.out.println("Wypisz wszystkie dane osobowego: ");
+        System.out.println("Nr rejerstracyjny: " + o1.getNumerRejestracyjny());
+        System.out.println("Nr VIN: " + o1.getNumerVin());
+        System.out.println("Kolor: " + o1.getKolor());
+        // 2 miejsca po przecinku cena
+        System.out.println("Cena: " + String.format("%.2f", o1.getCena()) + " zl");
+        System.out.println("Spalanie: " + o1.getSpalanie() + " l/100km");
+        System.out.println("Stan zbiornika paliwa: " + o1.getStanZbiornikaPaliwa() + " l");
+        System.out.println("Licznik przejechanych kilometrow: " + o1.getLicznikPrzejechanychKilometrow() + " km");
+        System.out.println("Liczba drzwi: " + o1.getLiczbaDrzwi());
+        System.out.println("Liczba miejsc: " + o1.getLiczbaMiejsc());
+        System.out.println("Silnik: " + o1.getSilnik());
+        System.out.println("");
+
+        System.out.println("Stan zbiornika paliwa: " + o1.getStanZbiornikaPaliwa() + " l");
+        System.out.println("Licznik przejechanych kilometrow: " + o1.getLicznikPrzejechanychKilometrow() + " km");
+
+        // TANKOWANIE
+        System.out.println("");
+        System.out.println("Tankujemy osobowego 40 l");
+        o1.tankuj(40);
+        System.out.println("Stan zbiornika paliwa po zatankowaniu: " + o1.getStanZbiornikaPaliwa() + " l");
+
+        // JEZDZENIE
+        System.out.println("");
+        System.out.println("Jedzemy osobowego 55 km");
+        o1.jedz(55);
+        System.out.println("Stan zbiornika paliwa po podrozy: " + o1.getStanZbiornikaPaliwa() + " l");
+        System.out.println("Licznik przejechanych kilometrow: " + o1.getLicznikPrzejechanychKilometrow() + " km");
+
+        scanner.close();
+    }
+}
+
+// 
+
+public class Pojazdy {
+    private String numerRejestracyjny;
+    private String numerVin;
+    private String kolor;
+    private double cena;
+    private double spalanie;
+    private double stanZbiornikaPaliwa;
+    private double licznikPrzejechanychKilometrów;
+
+    public Pojazdy(String numerRejestracyjny, String numerVin, String kolor, double cena, double spalanie,
+            double stanZbiornikaPaliwa, double licznikPrzejechanychKilometrów) {
+        this.numerRejestracyjny = numerRejestracyjny;
+        this.numerVin = numerVin;
+        this.kolor = kolor;
+        this.cena = cena;
+        this.spalanie = spalanie;
+        this.stanZbiornikaPaliwa = stanZbiornikaPaliwa;
+        this.licznikPrzejechanychKilometrów = licznikPrzejechanychKilometrów;
+    }
+
+    public String getNumerRejestracyjny() {
+        return numerRejestracyjny;
+    }
+
+    public void setNumerRejestracyjny(String numerRejestracyjny) {
+        this.numerRejestracyjny = numerRejestracyjny;
+    }
+
+    public String getNumerVin() {
+        return numerVin;
+    }
+
+    public void setNumerVin(String numerVin) {
+        this.numerVin = numerVin;
+    }
+
+    public String getKolor() {
+        return kolor;
+    }
+
+    public void setKolor(String kolor) {
+        this.kolor = kolor;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public void setCena(double cena) {
+        this.cena = cena;
+    }
+
+    public double getSpalanie() {
+        return spalanie;
+    }
+
+    public void setSpalanie(double spalanie) {
+        this.spalanie = spalanie;
+    }
+
+    public double getStanZbiornikaPaliwa() {
+        return stanZbiornikaPaliwa;
+    }
+
+    public void setStanZbiornikaPaliwa(double stanZbiornikaPaliwa) {
+        this.stanZbiornikaPaliwa = stanZbiornikaPaliwa;
+    }
+
+    public double getLicznikPrzejechanychKilometrow() {
+        return licznikPrzejechanychKilometrów;
+    }
+
+    public void setLicznikPrzejechanychKilometrow(double licznikPrzejechanychKilometrów) {
+        this.licznikPrzejechanychKilometrów = licznikPrzejechanychKilometrów;
+    }
+
+    public void jedz(double km) {
+        this.licznikPrzejechanychKilometrów += km;
+        this.stanZbiornikaPaliwa -= km * (this.spalanie) / 100;
+        if (this.stanZbiornikaPaliwa < 0) {
+            this.stanZbiornikaPaliwa = 0;
+        }
+    }
+
+    public void tankuj(double litry) {
+        this.stanZbiornikaPaliwa += litry;
+    }
+
+    public void zmienStanZbiornikaPaliwa(double litry) {
+        this.stanZbiornikaPaliwa += litry;
+    }
+
+    public void zmienLicznikPrzejechanychKilometrów(double km) {
+        this.licznikPrzejechanychKilometrów += km;
+    }
+
+    public void zmienCene(double cena) {
+        this.cena += cena;
+    }
+
+    public void zmienSpalanie(double spalanie) {
+        this.spalanie += spalanie;
+    }
+
+    public void zmienKolor(String kolor) {
+        this.kolor = kolor;
+    }
+
+    public void zmienNumerVin(String numerVin) {
+        this.numerVin = numerVin;
+    }
+
+    public void zmienNumerRejestracyjny(String numerRejestracyjny) {
+        this.numerRejestracyjny = numerRejestracyjny;
+    }
+
+}
+
+// 
+
+
+public class Osobowe extends Pojazdy {
+    private int liczbaDrzwi;
+    private int liczbaMiejsc;
+    private String silnik;
+
+    public Osobowe(String numerRejestracyjny, String numerVin, String kolor, double cena, double spalanie,
+            double stanZbiornikaPaliwa, double licznikPrzejechanychKilometrów, int liczbaDrzwi, int liczbaMiejsc,
+            String silnik) {
+        super(numerRejestracyjny, numerVin, kolor, cena, spalanie, stanZbiornikaPaliwa, licznikPrzejechanychKilometrów);
+        this.liczbaDrzwi = liczbaDrzwi;
+        this.liczbaMiejsc = liczbaMiejsc;
+        this.silnik = silnik;
+    }
+
+    public int getLiczbaDrzwi() {
+        return liczbaDrzwi;
+    }
+
+    public void setLiczbaDrzwi(int liczbaDrzwi) {
+        this.liczbaDrzwi = liczbaDrzwi;
+    }
+
+    public int getLiczbaMiejsc() {
+        return liczbaMiejsc;
+    }
+
+    public void setLiczbaMiejsc(int liczbaMiejsc) {
+        this.liczbaMiejsc = liczbaMiejsc;
+    }
+
+    public String getSilnik() {
+        return silnik;
+    }
+
+    public void setSilnik(String silnik) {
+        this.silnik = silnik;
+    }
+
+    public void zmienLiczbaDrzwi(int liczbaDrzwi) {
+        this.liczbaDrzwi = liczbaDrzwi;
+    }
+
+    public void zmienLiczbaMiejsc(int liczbaMiejsc) {
+        this.liczbaMiejsc = liczbaMiejsc;
+    }
+
+    public void zmienSilnik(String silnik) {
+        this.silnik = silnik;
+    }
+}
+
+// 
+
+public class Dostawcze extends Osobowe {
+    private String typ;
+    private String marka;
+    private String model;
+
+    public Dostawcze(String numerRejestracyjny, String numerVin, String kolor, double cena, double spalanie,
+            double stanZbiornikaPaliwa, double licznikPrzejechanychKilometrów, int liczbaDrzwi, int liczbaMiejsc,
+            String silnik, String typ, String marka, String model) {
+        super(numerRejestracyjny, numerVin, kolor, cena, spalanie, stanZbiornikaPaliwa, licznikPrzejechanychKilometrów,
+                liczbaDrzwi, liczbaMiejsc, silnik);
+        this.typ = typ;
+        this.marka = marka;
+        this.model = model;
+    }
+
+    public String getTyp() {
+        return typ;
+    }
+
+    public void setTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public String getMarka() {
+        return marka;
+    }
+
+    public void setMarka(String marka) {
+        this.marka = marka;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void zmienTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public void zmienMarka(String marka) {
+        this.marka = marka;
+    }
+
+    public void zmienModel(String model) {
+        this.model = model;
+    }
+}
+
+// 
+
+public class MaszynyRobocze extends Dostawcze {
+    private int liczbaKol;
+    private String kolatyp;
+    private double mocSilnika;
+
+    public MaszynyRobocze(String numerRejestracyjny, String numerVin, String kolor, double cena, double spalanie,
+            double stanZbiornikaPaliwa, double licznikPrzejechanychKilometrów, int liczbaDrzwi, int liczbaMiejsc,
+            String silnik, String typ, String marka, String model, int liczbaKol, String kolatyp, double mocSilnika) {
+        super(numerRejestracyjny, numerVin, kolor, cena, spalanie, stanZbiornikaPaliwa, licznikPrzejechanychKilometrów,
+                liczbaDrzwi, liczbaMiejsc, silnik, typ, marka, model);
+        this.liczbaKol = liczbaKol;
+        this.kolatyp = kolatyp;
+        this.mocSilnika = mocSilnika;
+    }
+
+    public int getLiczbaKol() {
+        return liczbaKol;
+    }
+
+    public void setLiczbaKol(int liczbaKol) {
+        this.liczbaKol = liczbaKol;
+    }
+
+    public String getKolatyp() {
+        return kolatyp;
+    }
+
+    public void setKolatyp(String kolatyp) {
+        this.kolatyp = kolatyp;
+    }
+
+    public double getMocSilnika() {
+        return mocSilnika;
+    }
+
+    public void setMocSilnika(double mocSilnika) {
+        this.mocSilnika = mocSilnika;
+    }
+
+    public void zmienLiczbaKol(int liczbaKol) {
+        this.liczbaKol = liczbaKol;
+    }
+
+    public void zmienKolatyp(String kolatyp) {
+        this.kolatyp = kolatyp;
+    }
+
+    public void zmienMocSilnika(double mocSilnika) {
+        this.mocSilnika = mocSilnika;
+    }
+
+}
+
+// 
+
+public class Motocykle extends Pojazdy {
+    private String typ;
+    private String marka;
+    private String model;
+    private String silnik;
+
+    public Motocykle(String numerRejestracyjny, String numerVin, String kolor, double cena, double spalanie,
+            double stanZbiornikaPaliwa, double licznikPrzejechanychKilometrów, String typ, String marka, String model,
+            String silnik) {
+        super(numerRejestracyjny, numerVin, kolor, cena, spalanie, stanZbiornikaPaliwa, licznikPrzejechanychKilometrów);
+        this.typ = typ;
+        this.marka = marka;
+        this.model = model;
+        this.silnik = silnik;
+    }
+
+    public String getTyp() {
+        return typ;
+    }
+
+    public void setTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public String getMarka() {
+        return marka;
+    }
+
+    public void setMarka(String marka) {
+        this.marka = marka;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getSilnik() {
+        return silnik;
+    }
+
+    public void setSilnik(String silnik) {
+        this.silnik = silnik;
+    }
+
+    public void zmienTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public void zmienMarka(String marka) {
+        this.marka = marka;
+    }
+
+    public void zmienModel(String model) {
+        this.model = model;
+    }
+
+    public void zmienSilnik(String silnik) {
+        this.silnik = silnik;
+    }
+
+}
+
+
+//////////////////////////
 
 
