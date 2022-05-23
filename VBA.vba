@@ -235,9 +235,10 @@ Private Sub btnLogin_Click()
 End Sub
 ==========
 
-
-View > Immediate Window > ?err.Number = wyświetlenie numeru błędu
 ========== Debugging and Error Handling ==========
+            
+           View > Immediate Window > ?err.Number = wyświetlenie numeru błędu 
+            
 Private Sub btnGo_Click()
     On Error GoTo problem
     MsgBox "Answer:" & (Me.txtValuel / Me.txtValue2)
