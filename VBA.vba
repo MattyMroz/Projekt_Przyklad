@@ -42,6 +42,15 @@ Private Sub btnGo_Click()
    End If
    ThkYesNo = YesNo
 End Sub
+                                    
+==============================
+
+If IsNull(Me![nazwa_pola]) Then
+      instrukcje
+   Else
+instrukcje
+End If
+
 ==========
 
 ==========  Select Case ==========
