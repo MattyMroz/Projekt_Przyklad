@@ -3186,4 +3186,145 @@ string vigenereDecrypt(string arrayVigenere[], string text, string key)
 
 // PS. PYTHON LEPSZY
 
+//////////////////////////////////////// Maksymalna suma podciągu spójnego
+#include <iostream>
+#include <algorithm>
+using namespace std;
+// -3 4 -1 2 -7 2 -1 5 -2 1
+
+int NUM[] = {-2, 4, -1, 2, -7, 2, -1, 5, -2, 1};
+// int NUM[] = {2, -1, 2, -1, -1, -1, -1, 2, -1, -1};
+// int NUM[] = {23, 2, 6, 23, 24, -42, 40, 2, -48, 39};
+int NUM2[10] = {-1, -2, -3, -4, -5, -6, -7, -8, -9}; // 1
+// Maksymalna suma podciagu spójnego 3 sposoby
+
+void spodob1()
+{
+
+    int maks = NUM[0];
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (NUM[i] > maks)
+            maks = NUM[i];
+    }
+
+    int maks_suma = maks, akt_suma = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            akt_suma = 0;
+            for (int k = i; k <= j; k++)
+            {
+                akt_suma += NUM[k];
+                if (akt_suma > maks_suma)
+                    maks_suma = akt_suma;
+            }
+        }
+    }
+
+    cout << "Maksymalna suma podciagu spojnego 1: " << maks_suma << endl;
+}
+
+void spodob2()
+{
+
+    int maks = NUM[0];
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (NUM[i] > maks)
+            maks = NUM[i];
+    }
+
+    int maks_suma = maks, akt_suma = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        akt_suma = 0;
+        for (int j = i; j < 10; j++)
+        {
+            akt_suma += NUM[j];
+            if (akt_suma > maks_suma)
+                maks_suma = akt_suma;
+        }
+    }
+
+    cout << "Maksymalna suma podciagu spojnego 2: " << maks_suma << endl;
+}
+
+void spodob3()
+{
+    int maks = NUM[0];
+
+    int maks_suma = maks, akt_suma = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        if (akt_suma + NUM[i] > 0)
+        {
+            akt_suma = akt_suma + NUM[i];
+            if (akt_suma > maks_suma)
+                maks_suma = akt_suma;
+        }
+        else
+            akt_suma = 0;
+    }
+    cout << "Maksymalna suma podciagu spojnego 3: " << maks_suma << endl;
+}
+
+void zadanie1()
+{
+    int maks = max(NUM[0], NUM[9]);
+
+    // cout << "Maksymalna suma podciagu spojnego: " << maks << endl;
+
+    int maks_suma = maks, akt_suma = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        if (akt_suma + NUM[i] > 0)
+        {
+            akt_suma = akt_suma + NUM[i];
+            if (akt_suma > maks_suma)
+                maks_suma = akt_suma;
+        }
+        else
+            akt_suma = 0;
+    }
+
+    cout << "Maksymalna suma podciagu spojnego - zad1: " << maks_suma << endl;
+}
+
+void zadanie2(int n)
+{
+    int licznik = 0; // LICZNIK MAKS_SUMY = N
+
+    int akt_suma = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        akt_suma = 0;
+        for (int j = i; j < 10; j++)
+        {
+            // cout << "i: " << i << " j: " << j << endl;
+            akt_suma += NUM[j];
+            if (akt_suma == n)
+            {
+                licznik++;
+                // cout << "i: " << i << " j: " << j << " Licznik: " << licznik << endl;
+            }
+        }
+    }
+
+    cout << "Liczba podciagow spojnych o sumie rownej " << n << " - zad2: " << licznik << endl;
+}
+
+int main(int argc, char const *argv[])
+{
+    spodob1();
+    spodob2();
+    spodob3();
+    zadanie1();
+    zadanie2(2);
+
+    return 0;
+}
 
