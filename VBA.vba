@@ -568,8 +568,21 @@ Private Sub Polecenie12_Click()
 End Sub
 ====================
 
+                                
+                                
+                                
+                                
+    Dim Blad
+    If IsNull(Lista56) Then
+        Blad = MsgBox("Musisz wybrać przedmiot z listy!", vbOKOnly, "Błąd")
+    Else
+        DoCmd.OpenForm "Produkty Formularz", , , "ProduktID =" & Me.Lista56.Value, acFormEdit
+    End If
 
-
+                                
+                                
+                                
+                                
 
 
 ==========
