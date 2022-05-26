@@ -465,10 +465,6 @@ Private Sub FormFooter_Click()
 
 End Sub
 ==========
-
-                        
-                        
-                        
                         
 ========== 41 VBA - CurrentProject ==========
 
@@ -477,6 +473,61 @@ End Sub
 ========== 43 VBA - SysCmd ==========
 
 ========== 44. VBA - Environ ==========
+
+
+
+
+
+========== Puste Pole Błąd + otwieranie kwerendy ==========
+Private Sub Polecenie5_Click()
+    Dim Blad
+    If IsNull(Lista2) Then
+        Blad = MsgBox("Musisz wybrać przedmiot z listy!", vbOKOnly, "Błąd")
+    Else
+        DoCmd.OpenQuery "towary Kwerenda", , acReadOnly
+    End If
+End Sub
+====================
+
+
+
+========== Puste pole + sprawdzanie czy przedmiot znajduje się na drugiej liście + dodanie do listy i jej odświerzenie ==========
+Private Sub Polecenie12_Click()
+    Dim Blad
+    If IsNull(Lista2) Then
+        Blad = MsgBox("Musisz wybrać przedmiot z listy!", vbOKOnly, "Błąd")
+    End If
+    
+    Dim i As Integer
+    For i = 0 To Lista10.ListCount
+        If (Lista10.Column(0, i) = CInt(Lista2.Value)) Then
+            Blad = MsgBox("Masz to już w koszyku!", vbOKOnly, "Błąd")
+            Exit Sub
+        End If
+    Next i
+
+    Lista10.AddItem (Lista2.Column(0, Lista2.ListIndex) + ";" + Lista2.Column(1, Lista2.ListIndex))
+    Lista10.Requery
+End Sub
+====================
+
+
+
+
+========== Jeżeli w liście coś się znajduje to ją opróżnij ==========
+Private Sub Polecenie36_Click()
+    While Lista10.ListCount > 0
+        Lista10.RemoveItem (0)
+    Wend
+End Sub
+====================
+
+
+
+
+
+
+
 
 ==========
 Login
