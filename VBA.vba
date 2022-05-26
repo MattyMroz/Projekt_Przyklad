@@ -523,7 +523,50 @@ End Sub
 ====================
 
 
+                  
+                  
+                  
+========== Łopatologicznie i z urzyciem tabeli koszyk - Puste pole + sprawdzanie czy przedmiot znajduje się na drugiej liście + dodanie do listy i jej odświerzenie ==========
+Private Sub Polecenie12_Click()
 
+    Dim db As DAO.Database
+    Dim rs As DAO.Recordset
+    Dim koszyk As Variant
+                      
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset("koszyk")
+ 
+    If IsNull(Me![Lista2]) Then
+          MsgBox "Zaznacz Produkt!"
+          Exit Sub
+    End If
+ 
+    If [Lista2] = [Lista10] Then
+          MsgBox "Produkt jest już w koszyku!"
+          Exit Sub
+    End If
+ 
+    Dim Blad
+    Dim i As Integer
+    For i = 0 To Lista10.ListCount
+            If (CInt(Lista2.Value) = Lista10.Column(0, i)) Then
+                Blad = MsgBox("Masz juz to w koszyku!", vbOKOnly, "blad")
+                Exit Sub
+            End If
+    Next i
+
+    rs.AddNew
+    rs!IdTowaru = Me.Lista2.Column(0)
+    rs!Nazwa = Me.Lista2.Column(1)
+    rs.Update
+ 
+    rs.Close
+    Set rs = Nothing
+    Set db = Nothing
+
+    Lista10.Requery
+End Sub
+====================
 
 
 
