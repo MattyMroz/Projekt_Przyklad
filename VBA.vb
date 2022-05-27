@@ -571,18 +571,46 @@ End Sub
                                 
                                 
                                 
-                                
+========== Błąd nie wybrania z listy ==========
     Dim Blad
     If IsNull(Lista56) Then
         Blad = MsgBox("Musisz wybrać przedmiot z listy!", vbOKOnly, "Błąd")
     Else
         DoCmd.OpenForm "Produkty Formularz", , , "ProduktID =" & Me.Lista56.Value, acFormEdit
     End If
+==========
+                                
+                                
+========== Logowanie i hasło ==========    
+Option Compare Database
+Option Explicit
 
-                                
-                                
-                                
-                                
+Private Sub Polecenie4_Click()
+    Dim rs As Recordset
+    Dim db As Database
+
+    Set rs = CurrentDb.OpenRecordset("Aptekarze", dbOpenSnapshot, dbReadOnly)
+    
+    rs.FindFirst "Login='" & Me.Tekst0 & "'"
+    
+    If rs.NoMatch = True Then
+        Me.Etykieta5.Visible = True
+        Me.Tekst0.SetFocus
+        Exit Sub
+    End If
+    Me.Etykieta5.Visible = False
+    
+    If rs!Haslo <> Me.Tekst2 Or IsNull(Me.Tekst2) Then
+        Me.Etykieta7.Visible = True
+        Me.Tekst2.SetFocus
+        Exit Sub
+    End If
+    Me.Etykieta7.Visible = False
+    DoCmd.OpenForm "Apteka Formularz"
+    DoCmd.Close acForm, Me.Name
+End Sub
+
+==========                     
 
 
 ==========
