@@ -579,7 +579,11 @@ End Sub
         DoCmd.OpenForm "Produkty Formularz", , , "ProduktID =" & Me.Lista56.Value, acFormEdit
     End If
 ==========
+                         
                                 
+                                
+                                
+
                                 
 ========== Logowanie i hasło ==========    
 Option Compare Database
@@ -610,9 +614,88 @@ Private Sub Polecenie4_Click()
     DoCmd.Close acForm, Me.Name
 End Sub
 
-==========                     
+==========
+                                      
+                                      
+                                      
+                                      
+                                      
+==========  Szyfrowanie ==========
+Nowy modył > Modules > Module1 np.
+
+                                      
+Option Compare Database
+Option Explicit
+Public Const Salt As Long = 54321234
+
+Public Function Encrypt(strIn As String) As String
+    Dim strChr As String
+    Dim i As Integer
+    
+    For i = 1 To Len(strIn)
+        strChr = strChr & CStr(Asc(Mid(strIn, i, 1)) Xor Salt)
+    Next i
+    Encrypt = strChr
+End Function
 
 
+                                    
+                                    
+==============================
+View > Immediate Window >
+?encrypt("Hasło")
+5432117854321203543211855432137754321213
+
+Wynik wpisać do kolumny hasła w tebeli z której pobieramy hasło
+==========
+
+
+                                      
+                                      
+                                      
+                                      
+========== Logowanie z szyfrowaniem ==========                                
+Option Compare Database
+Option Explicit
+
+Private Sub Polecenie4_Click()
+    Dim rs As Recordset
+    Dim db As Database
+
+    Set rs = CurrentDb.OpenRecordset("Aptekarze", dbOpenSnapshot, dbReadOnly)
+    
+    rs.FindFirst "Login='" & Me.Tekst0 & "'"
+    
+    If rs.NoMatch = True Then
+        Me.Etykieta5.Visible = True
+        Me.Etykieta7.Visible = False
+        Me.Tekst0.SetFocus
+        Exit Sub
+    End If
+    Me.Etykieta5.Visible = False
+
+    If IsNull(Me.Tekst2) Then
+        Me.Etykieta7.Visible = True
+        Me.Tekst2.SetFocus
+        Exit Sub
+    End If
+    Me.Etykieta7.Visible = False
+    
+    
+    If rs!Haslo <> Encrypt(Me.Tekst2) Then
+        Me.Etykieta7.Visible = True
+        Me.Tekst2.SetFocus
+        Exit Sub
+    End If
+    Me.Etykieta7.Visible = False
+    
+    DoCmd.OpenForm "Apteka Formularz"
+    DoCmd.Close acForm, Me.Name
+End Sub
+
+
+==========
+                                      
 ==========
 Login
 https://www.youtube.com/watch?v=356ylQn6kkA&list=PLYMOUCVo86jEeMMdaaq03jQ_t9nFV737s&index=56&ab_channel=ProgrammingMadeEZ
