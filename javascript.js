@@ -829,7 +829,8 @@ document.write(x.toFixedDown(3));
 </html>
 
 
-//////////////////////////////// Slider animation
+//////////////////////////////// Slider 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -938,60 +939,55 @@ document.write(x.toFixedDown(3));
     <script>
         $(document).ready(function () {
             $(function () {
-                let $animationTime = 1000;
-                let $animationDelay = 2000;
-
-                function StartSlider() {
+                async function StartSlider() {
                     $('.slider__inner > div:gt(0)').hide();
                     interfal = setInterval(function () {
                         $('.slider__inner > div:first')
-                            .fadeOut($animationTime)
+                            .fadeOut(1000)
                             .next()
-                            .fadeIn($animationTime)
+                            .fadeIn(1000)
                             .end()
                             .appendTo('.slider__inner');
 
-                    }, $animationDelay);
+                    }, 2000);
                 }
 
                 function StopSlider() {
                     clearInterval(interfal);
                 }
 
-                $(".prev__slider").on("click", function (e) {
-                    e.stopPropagation();
-                    $('.slider__inner > div:gt(0)').hide();
-                    $('.slider__inner > div:first')
-                        .fadeOut($animationTime);
+                $(".prev__slider").on("click", function () {
+                    setTimeout(function () {
+                        $('.slider__inner > div:gt(0)').hide();
+                        $('.slider__inner > div:first')
+                            .fadeOut(800);
 
-                    $('.slider__inner > div:last')
-                        .fadeIn($animationTime)
-                        .prependTo('.slider__inner');
-
+                        $('.slider__inner > div:last')
+                            .fadeIn(800)
+                            .prependTo('.slider__inner');
+                    }, 200);
                 });
 
-                $(".next__slider").on("click", function (e) {
-                    $('.slider__inner > div:gt(0)').hide();
-                    $('.slider__inner > div:first')
-                        .fadeOut($animationTime)
-                        .next()
-                        .fadeIn($animationTime)
-                        .end()
-                        .appendTo('.slider__inner');
+                $(".next__slider").on("click", function () {
+                    setTimeout(function () {
+                        $('.slider__inner > div:gt(0)').hide();
+                        $('.slider__inner > div:first')
+                            .fadeOut(800)
+                            .next()
+                            .fadeIn(800)
+                            .end()
+                            .appendTo('.slider__inner');
+                    }, 200);
                 });
 
                 $('.slider__outer').hover(StopSlider, StartSlider);
                 StartSlider();
             });
-
-
-
         });
     </script>
 </body>
 
 </html>
-
 
 
 
