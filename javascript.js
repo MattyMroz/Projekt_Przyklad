@@ -828,3 +828,171 @@ document.write(x.toFixedDown(3));
 
 </html>
 
+
+//////////////////////////////// Slider animation
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: .2s linear;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .slider__outer {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            margin: 50px auto;
+        }
+
+        .slider__inner {
+            position: relative;
+            width: 900px;
+            height: 600px;
+        }
+
+        .slider__inner>div {
+            position: absolute;
+            transition: none !important;
+        }
+
+        .slider__inner>div>img {
+            width: 900px;
+            height: 600px;
+        }
+
+        .slider__arrows {
+            position: absolute;
+            font-size: 50px;
+            width: 70px;
+            height: 100%;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            opacity: 0;
+        }
+
+        .slider__outer:hover .slider__arrows {
+            opacity: 0.5;
+        }
+
+        .prev__slider {
+            left: 0;
+        }
+
+        .next__slider {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slider__outer">
+        <div class="slider__arrows prev__slider">
+            <i class="ri-arrow-left-line "></i>
+        </div>
+
+        <div class="slider__inner">
+            <div>
+                <img src="https://picsum.photos/900/600" alt="1">
+            </div>
+            <div>
+                <img src="https://picsum.photos/900/600?grayscale" alt="2">
+            </div>
+            <div>
+                <img src="https://picsum.photos/900/600?grayscale=2" alt="3">
+            </div>
+            <div>
+                <img src="https://picsum.photos/900/600/?blur" alt="4">
+            </div>
+        </div>
+
+        <div class="slider__arrows next__slider">
+            <i class="ri-arrow-right-line"></i>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                let $animationTime = 1000;
+                let $animationDelay = 2000;
+
+                function StartSlider() {
+                    $('.slider__inner > div:gt(0)').hide();
+                    interfal = setInterval(function () {
+                        $('.slider__inner > div:first')
+                            .fadeOut($animationTime)
+                            .next()
+                            .fadeIn($animationTime)
+                            .end()
+                            .appendTo('.slider__inner');
+
+                    }, $animationDelay);
+                }
+
+                function StopSlider() {
+                    clearInterval(interfal);
+                }
+
+                $(".prev__slider").on("click", function (e) {
+                    e.stopPropagation();
+                    $('.slider__inner > div:gt(0)').hide();
+                    $('.slider__inner > div:first')
+                        .fadeOut($animationTime);
+
+                    $('.slider__inner > div:last')
+                        .fadeIn($animationTime)
+                        .prependTo('.slider__inner');
+
+                });
+
+                $(".next__slider").on("click", function (e) {
+                    $('.slider__inner > div:gt(0)').hide();
+                    $('.slider__inner > div:first')
+                        .fadeOut($animationTime)
+                        .next()
+                        .fadeIn($animationTime)
+                        .end()
+                        .appendTo('.slider__inner');
+                });
+
+                $('.slider__outer').hover(StopSlider, StartSlider);
+                StartSlider();
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
