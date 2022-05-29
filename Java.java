@@ -8,6 +8,7 @@ public class Nazwa_pliku  {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Zmienne
 boolean flag1 = false;
 boolean flag2 = true;
@@ -23,6 +24,7 @@ String h = "Java Programming";
 
 System.out.println(a + " " + b + " " + c + " " + d + " " + e + " " + f + " " + g + " " + h);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Operatory
 DZIAŁANIA i OPERATORY:
 Operatory arytmetyczne:
@@ -69,31 +71,7 @@ Operatory logiczne - działają po kolei do lewej - zwracają bool -> T/F:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Szkolne programy
 package projekt1;
 import java.util.Scanner;
@@ -113,7 +91,7 @@ public class Projekt1 {
 }
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 package projekt1;
 
 public class Projekt1 {
@@ -134,6 +112,7 @@ public class Projekt1 {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Gruby chudy
 import java.util.Scanner;
 import static java.lang.Math.*;
@@ -164,7 +143,7 @@ class Main {
     }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import java.util.Scanner;
 
 public class Main {
@@ -202,6 +181,7 @@ public class Main {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Kalkulator
 package main;
 
@@ -237,6 +217,9 @@ public class Main {
     }
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Trójka pitagorejska
 import java.util.Scanner;
 
@@ -262,7 +245,7 @@ public class Main {
 }
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Prosty kalkulator
 import java.util.Scanner;
 
@@ -312,7 +295,7 @@ public class Main {
     }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Sprawdzanie czy rok jest przestępny
 import java.util.Scanner;
 
@@ -336,7 +319,7 @@ public class Main {
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Odczyt i zapis do pliku projekt
 // 1
 // Szablon
@@ -387,7 +370,7 @@ public class Main  {
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 22222222222222222222222
 // Zadanie 1
 import java.io.File;
@@ -457,6 +440,8 @@ public class Main2 {
 }
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 333333333333333333
 // Połączenie zadań 2 i 3
 // Razem tworzą lepszą funkcjonalność i spełniają wszystkie warunki owych zadań
@@ -712,7 +697,7 @@ public class Main3 {
     }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Zad 1 Rysowanie przyklejonych trójkątów
 import java.util.Scanner;
 
@@ -734,6 +719,7 @@ public class Main1 {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Zad 2
 import java.util.Scanner;
 
@@ -759,6 +745,7 @@ public class Main {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Zad 2 silnia rekurencyjnie
 import java.util.Scanner;
 
@@ -790,6 +777,7 @@ public class Main1 {
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Zad 3
 import java.util.Scanner;
 import static java.lang.Math.*;
@@ -844,7 +832,7 @@ public class Main1 {
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////// COŚ
 import java.util.Scanner;
 import static java.lang.Math.*;
@@ -890,7 +878,7 @@ public class Main2 {
 
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Kalkulator systemów liczbowych
 import java.util.Scanner;
 
@@ -972,7 +960,7 @@ public class Main {
 }
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////
 package main;
 
@@ -1011,6 +999,7 @@ public class main {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////
 package main;
 
@@ -1030,6 +1019,7 @@ public class main2 {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////// Silnia
 
 package main;
@@ -1063,7 +1053,7 @@ public class main3 {
 
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// NWD
 package main;
 
@@ -1089,6 +1079,7 @@ public class main2 {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// Fibonaci
 package main;
 
@@ -1140,7 +1131,7 @@ public class main3 {
 
 
 
-/////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import java.util.Scanner;
 
 public class main {
@@ -1177,7 +1168,8 @@ public class main {
     }
 
 }
-//////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import java.util.Scanner;
 
 public class main2 {
@@ -1208,7 +1200,7 @@ public class main2 {
     }
 }
 
-//////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import java.util.Scanner;
 
 public class Main3 {
@@ -1277,6 +1269,7 @@ public class Main3 {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////// Tablice i random
 import java.util.Scanner;
 import java.util.Arrays;
@@ -1340,6 +1333,7 @@ public class main1 {
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// Tablice i random za pomocą math
 import java.util.Scanner;
 import java.util.Arrays;
@@ -1379,7 +1373,7 @@ public class main2 {
 }
 
 
-////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Random;
@@ -1613,7 +1607,7 @@ public class Main {
     }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////// Emerytura
 import java.util.Scanner;
 import java.io.*;
@@ -1706,7 +1700,7 @@ public class main1 {
 }
 
 	
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // W MyNumber.java
 public class MyNumber {
     int myNymber;
@@ -1753,7 +1747,7 @@ public class MyNumber {
 }
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // W Prostakat.java
 public class Prostokat {
     public int a, b;
@@ -1815,7 +1809,7 @@ public class Pozycja implements Serializable {
         return wartosc;
     }
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Zamowienie.java
 import java.util.ArrayList;
 import java.io.*;
@@ -2083,7 +2077,7 @@ public class Main {
 
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Pozycje.java
 
 import java.io.*;
@@ -2120,7 +2114,7 @@ public class Pozycja implements Serializable {
     }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Zamówienia.java
 import java.util.ArrayList;
 import java.io.*;
@@ -2209,7 +2203,7 @@ public class Zamowienie implements Serializable {
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Samochody i podklasy (nazwy plików ja klasy)
 import java.util.Scanner;
 
@@ -2264,8 +2258,7 @@ public class Main {
     }
 }
 
-// 
-
+/////////////////////////////////////////////////////
 public class Pojazdy {
     private String numerRejestracyjny;
     private String numerVin;
@@ -2384,7 +2377,7 @@ public class Pojazdy {
 
 }
 
-// 
+/////////////////////////////////////////////////////////////////
 
 
 public class Osobowe extends Pojazdy {
@@ -2438,7 +2431,7 @@ public class Osobowe extends Pojazdy {
     }
 }
 
-// 
+///////////////////////////////////////////////////////////////////////
 
 public class Dostawcze extends Osobowe {
     private String typ;
@@ -2492,7 +2485,7 @@ public class Dostawcze extends Osobowe {
     }
 }
 
-// 
+////////////////////////////////////////////
 
 public class MaszynyRobocze extends Dostawcze {
     private int liczbaKol;
@@ -2616,6 +2609,337 @@ public class Motocykle extends Pojazdy {
 }
 
 
-//////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Main.java
+
+// Program do zarządzania finansami - nie wiem są 2 klasy, nie wpadłem na inny pomysł, jest to jakaś hierarchia XD
+
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    // zapisywanie listy do pliku
+    public static void Zapisywanie(ArrayList<Finanse> finanses, String nazwaPliku) throws IOException {
+        FileOutputStream fos = new FileOutputStream(nazwaPliku);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(finanses);
+        oos.close();
+    }
+
+    // wczytywanie listy z pliku
+    public static void Odczytywanie(ArrayList<Finanse> finanses, String nazwaPliku) {
+        if (new File(nazwaPliku).exists()) {
+            try {
+                FileInputStream fis = new FileInputStream(nazwaPliku);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                ArrayList<Finanse> przychody = (ArrayList<Finanse>) ois.readObject();
+                finanses.addAll(przychody);
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Deklaracja finansów - listy przychodów i wydatków
+        Zapisz zapisz = new Zapisz();
+        ArrayList<Finanse> przychody = new ArrayList<Finanse>();
+        ArrayList<Finanse> wydatki = new ArrayList<Finanse>();
+
+        // ================================================================
+        // Ile przychodów i wydatków
+        Odczytywanie(przychody, "przychody.txt");
+        int i = 0;
+        for (Finanse przychod : przychody) {
+            i++;
+        }
+        System.out.println("Ilość przychodów: " + i);
+
+        Odczytywanie(wydatki, "wydatki.txt");
+        int j = 0;
+        for (Finanse wydatek : wydatki) {
+            j++;
+        }
+        System.out.println("Ilość wydatków: " + j);
+        // ================================================================
+
+        // Pomocnicze zmienne
+        String[] kategoriePrzychody = { "Etat", "Stypendia", "Bierne", "Emerytura / Renta", "Spadek", "Inne" };
+        String[] kategorieWydatki = { "Dom", "Jedzenie", "Transport", "Rozrywka", "Ubranie", "Inne" };
+        String[] miesiac = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+        String[] miesiaceNazwy = { "Stczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień",
+                "Wrzesień", "Październik", "Listopad", "Grudzień" };
+
+        System.out.println("-------------------");
+        System.out.println("    MENU GLOWNE");
+        System.out.println("-------------------");
+        System.out.println("1. Dodaj przychod");
+        System.out.println("2. Dodaj wydatek");
+        System.out.println("3. Generuj raport na koniec miesiaca");
+        System.out.println("4. Wyjdz");
+        System.out.println("-------------------");
+        System.out.println("Wybierz opcje: ");
+        try {
+            char x = scanner.next().charAt(0);
+
+            switch (x) {
+                case '1':
+                    System.out.println("Dodaj przychod");
+                    System.out.println("-------------------");
+                    System.out.println("1. Etat");
+                    System.out.println("2. Stypendium");
+                    System.out.println("3. Bierne");
+                    System.out.println("4. Emerytura / Renta");
+                    System.out.println("5. Spadek");
+                    System.out.println("6. Inne");
+                    System.out.println("-------------------");
+
+                    System.out.println("Wybierz kategorie: ");
+                    int kategoriaPrzychodu = scanner.nextInt();
+
+                    System.out.println("Podaj nazwe przychodu: ");
+                    String nazwaPrzychodu = scanner.next();
+
+                    System.out.println("Podaj kwote przychodu (np.: 24,99) : ");
+                    double kwotaPrzychodu = scanner.nextDouble();
+
+                    System.out.println("Podaj date przychodu (np.: 01.01.2024) : ");
+                    String dataPrzychodu = scanner.next();
+
+                    Finanse p1 = new Finanse(kategoriePrzychody[kategoriaPrzychodu - 1], nazwaPrzychodu, kwotaPrzychodu,
+                            dataPrzychodu);
+
+                    // objekt agregujacy przychody
+                    zapisz.dodajFinanse(p1);
+                    // zapis do listy przychodów
+                    przychody.add(p1);
+                    // zapis do pliku
+                    try {
+                        Zapisywanie(przychody, "przychody.txt");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+                case '2':
+                    System.out.println("Dodaj wydatek");
+                    System.out.println("-------------------");
+                    System.out.println("1. Dom");
+                    System.out.println("2. Jedzenie");
+                    System.out.println("3. Transport");
+                    System.out.println("4. Rozrywka");
+                    System.out.println("5. Ubranie");
+                    System.out.println("6. Inne");
+                    System.out.println("-------------------");
+
+                    System.out.println("Wybierz kategorie: ");
+                    int kategoriaWydatku = scanner.nextInt();
+
+                    System.out.println("Podaj nazwe wydatku: ");
+                    String nazwaWydatku = scanner.next();
+
+                    System.out.println("Podaj kwote wydatku (np.: 24,99) : ");
+                    double kwotaWydatku = scanner.nextDouble();
+
+                    System.out.println("Podaj date wydatku (np.: 01.01.2024) : ");
+                    String dataWydatku = scanner.next();
+
+                    Finanse w1 = new Finanse(kategorieWydatki[kategoriaWydatku - 1], nazwaWydatku, kwotaWydatku,
+                            dataWydatku);
+
+                    // objekt agregujacy wydatki
+                    zapisz.dodajFinanse(w1);
+                    // zapis do listy wydatków
+                    wydatki.add(w1);
+                    // zapis do pliku
+                    try {
+                        Zapisywanie(wydatki, "wydatki.txt");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+                case '3':
+                    System.out.println("-------------------");
+                    System.out.println("Generowanie raportu na koniec miesiaca");
+                    System.out.println("Wpisz 1, dla Stycznia, 2 dla Lutego itd.: ");
+
+                    System.out.println("Wybierz miesiac: ");
+                    int miesiacWybrany = scanner.nextInt();
+
+                    System.out.println("Wpisz rok (np.: 2020): ");
+                    String rokWybrany = scanner.next();
+
+                    System.out.println("-------------------");
+                    System.out.println("       RAPORT");
+                    System.out.println("-------------------");
+
+                    // Przychody zalerzne od miesiaca i roku
+                    System.out.println("Przychody:");
+                    double sumaPrzychodow = 0;
+                    for (Finanse przychod : przychody) {
+                        przychod.wyswietl(miesiac[miesiacWybrany - 1], rokWybrany);
+                        sumaPrzychodow += przychod.getKwota(miesiac[miesiacWybrany - 1], rokWybrany);
+                    }
+                    System.out.println("Suma przychodow: " + String.format("%.2f", sumaPrzychodow) + " zł");
+                    System.out.println("-------------------");
+
+                    // Wydatki zalerzne od miesiaca i roku
+                    System.out.println("Wydatki:");
+                    double sumaWydatkow = 0;
+                    for (Finanse wydatek : wydatki) {
+                        wydatek.wyswietl(miesiac[miesiacWybrany - 1], rokWybrany);
+                        sumaWydatkow += wydatek.getKwota(miesiac[miesiacWybrany - 1], rokWybrany);
+                    }
+                    System.out.println("Suma wydatkow: " + String.format("%.2f", sumaWydatkow) + " zł");
+                    System.out.println("-------------------");
+
+                    // Przychody - Wydatki = Bilans
+                    System.out.println("Bilanse na " + miesiaceNazwy[miesiacWybrany - 1] + " wynosi: "
+                            + String.format("%.2f", (sumaPrzychodow - sumaWydatkow)) + " zł");
+                    System.out.println("-------------------");
+
+                    break;
+                case '4':
+                    System.out.println("Bay Bay");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Nie ma takiej opcji");
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Źle wpisano dane!!!");
+        }
+
+        scanner.close();
+    }
+}
+
+/////////////////////////////////////////////
+Finanse.java
+import java.io.*;
+
+public class Finanse implements Serializable {
+    private String kategoria;
+    private String nazwa;
+    private double kwota;
+    private String data;
+
+    public Finanse(String kategoria, String nazwa, double kwota, String data) {
+        this.kategoria = kategoria;
+        this.nazwa = nazwa;
+        this.kwota = kwota;
+        this.data = data;
+    }
+
+    public String getKategoria() {
+        return kategoria;
+    }
+
+    public String setKategoria(String kategoria) {
+        return this.kategoria = kategoria;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public String setNazwa(String nazwa) {
+        return this.nazwa = nazwa;
+    }
+
+    public double getKwota() {
+        return kwota;
+    }
+
+    public double setKwota(double kwota) {
+        return this.kwota = kwota;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public String setData(String data) {
+        return this.data = data;
+    }
+
+    public void wyswietl() {
+        System.out.println("-------------------");
+        System.out.println("Kategoria: " + kategoria);
+        System.out.println("Nazwa: " + nazwa);
+        System.out.println("Kwota: " + kwota + " zł");
+        System.out.println("Data: " + data);
+        System.out.println("-------------------");
+    }
+
+    public void wyswietl(String miesiac, String rok) {
+        if (data.substring(3, 5).equals(miesiac) && data.substring(6, 10).equals(rok)) {
+            System.out.println(kategoria + " " + nazwa + " " + data + "  " + String.format("%.2f", kwota) + " zł");
+
+        }
+    }
+
+    public double getKwota(String miesiac, String rok) {
+        if (data.substring(3, 5).equals(miesiac) && data.substring(6, 10).equals(rok)) {
+            return kwota;
+        } else {
+            return 0;
+        }
+    }
+
+}
+
+//////////////////////////////////////////////////
+Zapisz.java
+import java.util.ArrayList;
+import java.io.*;
+
+public class Zapisz implements Serializable {
+    ArrayList<Finanse> finanse = new ArrayList<Finanse>();
+
+    public void dodajFinanse(Finanse finance) {
+        finanse.add(finance);
+    }
+
+    public void wyswietlFinanse() {
+        for (Finanse finance : finanse) {
+            finance.wyswietl();
+        }
+    }
+
+    public double sumaFinanse() {
+        double suma = 0;
+        for (Finanse finance : finanse) {
+            suma += finance.getKwota();
+        }
+        return suma;
+    }
+
+}
+
+
 
 
