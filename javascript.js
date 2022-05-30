@@ -992,3 +992,11 @@ document.write(x.toFixedDown(3));
 
 
 
+Fajny PARAGRAF
+    $('p').css({
+        'position': 'absolute',
+        'top': '50%',
+        'left': '50%',
+        'transform': 'translate(-50%, -50%)'
+    });
+
