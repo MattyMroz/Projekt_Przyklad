@@ -22,3 +22,14 @@ def main():
 
 
 main()
+
+
+# usuwanie numeracji stron z pliku tekstowego
+a = open('3.txt', 'r', encoding="utf8")
+b = open('t3.txt', 'w', encoding="utf8")
+
+for line in a:
+    if line[0] in '0123456789':
+        continue
+    else:
+        b.write(line)
