@@ -35,7 +35,19 @@ for line in a:
         b.write(line)
 
         
-        
+# usuwanie danych zwrotów z pliku
+def main():
+    words = ["(",")","[","]","<",">","{","}","\"","『","』","…","「","」","„","”","«","»"]
+    # usuń words z pliku 3.txt i zapisz do 3.txt
+    with open("1.txt", "r", encoding="utf8") as f:
+        lines = f.readlines()
+    with open("1.txt", "w", encoding="utf8") as f:
+        for line in lines:
+            for word in words:
+                line = line.replace(word, "")
+            f.write(line)
+
+main()
         
         
 # Kopiowanie i przetłumacznie (bardziej powolne) stron internetowych z użyciem Selenium i Googletrans
