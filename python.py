@@ -37,7 +37,7 @@ for line in a:
         
 # usuwanie danych zwrotów z pliku
 def main():
-    words = ["(",")","[","]","<",">","{","}","\"","『","』","…","「","」","„","”","«","»"]
+    words = ["(",")","[","]","<",">","{","}","\"","『","』","…","「","」","„","”","«","»","..."]
     # usuń words z pliku 3.txt i zapisz do 3.txt
     with open("1.txt", "r", encoding="utf8") as f:
         lines = f.readlines()
