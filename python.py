@@ -49,7 +49,41 @@ def main():
 
 main()
         
-        
+
+    
+    
+    
+    
+# kopiowanie tekstu dopuki nie natrafi na daną fraze i zapisanie do pliku, jak natrafi na fraze to zapisuje do pliku o nazwie o 1 większą
+
+def main():
+    # zmienna do zwiększenia nazwy pliku
+    i = 1
+    # zmienna do zmiany frazy
+    r = 26
+    # fraza do wyszykiwania
+    phrase = "Rozdział " + str(r)
+
+    with open("0.1.txt", "r", encoding="utf8") as f:
+        lines = f.readlines()
+        for line in lines:
+            if phrase in line:
+                # zwiększenie nazwy pliku
+                i += 1
+                # zwiększenie frazy
+                r += 25
+                phrase = "Rozdział " + str(r)
+                with open(str(i) + ".txt", "w", encoding="utf8") as f:
+                    f.write(line)
+            else:
+                with open(str(i) + ".txt", "a", encoding="utf8") as f:
+                    f.write(line)
+
+main()
+
+
+
+
 # Kopiowanie i przetłumacznie (bardziej powolne) stron internetowych z użyciem Selenium i Googletrans
 
 # pip install -U selenium
