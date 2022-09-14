@@ -130,6 +130,57 @@
 </html>
 
 
+<?php
 
+    // zad1
+    $imie1 = "Janusz";
+    $imie2 = "Anna";
+
+    echo "Imię: $imie1<br> Imię: $imie2<br>";
+    if ($imie1 == $imie2) {
+        echo "Imiona są takie same";
+    } else {
+        echo "Imiona są różne";
+    }
+
+    // zad2
+    $zdanie = "Ala ma kota";
+    echo substr($zdanie, 4, 2);
+
+    // zad3
+    $zdanie = "Ala ma kota - kot ma Ale";
+    echo substr($zdanie, 0, strpos($zdanie, "-"));
+
+    // zad4
+    $zdanie = "Ala ma kota";
+    if (strpos($zdanie, "a")) {
+        echo "W zdaniu występuje litera a";
+    }
+
+    // zad5
+    $email = "mateuszmroz001@gmail.com";
+    if (strpos($email, "@") && strpos($email, ".")) {
+        echo "Email poprawny";
+    } else {
+        echo "Email niepoprawny";
+    }
+
+    echo "<br>Login: " . substr($email, 0, strpos($email, "@"));
+    echo "<br>Domena: " . substr($email, strpos($email, "@") + 1, strpos($email, ".") - strpos($email, "@") - 1);
+
+    // zad6
+    echo "godz: " . strftime("%H:%M") . " dzień: " . strftime("%Y-%m-%d");
+
+    // zad7
+    $data = mktime(0, 0, 0, 4, 30, 2024);
+    $data2 = time();
+    $roznica = $data - $data2;
+    $dni = floor($roznica / 60 / 60 / 24);
+    $miesiace = floor($dni / 30);
+    $dni = $dni - $miesiace * 30;
+    echo "Do 30 kwietnia 2024 r. pozostało $miesiace miesięcy i $dni dni";
+
+
+?>
 
 
