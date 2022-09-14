@@ -261,3 +261,95 @@
 
 
 
+
+<?php
+    // zad1
+    function cennik($nazwa = "Produk", $kategoria = "Kategoria", $cena = 100)
+    {
+        echo <<<T
+        <table>
+        <tr>
+        <th>Nazwa</th>
+        <th>Kategoria</th>
+        <th>Cena</th>
+        </tr>
+        <tr>
+        <td>$nazwa</td>
+        <td>$kategoria</td>
+        <td>$cena</td>
+        </tr>
+        </table>
+        T;
+    }
+
+    cennik("Produkt1", "Książki", 100);
+    cennik("Produk2", "Książki", 32);
+    cennik("Produk3", "LOL", 12);
+
+    // zad2
+    function suma100($a, $b)
+    {
+        if ($a + $b >= 100) {
+            echo "Suma = " . ($a + $b);
+        } else {
+            echo "Do 100 brakuje " . (100 - ($a + $b));
+        }
+    }
+
+    suma100(50, 5);
+
+
+    // zad3
+    function iloraz($a, $b)
+    {
+        if ($b == 0) {
+            echo "Nie dziel przez 0";
+        } else {
+            echo "Iloraz = " . ($a / $b);
+        }
+    }
+
+    iloraz(10, 0);
+    echo "<br>";
+    iloraz(10, 2);
+
+    // zad4
+    function rabat($kwota, $procent)
+    {
+        echo "Kwota = " . $kwota . "<br>";
+        echo "Procent = " . $procent . "%<br>" ;
+        echo "Rabat = " . ($kwota * $procent / 100) . "<br>";
+        echo "Kwota po rabacie = " . ($kwota - ($kwota * $procent / 100)) . "<br>";
+    }
+
+    rabat(100, 10);
+
+    // zda 5
+    function maxi(int $a, int $b, int $c)
+    {
+        if ($a > $b && $a > $c) {
+            echo "Największa liczba to $a";
+        } elseif ($b > $a && $b > $c) {
+            echo "Największa liczba to $b";
+        } else {
+            echo "Największa liczba to $c";
+        }
+    }
+
+    maxi(1, 2, 3);
+
+    // zad 6
+    function  format ($tekst)
+    {
+        echo <<<T
+        <p style="color: red; font-weight: bold; font-style: italic;">$tekst</p>
+        T;
+    }
+
+    format("Tekst jest czerwony, pogrubiony i pochylony");
+
+
+?>
+
+
+
