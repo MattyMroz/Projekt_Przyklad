@@ -181,6 +181,18 @@
     echo "Do 30 kwietnia 2024 r. pozostało $miesiace miesięcy i $dni dni";
 
 
+    $date1 = new DateTime("2021-01-01");
+    $date2 = new DateTime("2021-01-02");
+
+    $diff = date_diff($date1, $date2);
+
+    echo $diff->format("%a");
+    
+
+
+
+
+
 ?>
 
 
