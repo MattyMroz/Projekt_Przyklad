@@ -184,3 +184,80 @@
 ?>
 
 
+
+<?php
+
+    //Deklaracja funkcji
+    function tekst()
+    {
+        echo 'Funkcja wypisuje tekst<br/>';
+    }
+    //Wywołanie funkcji
+    tekst();
+    tekst();
+
+    // Funkcja z jednym parametrem
+    function test($wyraz)
+    {
+        echo $wyraz . '<br/>';
+    }
+    test('PHP jest proste');
+    test('bardzo proste');
+    test('jest to prawda');
+
+    // Funkcja z kilkoma parametrami
+    function opis($nazwa, $kategoria, $cena)
+    {
+        echo $nazwa . ' ';
+        echo $kategoria . ' ';
+        echo $cena . ' ';
+        echo '<br/>';
+    }
+    opis('chleb', 'pieczywo', 2);
+
+
+    function dodawanie($a, $b)
+    {
+        $suma = $a + $b;
+        echo $suma;
+    }
+    dodawanie(15, 47);
+
+
+    // Funkcja zwracająca wartość
+    function dodawanie($a, $b)
+    {
+        $suma = $a + $b;
+        return $suma;
+    }
+    $wynik = dodawanie(4, 5);
+    echo $wynik;
+
+
+    function dodawanie($a, $b)
+    {
+        $suma = $a + $b;
+        if ($suma > 1000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var_export(dodawanie(678, 487));
+
+    // Funkcja z domyślnymi parametrami
+    function opis($nazwa = 'chleb', $kategoria = 'pieczywo', $cena = 2)
+    {
+        echo $nazwa . ' ';
+        echo $kategoria . ' ';
+        echo $cena . ' ';
+        echo '<br/>';
+    }
+    opis();
+
+
+?>
+
+
+
+
