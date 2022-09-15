@@ -1,6 +1,6 @@
 https://phpkurs.pl/
 https://www.w3schools.com/php/
-
+https://www.php.net/manual/en/book.array.php
 
 phpinfo() - informacjei o php
 
@@ -539,3 +539,97 @@ phpinfo() - informacjei o php
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- php -->
+    <?php
+    $miasta = array('Siedlce', 'Warszawa', 'Bydgoszcz', 'Lublin');
+    $owoce = array('d' => 'mango', 'a' => 'papaja', 'b' => 'banan', 'c' => 'aronia');
+    sort($miasta);
+    asort($owoce);
+    foreach ($miasta as $miasto) {
+        echo $miasto . ' ';
+    }
+    echo '<br/>';
+    echo $miasta[1] . '<br/>';
+    foreach ($owoce as $owoc) {
+        echo $owoc . ' ';
+    }
+    echo '<br/>';
+    echo $owoce['a'] . '<br/>';
+
+    // zad1
+    // wartość
+    echo '<br/>';
+    rsort($miasta);
+    arsort($owoce);
+    foreach ($miasta as $miasto) {
+        echo $miasto . ' ';
+    }
+    echo '<br/>';
+    // wyświetl klucz i wartość
+    foreach ($owoce as $klucz => $owoc) {
+        echo $klucz . ' ' . $owoc . ' ';
+    }
+    // zad2
+    // klucze
+    echo '<br/>';
+    ksort($owoce);
+    foreach ($owoce as $klucz => $owoc) {
+        echo $klucz . ' ' . $owoc . ' ';
+    }
+
+    // zad3
+    // Usuń po jednym elemencie z każdej  tablicy i posortuj  malejąco. Użyj funkcji unset() do usunięcia elementu.
+
+    echo '<br/>';
+    unset($miasta[0]);
+    unset($owoce['a']);
+    rsort($miasta);
+    arsort($owoce);
+    foreach ($miasta as $miasto) {
+        echo $miasto . ' ';
+    }
+
+    echo '<br/>';
+    foreach ($owoce as $klucz => $owoc) {
+        echo $klucz . ' ' . $owoc . ' ';
+    }
+
+    // zad4
+    // Dopisz po 2 elementy do każdej z tablic (po jednym na początku i po jednym na końcu) i ponownie posortuj tablice rosnąco.
+
+    echo '<br/>';
+    array_unshift($miasta, 'Poznań', 'Gdańsk');
+    array_push($miasta, 'Wrocław', 'Kraków');
+    asort($miasta);
+    foreach ($miasta as $miasto) {
+        echo $miasto . ' ';
+    }
+
+    echo '<br/>';
+    $owoce['e'] = 'jabłko';
+    $owoce['f'] = 'gruszka';
+    // ksort($owoce);
+    foreach ($owoce as $klucz => $owoc) {
+        echo $klucz . ' ' . $owoc . ' ';
+    }
+
+    // zad5
+
+
+
+
+    ?>
+</body>
+
+</html>
