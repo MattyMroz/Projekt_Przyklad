@@ -365,3 +365,169 @@
 
 
 
+<!-- TABLICE -->
+
+<?php
+
+
+    // $cars = array("Volvo", "BMW", "Toyota");
+    // echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+
+    // $age = array("Peter" => "35", "Ben" => "37", "Joe" => "43");
+    // echo "Peter is " . $age['Peter'] . " years old.";
+
+    // $age = array("Peter" => "35", "Ben" => "37", "Joe" => "43");
+
+    // foreach ($age as $x => $x_value) {
+    //     echo "Key=" . $x . ", Value=" . $x_value;
+    //     echo "<br>";
+    // }
+
+    // array_push($miasta, "Poznań", "Łódź"); // dodajemy 2 elementy na końcu tablicy
+    // unset($miasta); // usunie całą tablicę
+    // unset($miasta[0], $miasta[3]); // usuwa elementy z tablicy
+    // implode(", ", $miasta); // łączy elementy tablicy w ciąg oddzielony przecinkiem i spacją
+    // $tekst = "PHP programowanie aplikacji internetowych";
+    // explode(" ", $tekst); // elementy z ciągu zapisuje do tablicy
+    // array_search("Siedlce", $miasta); // wyszukujemy nr elementu w tablicy
+    // in_array("Siedlce", $miasta); // czy istn. wyszukiwany element z tablicy zm. logiczna (prawda(1) albo fałsz(0))
+    // asort($lista); // sortuje dane w tablicy rosnąco
+    // arsort($lista); // sortuje dane malejąca
+    // count($lista); // zlicza elementy w tablicy
+    // max($lista); // max z tablicy
+    // min($lista); // min z tablicy
+
+    // zad1
+    $miasta = array("Poznań", "Warszawa", "Kraków", "Gdańsk", "Siedlce");
+    for ($i = 0; $i < count($miasta); $i++) {
+        echo $miasta[$i] . "<br>";
+    }
+
+    $liczby = array(1, 2, 3, 4, 5);
+    foreach ($liczby as $x => $x_value) {
+        echo $x_value;
+        echo "<br>";
+    }
+
+    // zad2
+    array_push($miasta, "Poznań", "Łódź");
+    unset($miasta[3]);
+
+    foreach ($miasta as $x => $x_value) {
+        echo $x_value;
+        echo "<br>";
+    }
+
+    // zad3
+    $miasta = array("Poznań", "Warszawa", "Kraków", "Gdańsk", "Siedlce");
+    $liczby = array(1, 2, 3, 4, 5);
+
+    //  nie działa na polskich znakach
+    asort($miasta);
+    arsort($liczby);
+
+    foreach ($miasta as $x => $x_value) {
+        echo $x_value;
+        echo "<br>";
+    }
+
+    foreach ($liczby as $x => $x_value) {
+        echo $x_value;
+        echo "<br>";
+    }
+
+
+    // zad4
+    echo max($miasta);
+    echo "<br>";
+    echo min($miasta);
+    echo "<br>";
+    echo max($liczby);
+    echo "<br>";
+    echo min($liczby);
+    echo "<br>";
+
+    // zad5
+    echo count($miasta);
+    echo "<br>";
+    echo count($liczby);
+
+
+    // zad6
+    $zdaanie = "Uczę się programowania w PHP";
+    $tablica = explode(" ", $zdaanie);
+    foreach ($tablica as $x => $x_value) {
+        echo $x_value;
+        echo "<br>";
+    }
+
+    echo "<br>";
+    echo $tablica[3];
+
+    // zad7
+    for ($i = 0; $i < count($tablica); $i++) {
+        echo $tablica[$i] . " " .  $i . "<br>";
+    }
+
+
+    // zad7
+    $zdaanie = "Uczę się programowania w PHP";
+    $tablica = explode(" ", $zdaanie);
+    if (in_array("programowanie", $tablica)) {
+        echo "Znaleziono";
+    } else {
+        echo "Nie znaleziono";
+    }
+
+
+
+    // zad8
+    function doArray($a, $b)
+    {
+        $sum = 0;
+        $tablica = array();
+        for ($i = $a; $i <= $b; $i++) {
+            $tablica[] = $i;
+            $sum += $i;
+        }
+        echo "Suma: " . $sum . "<br>";
+        echo "Średnia: " . $sum / $a . "<br>";
+        echo "Max: " . max($tablica) . "<br>";
+        echo "Min: " . min($tablica) . "<br>";
+        echo "Ilość elementów: " . count($tablica) . "<br>";
+    }
+
+    doArray(5, 10);
+
+    // zad9
+
+    function doRondomArray($a, $b, $rangeA, $rangeB)
+    {
+        $tablica = array();
+        for ($i = $a; $i <= $b; $i++) {
+            $tablica[] = rand($rangeA, $rangeB);
+        }
+
+        // sortwanie bombelkowe
+        for ($i = 0; $i < count($tablica); $i++) {
+            for ($j = 0; $j < count($tablica) - 1; $j++) {
+                if ($tablica[$j] > $tablica[$j + 1]) {
+                    $temp = $tablica[$j];
+                    $tablica[$j] = $tablica[$j + 1];
+                    $tablica[$j + 1] = $temp;
+                }
+            }
+        }
+
+        foreach ($tablica as $x => $x_value) {
+            echo $x_value;
+            echo "<br>";
+        }
+    }
+
+    doRondomArray(5, 10, 1, 10);
+
+
+
+?>
+
