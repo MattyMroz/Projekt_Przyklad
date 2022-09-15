@@ -1,3 +1,11 @@
+https://phpkurs.pl/
+https://www.w3schools.com/php/
+
+
+phpinfo() - informacjei o php
+
+
+
 <!DOCTYPE html>
 <html>
 
