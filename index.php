@@ -633,3 +633,63 @@ phpinfo() - informacjei o php
 </body>
 
 </html>
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Skrypt PHP</title>
+</head>
+
+<body>
+    <?php
+
+    // podwujana tablica asocjacyjna
+    $tab = array(
+        array(
+            "imie" => "Jan",
+            "nazwisko" => "Kowalski",
+            "wiek" => 20,
+            "adres" => array(
+                "ulica" => "Kwiatowa",
+                "nr_domu" => 10,
+                "nr_mieszkania" => 2
+            )
+        ),
+
+        array(
+            "imie" => "Anna",
+            "nazwisko" => "Nowak",
+            "wiek" => 25,
+            "adres" => array(
+                "ulica" => "Słoneczna",
+                "nr_domu" => 20,
+                "nr_mieszkania" => 3
+            )
+        )
+    );
+
+    // wyświetlenie tablicy i minimalny wiek
+    echo "<pre>";
+    print_r($tab);
+
+    // minimalny wiek z funkcją min() i imie i nazwisko z funkcją array_column()
+    echo "Minimalny wiek: " . min(array_column($tab, "wiek")) . "<br>";
+    // wyświetl imie z najmniejszym wiekiem
+    echo "Imie z najmniejszym wiekiem: " . $tab[array_search(min(array_column($tab, "wiek")), array_column($tab, "wiek"))]["imie"] . "<br>";
+    // wyjaśnij powyższy kod
+    // 1. array_search() - wyszukuje w tablicy wartość i zwraca jej klucz
+    // 2. array_column() - zwraca tablicę zawierającą wartości z kolumny tablicy asocjacyjnej
+    // 3. min() - zwraca najmniejszą wartość z tablicy
+    // 4. $tab - tablica asocjacyjna
+    // 5. array_search(min(array_column($tab, "wiek")), array_column($tab, "wiek")) - wyszukuje w tablicy wartość i zwraca jej klucz
+    // 6. $tab[array_search(min(array_column($tab, "wiek")), array_column($tab, "wiek"))] - zwraca tablicę zawierającą wartości z kolumny tablicy asocjacyjnej
+    // 7. $tab[array_search(min(array_column($tab, "wiek")), array_column($tab, "wiek"))]["imie"] - zwraca imie z najmniejszym wiekiem
+
+    ?>
+</body>
+
+</html>
