@@ -712,3 +712,103 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Skrypt PHP</title>
+</head>
+
+<body>
+
+    <!-- FORMULARZ ZGŁOSZENIOWY Z WALIDACJĄ KARZDEGO POLA -->
+    <form action="index.php" method="post">
+        <label for="name">Imię:</label>
+        <input type="text" name="name" id="name" />
+        <br />
+        <label for="surname">Nazwisko:</label>
+        <input type="text" name="surname" id="surname" />
+        <br />
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" id="email" />
+        <br />
+        <label for="phone">Telefon:</label>
+        <input type="text" name="phone" id="phone" />
+        <br />
+        <label for="message">Wiadomość:</label>
+        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+        <br />
+        <input type="submit" value="Wyślij" />
+    </form>
+
+    <?php
+
+    // Sprawdzanie POPRAWNOŚCI WPROWADZONYCH DANYCH
+    if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['message'])) {
+        $name = $_POST['name'];
+        $surname = $_POST['surname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $message = $_POST['message'];
+
+        // Sprawdzanie poprawności imienia
+        if (strlen($name) < 3) {
+            echo "Imię jest za krótkie";
+        } else if (strlen($name) > 20) {
+            echo "Imię jest za długie";
+        } else if (ctype_alpha($name) == false) {
+            echo "Imię może składać się tylko z liter";
+        } else {
+            echo "Imię: " . $name . "<br />";
+        }
+
+        // Sprawdzanie poprawności nazwiska
+        if (strlen($surname) < 3) {
+            echo "Nazwisko jest za krótkie";
+        } else if (strlen($surname) > 20) {
+            echo "Nazwisko jest za długie";
+        } else if (ctype_alpha($surname) == false) {
+            echo "Nazwisko może składać się tylko z liter";
+        } else {
+            echo "Nazwisko: " . $surname . "<br />";
+        }
+
+        // Sprawdzanie poprawności adresu e-mail
+        $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if ((filter_var($emailB, FILTER_VALIDATE_EMAIL) == false) || ($emailB != $email)) {
+            echo "Podaj poprawny adres e-mail";
+        } else {
+            echo "E-mail: " . $email . "<br />";
+        }
+
+        // Sprawdzanie poprawności numeru telefonu
+        $phone = str_replace('-', '', $phone);
+        $phone = str_replace(' ', '', $phone);
+        $phone = str_replace('(', '', $phone);
+        $phone = str_replace(')', '', $phone);
+        if (strlen($phone) != 9) {
+            echo "Podaj poprawny numer telefonu";
+        } else if (ctype_digit($phone) == false) {
+            echo "Numer telefonu może składać się tylko z cyfr";
+        } else {
+            echo "Telefon: " . $phone . "<br />";
+        }
+
+        // Sprawdzanie poprawności wiadomości
+        if (strlen($message) < 20) {
+            echo "Wiadomość jest za krótka";
+        } else if (strlen($message) > 1000) {
+            echo "Wiadomość jest za długa";
+        } else {
+            echo "Wiadomość: " . $message . "<br />";
+        }
+    }
+
+    ?>
+</body>
+
+</html>
