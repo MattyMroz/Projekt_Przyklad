@@ -863,4 +863,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 
+<!-- zmienne psełdo globalne  
+http://www.capaciouscore.pl/kursy/kurs-php/superglobalne/
+
+
+
 
