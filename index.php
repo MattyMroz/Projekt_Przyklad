@@ -908,7 +908,7 @@ index.php
 
 <body>
     <?php
-    $C = $_GET["A"] + $_GET["B"];
+    $C = $_POST["A"] + $_POST["B"];
     echo $C;
     ?>
 </body>
