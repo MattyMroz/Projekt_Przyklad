@@ -812,3 +812,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+
+
+<!-- REFERENCJE I ZMIENNE GOLOBALNE I LOKALNE -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- php -->
+    <?php
+    include 'function.php';
+
+
+    $a = 2;
+    $b = add($a);
+    echo $a;
+    echo $b;
+
+    echo "<br>";
+    function ojeden(&$x) // argument przekazany przez referencję
+    {
+        $x++;
+    }
+    $a = 10;
+    ojeden($a);
+    echo $a . '<br>';
+
+    $a = 10;
+    $b = &$a; // przypisanie przez referencję
+    echo $a . '<br>';
+    echo $b . '<br>';
+
+
+    ?>
+
+
+
+
+</body>
+
+</html>
+
+
+
