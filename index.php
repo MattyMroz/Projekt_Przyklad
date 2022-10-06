@@ -923,9 +923,68 @@ index.php
 
 
 
+    <?php
+
+    function divide($a, $b)
+    {
+        try {
+            if ($b == 0) {
+                throw new Exception("Nie dziel przez zero");
+            }
+            return $a / $b;
+        } catch (Exception $e) {
+            echo "Błąd: " . $e->getMessage();
+            echo "<br>";
+            echo "Błąd: " . $e->getLine();
+            echo "<br>";
+            echo "Błąd: " . $e->getFile();
+            echo "<br>";
+            echo "Błąd: " . $e->getTraceAsString();
+        }
+    }
+
+    echo divide(10, 0);
+    echo "<br>";
+    echo divide(10, 2);
+
+    ?>
 
 
 
 
+<body>
 
 
+    <form action="index.php" method="post">
+        <input type="text" name="tekst" id="">
+        <input type="submit" value="Wyślij">
+    </form>
+
+    <?php
+
+    function formatText($text)
+    {
+
+        try {
+            if (!is_numeric($text)) {
+                throw new Exception("Wpisz liczbę");
+            }
+
+            if (empty($text) && $text != 0) {
+                throw new Exception("Wpisz tekst");
+            }
+        } catch (Exception $e) {
+            echo "Błąd: " . $e->getMessage();
+            echo "<br>";
+            echo "Błąd: " . $e->getLine();
+            echo "<br>";
+            echo "Błąd: " . $e->getFile();
+            echo "<br>";
+            echo "Błąd: " . $e->getTraceAsString();
+        }
+    }
+
+    formatText($_POST['tekst']);
+
+    ?>
+</body>
