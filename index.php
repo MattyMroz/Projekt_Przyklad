@@ -982,3 +982,201 @@ index.php
 
     ?>
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- PLIKI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!-- https://phpkurs.pl/operacje-na-plikach/#pliki.odczyt -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <?php
+
+    // ZADANIE 1
+    if (!file_exists('czasami.txt')) {
+        touch('czasami.txt');
+        $file = fopen('czasami.txt', 'w');
+        $date = date('Y-m-d');
+        fwrite($file, $date);
+        fclose($file);
+    }
+
+
+    // ZADANIE 2 dodanie pierwszej linii
+    $fp = fopen('czasami.txt', 'r');
+    $oldDate = fread($fp, filesize('czasami.txt'));
+    $oldDate = $oldDate . PHP_EOL;
+    fclose($fp);
+    $hour = date('H:i') . PHP_EOL; // lub "\n"
+    $fp = fopen('czasami.txt', 'w');
+    fwrite($fp, $hour);
+    fwrite($fp, $oldDate);
+    fclose($fp);
+
+    // ZADANIE 3
+    // dopisz swoje imie i nawikso na kńcu pliku
+    $fp = fopen('czasami.txt', 'a+');
+    fwrite($fp, 'Mateusz Mróz');
+    fclose($fp);
+
+    // ZADANIE 4
+    $fp = fopen('czasami.txt', 'r');
+    foreach (file('czasami.txt') as $line) {
+        echo $line . '<br>';
+    }
+    fclose($fp);
+
+
+    // ZADANIE 5 Napisz skrypt, który wpisze do pliku liczby parzyste i podzielne przez 3 z przedziału od 1 do 1000, a następnie odczyta zawartość pliku i wyświetli go w oknie przeglądarki.
+    $fp = fopen('liczby.txt', 'w+');
+    for ($i = 1; $i <= 1000; $i++) {
+        if ($i % 2 == 0 && $i % 3 == 0) {
+            fwrite($fp, $i . PHP_EOL);
+        }
+    }
+
+    foreach (file('liczby.txt') as $line) {
+        echo $line . '<br>';
+    }
+    fclose($fp);
+
+
+    // ZADANIE 6 Napisz skrypt odczytujący cztery liczby zapisane w pliku tekstowym (każda w osobnej linii) i wypisujący je w oknie przeglądarki w kolejności malejącej.
+    $fp = fopen('liczby.txt', 'w+');
+    $numbers = [5, 24, 4, 1];
+    foreach ($numbers as $number) {
+        fwrite($fp, $number . PHP_EOL);
+    }
+
+    $numbers = file('liczby.txt');
+    rsort($numbers);
+
+    foreach ($numbers as $number) {
+        echo $number . '<br>';
+    }
+
+    fclose($fp);
+
+
+    // ZADANIE 7 Napisz skrypt zapisujący do pliku 10 losowych liczb z przedziału od 0 do 100. Odczyt z pliku największą z wylosowanych liczb. 
+    $fp = fopen('liczby.txt', 'w+');
+    for ($i = 0; $i < 100; $i++) {
+        fwrite($fp, rand(1, 100) . PHP_EOL);
+    }
+
+    $numbers = file('liczby.txt');
+    max($numbers);
+    echo max($numbers);
+
+
+    // Tryb a - dopisuje do pliku
+    // Tryb a+ - dopisuje do pliku i umożliwia odczyt
+    // Tryb r - odczyt
+    // Tryb r+ - odczyt i zapis na końcu pliku
+    // Tryb w - zapis, jeśli plik istnieje to jego zawartość jest usuwana
+    // Tryb w+ - zapis i odczyt, jeśli plik istnieje to jego zawartość jest usuwana
+
+    // ZADANIE 8
+    // OSTATNIA DATA MODYFIKACJI PLIKU czasami.txt
+    $date = date('Y-m-d H:i:s', filemtime('czasami.txt'));
+    echo $date;
+    echo '<br>';
+
+    $now = date('Y-m-d H:i:s');
+    setcookie('lastVisit', $now, time() + 60 * 60 * 24 * 30);
+
+    if (isset($_COOKIE['counter'])) {
+        $counter = $_COOKIE['counter'] + 1;
+        setcookie('counter', $counter, time() + 60 * 60 * 24 * 30);
+    } else {
+        $counter = 1;
+        setcookie('counter', $counter, time() + 60 * 60 * 24 * 30);
+    }
+    echo $_COOKIE['lastVisit'];
+    echo '<br>';
+    echo $counter;
+
+    // ZADANIE 9 Utwórz plik logi.txt, do którego wprowadzisz dane w jednej linii:
+    // datę ostatniego odczyt pliku czasami.txt,
+    // wielkość pliku czasami.txt,
+    // datę ostatniej modyfikacji pliku czasami.txt,
+    // a na końcu w nowej linii będzie licznik odwiedzin strony ze skryptem, który przy ponownym otwarciu jest aktualizowany.
+
+
+    $fp = fopen('logi.txt', 'w+');
+    $dateLastRead = date('Y-m-d H:i:s', fileatime('czasami.txt'));
+    $size = filesize('czasami.txt');
+    $dateLastModified = date('Y-m-d H:i:s', filemtime('czasami.txt'));
+    if (isset($_COOKIE['counter'])) {
+        $counter = $_COOKIE['counter'] + 1;
+        setcookie('counter', $counter, time() + 60 * 60 * 24 * 30);
+    } else {
+        $counter = 1;
+        setcookie('counter', $counter, time() + 60 * 60 * 24 * 30);
+    }
+
+    fwrite($fp, 'Data ostatniego odczytu: ' . $dateLastRead . PHP_EOL);
+    fwrite($fp, 'Wielkość pliku: ' . $size . " B" . PHP_EOL);
+    fwrite($fp, 'Data ostatniej modyfikacji: ' . $dateLastModified . PHP_EOL);
+    fwrite($fp, 'Liczba odwiedzin: ' . $counter . PHP_EOL);
+
+    // ZADANIE 10 Otwórz plik logi.txt z odpowiednią blokadą (wiele osób może odczytywać)
+
+    $fp = fopen('logi.txt', 'r');
+    flock($fp, LOCK_SH);
+    foreach (file('logi.txt') as $line) {
+        echo $line . '<br>';
+    }
+    flock($fp, LOCK_UN);
+    fclose($fp);
+
+    // WYJAŚNIENIE
+    // LOCK_SH - Wspólne zamka (reader) . Pozwól innym procesy dostępu do pliku
+    // LOCK_EX - Exclusive blokady (writer) . Zapobiec inne procesy z dostępem do pliku
+    // LOCK_UN - Zwolnić wspólną lub wyłączną blokadę
+    // LOCK_NB - Zapobiega blokowaniu inne procesy podczas blokowania
+
+    
+
+
+
+
+
+    ?>
+</body>
+
+</html>
