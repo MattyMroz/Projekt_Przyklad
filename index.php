@@ -953,8 +953,6 @@ index.php
 
 
 <body>
-
-
     <form action="index.php" method="post">
         <input type="text" name="tekst" id="">
         <input type="submit" value="Wyślij">
@@ -968,10 +966,6 @@ index.php
         try {
             if (!is_numeric($text)) {
                 throw new Exception("Wpisz liczbę");
-            }
-
-            if (empty($text) && $text != 0) {
-                throw new Exception("Wpisz tekst");
             }
         } catch (Exception $e) {
             echo "Błąd: " . $e->getMessage();
