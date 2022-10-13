@@ -1180,3 +1180,82 @@ index.php
 </body>
 
 </html>
+
+
+
+
+<?php
+session_start(); // musimy zacząć sesję
+if (!isset($_SESSION['count'])) {
+    $_SESSION['count'] = 0;
+} else {
+    $_SESSION['count']++;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <?php
+    // ZADANIE 1
+
+    $_SESSION['name'] = 'Jan';
+    $_SESSION['surname'] = 'Kowalski';
+    $_SESSION['age'] = 20;
+    $_SESSION['time'] = time() + 30 * 60;
+
+    if (isset($_SESSION['time'])) {
+        if ($_SESSION['time'] < time()) {
+            session_unset();
+            session_destroy();
+        }
+    }
+
+    echo $_SESSION['name'] . ' ' . $_SESSION['surname'] . ' ' . $_SESSION['age'];
+    echo '<br>';
+    echo date('Y-m-d H:i:s', $_SESSION['time']);
+
+    // ZADANIE 2
+    // Ustaw 3 własne ciasteczka do powyższej sesji. Usuń 1 z ciasteczek. Wyświetl wszystkie ciasteczka.
+
+    setcookie('name', 'Jan', time() + 30 * 60);
+    setcookie('surname', 'Kowalski', time() + 30 * 60);
+    setcookie('age', 21, time() + 30 * 60);
+
+    // setcookie('name', 'Jan', time() - 30 * 60);
+
+    echo '<br>';
+    if (isset($_COOKIE['name']) && isset($_COOKIE['surname']) && isset($_COOKIE['age'])) {
+        echo $_COOKIE['name'] . ' ' . $_COOKIE['surname'] . ' ' . $_COOKIE['age'];
+    }
+
+
+
+
+
+    // session_unset();
+
+    // session_start(); - rozpoczyna sesję na początku pliku
+    // session_unset(); - usuwa wszystkie zmienne sesji
+    // session_destroy(); - usuwa sesję
+    // $_SESSION["favcolor"] = "yellow"; - tworzy zmienną sesji
+    // print_r($_SESSION); - wyświetla wszystkie zmienne sesji
+
+
+
+
+    // unset($_SESSION['count']); // usuwa zmienną sesji
+    ?>
+</body>
+
+</html>
