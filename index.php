@@ -1259,3 +1259,22 @@ if (!isset($_SESSION['count'])) {
 </body>
 
 </html>
+
+
+
+
+Przykład  Serializacja i deserializacja tablicy
+
+<?php
+// zapis
+$tablica = Array('a' => 'pierwszy', 'b' => 'drugi');
+setcookie('tablica', serialize($tablica), time()+3600);
+
+// odczyt zabezpieczony przed nieistniej±cym ciasteczkiem
+if (isset($_COOKIE['tablica'])) {
+    $tablica = unserialize($_COOKIE['tablica']);
+} else {
+    $tablica = Array();
+}
+
+?>
