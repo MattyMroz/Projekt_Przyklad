@@ -1278,3 +1278,144 @@ if (isset($_COOKIE['tablica'])) {
 }
 
 ?>
+
+
+
+
+
+
+<?php
+session_start();
+if (!isset($_SESSION['count'])) {
+    $_SESSION['count'] = 0;
+} else {
+    $_SESSION['count']++;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- pobieranie plików z formularza -->
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <br>
+        <!-- <label for="name">Nazwa pliku:</label>
+        <br>
+        <input type="text" name="name">
+        <br> -->
+        <br>
+        <button type="submit" name="submit">UPLOAD</button>
+    </form>
+
+
+    <?php
+    // echo "<script>alert(\"Witaj!\");</script>";
+
+
+
+    if (isset($_POST["submit"])) {
+        $file = $_FILES["file"];
+        // print_r($file);
+        $fileName = $_FILES["file"]["name"];
+        $fileTmpName = $_FILES["file"]["tmp_name"];
+        $fileSize = $_FILES["file"]["size"];
+        $fileError = $_FILES["file"]["error"];
+        $fileType = $_FILES["file"]["type"];
+
+        // rozczłonkowanie nazwy pliku
+        $fileExt = explode(".", $fileName);
+        // pobranie ostatniego elementu z rozczłonkowanej nazwy pliku
+        $fileActualExt = strtolower(end($fileExt));
+
+        // tablica z rozszerzeniami plików
+        $allowed = array("jpg", "jpeg", "png", "pdf");
+
+        // sprawdzenie czy rozszerzenie pliku jest dozwolone
+        if (in_array($fileActualExt, $allowed)) {
+            // sprawdzenie czy nie ma błędów
+            if ($fileError === 0) {
+                // sprawdzenie czy rozmiar pliku nie przekracza 100MB - tak o *_*
+                // 100 MB = 100000000
+                if ($fileSize < 100000000) {
+                    // ustawienie nazwy pliku
+                    // $fileNameNew = uniqid("", true) . "." . $fileActualExt;
+                    // uniqid() - generuje unikalny ciąg znaków (np. 60b9f2c5c5a7e)
+
+                    // zapisz plik z taką samą nazwą
+
+                    // if (isset($_POST["name"]) && $_POST["name"] != "") {
+                    //     $fileNameNew = $_POST["name"] . "." . $fileActualExt;
+                    // } else {
+                    $fileNameNew = $fileName;
+                    // }
+
+
+                    // sprawdzenie czy plik o takiej nazwie już istnieje
+
+                    for ($i = 0; $i < count($allowed); $i++) {
+                        // folder obrazy lub dokumenty
+                        if ($fileActualExt == $allowed[$i]) {
+                            if ($i < 3) {
+                                // jeśli plik istnieje to zakoncz działanie skryptu
+                                // if (file_exists("obrazy/" . $fileNameNew)) {
+                                //     echo "<script>alert(\"Plik o takiej nazwie już istnieje!\");</script>";
+                                //     exit();
+                                // }
+                                $fileDestination = "obrazy/" . $fileNameNew;
+                                // setcookie("file", $fileDestination, time() + 3600);
+                            } else {
+                                $fileDestination = "dokumenty/" . $fileNameNew;
+                                // setcookie("file", $fileDestination, time() + 3600);
+                            }
+                        }
+                    }
+
+                    // jeśli plik o takiej nazwie już istnieje to zmień nazwę
+
+                    // alert(), confirm() i prompt().
+                    // echo "<script>prompt(\"Plik o takiej nazwie już istnieje. Podaj nową nazwę pliku lub nie wpisuj nic, aby nadpisać plik.\");</script>";
+                    //  zapisz zmienną z prompt() do ciasteczka
+                    // echo "<script>document.cookie = \"fileNameNew = \" + prompt(\"Plik o takiej nazwie już istnieje. Podaj nową nazwę pliku lub nie wpisuj nic, aby nadpisać plik.\");</script>";
+                    // // odśwież ciasteczko
+                    // $fileNameNew = $_COOKIE["fileNameNew"];
+
+
+                    // przeniesienie pliku do folderu
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                    $date = date("Y-m-d H:i:s", filemtime($fileDestination));
+                    setcookie("time", $date, time() + 3600);
+                    // header("Location: upload.php?uploadsuccess");
+                } else {
+                    echo "<script>alert(\"Plik jest za duży!\");</script>";
+                }
+            } else {
+                echo "<script>alert(\"Wystąpił błąd podczas przesyłania pliku!\");</script>";
+            }
+        } else {
+            echo "<script>alert(\"Nie można przesłać pliku o takim rozszerzeniu!\");</script>";
+        }
+        // odśwież stronę
+        header("Refresh:0");
+    }
+
+    // wyświetl ciastko
+    if (isset($_COOKIE["time"])) {
+        echo "Ostatnio przesłano plik: " . $_COOKIE["time"];
+    }
+
+    // echo "Liczba sesji: " . $_SESSION["count"];
+    session_write_close();
+    ?>
+</body>
+
+</html>
