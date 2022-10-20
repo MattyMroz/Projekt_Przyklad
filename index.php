@@ -1505,5 +1505,132 @@ mysqli_select_db($polaczenie, "baza_filmow")
 
 </html>
 
+<?php
+// $polaczenie = mysqli_connect("localhost", "test", "test")
+//     or die("Brak połączenia z serwerem MySQL");
+// mysqli_select_db($polaczenie, "baza_filmow")
+//     or die("Błąd wyboru bazy danych");
 
+
+// $polaczenie = mysqli_connect("localhost", "test", "test", "baza_filmow");
+// if (!$polaczenie) {
+//     die("Connection failed: " . mysqli_connect_error());
+// }
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container justify-content-center">
+        <h1 class="display-4 text-center">Debata na temat eutanazji</h1>
+        <div class="row">
+            <table class="table ">
+                <tbody class="test">
+                    <?php
+                    // $zapytanie = "SELECT * FROM filmy";
+                    // $wynik = mysqli_query($polaczenie, $zapytanie)
+                    //     or die("Wystąpiły problemy przy zapisywaniu danych");
+                    // while ($wiersz_danych = mysqli_fetch_row($wynik)) {
+                    //     for ($i = 0; $i < count($wiersz_danych); $i++) {
+                    //         echo "<td>$wiersz_danych[$i]</td>";
+                    //     }
+                    //     // dodaj przycisk usuwający rekord
+                    //     echo "<td><button class='btn btn-danger'>Usuń</button></td>";
+                    //     echo "</tr>";
+                    // }
+
+                    $mysqli = new mysqli("localhost", "test", "test", "baza_filmow");
+                    $result = $mysqli->query("SELECT * FROM filmy");
+                    while ($row = $result->fetch_row()) {
+                        echo "<tr>";
+                        for ($i = 0; $i < count($row); $i++) {
+                            echo "<td>$row[$i]</td>";
+                        }
+                        echo "<form action='' method='post'>";
+                        echo "<td><button class='btn btn-danger' name='usun' value='$row[0]'>Usuń</button></td>";
+                        echo "<td><button class='btn btn-warning' name='edytuj' value=''>Edytuj</button></td>";
+                        echo "</form>";
+                        echo "</tr>";
+
+
+                        // INSERT INTO filmy VALUES (NULL, "Pan Tadeusz", "A.Wajda", 207);
+                        // INSERT INTO filmy VALUES (NULL, "Matrix", "A.Wachowski", 196);
+                        // INSERT INTO filmy VALUES (NULL, "Shrek", "A.Adamson", 150);
+
+
+
+                    }
+                    echo '</table>';
+
+                    echo "<form action='' method='post'>";
+                    echo "<input type='text' name='tytul' placeholder='Tytuł'>";
+                    echo "<input type='text' name='rezyser' placeholder='Reżyser'>";
+                    echo "<input type='text' name='dlugosc' placeholder='Długość'>";
+                    echo "<button class='btn btn-success' name='dodaj' value=''>Dodaj</button>";
+                    echo "</form>";
+
+
+                    if (isset($_POST['usun'])) {
+                        $id = $_POST['usun'];
+                        $mysqli->query("DELETE FROM filmy WHERE id=$id");
+                        header("Location: index.php");
+                    }
+
+                    if (isset($_POST['dodaj'])) {
+                        $tytul = $_POST['tytul'];
+                        $rezyser = $_POST['rezyser'];
+                        $dlugosc = $_POST['dlugosc'];
+                        $mysqli->query("INSERT INTO filmy VALUES (NULL, '$tytul', '$rezyser', $dlugosc)");
+                        header("Location: index.php");
+                    }
+
+                    if (isset($_POST['edytuj'])) {
+                        $id = $_POST['edytuj'];
+                        echo "<form action='' method='post'>";
+                        echo "<input type='text' name='tytul2' placeholder='Tytuł'>";
+                        echo "<input type='text' name='rezyser2' placeholder='Reżyser'>";
+                        echo "<input type='text' name='dlugosc2' placeholder='Długość'>";
+                        echo "<button class='btn btn-success' name='dodaj2' value=''>Dodaj</button>";
+                        echo "</form>";
+
+                        if (isset($_POST['dodaj2'])) {
+                            $tytul = $_POST['tytul2'];
+                            $rezyser = $_POST['rezyser2'];
+                            $dlugosc = $_POST['dlugosc2'];
+                            $mysqli->query("UPDATE filmy SET tytul='$tytul', rezyser='$rezyser', dlugosc=$dlugosc WHERE id=$id");
+                            header("Location: index.php");
+                        }
+                    }
+
+
+
+
+                    ?>
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
 
