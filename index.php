@@ -1419,3 +1419,21 @@ if (!isset($_SESSION['count'])) {
 </body>
 
 </html>
+
+$polaczenie = mysqli_connect("localhost", "test", "test")
+    or die("Brak połączenia z serwerem MySQL");
+mysqli_select_db($polaczenie, "baza_filmow")
+    or die("Błąd wyboru bazy danych");
+$zapytanie = "SELECT * FROM filmy";
+$wynik = mysqli_query($polaczenie, $zapytanie)
+    or die("Wystąpiły problemy przy zapisywaniu danych");
+while ($wiersz_danych = mysqli_fetch_row($wynik)) {
+    for ($i = 0; $i < count($wiersz_danych); $i++) {
+        echo "<td>$wiersz_danych[$i]</td>";
+    }
+    echo "</tr>";
+}
+mysqli_close($polaczenie);
+
+
+
