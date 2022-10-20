@@ -1420,20 +1420,90 @@ if (!isset($_SESSION['count'])) {
 
 </html>
 
+<?php
 $polaczenie = mysqli_connect("localhost", "test", "test")
     or die("Brak połączenia z serwerem MySQL");
 mysqli_select_db($polaczenie, "baza_filmow")
     or die("Błąd wyboru bazy danych");
-$zapytanie = "SELECT * FROM filmy";
-$wynik = mysqli_query($polaczenie, $zapytanie)
-    or die("Wystąpiły problemy przy zapisywaniu danych");
-while ($wiersz_danych = mysqli_fetch_row($wynik)) {
-    for ($i = 0; $i < count($wiersz_danych); $i++) {
-        echo "<td>$wiersz_danych[$i]</td>";
-    }
-    echo "</tr>";
-}
-mysqli_close($polaczenie);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <style>
+        body {
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container justify-content-center">
+        <h1 class="display-4 text-center">Debate On Euthanasia</h1>
+        <div class="row">
+            <table class="table ">
+                <tbody class="test">
+                    <?php
+                    $zapytanie = "SELECT * FROM filmy";
+                    $wynik = mysqli_query($polaczenie, $zapytanie)
+                        or die("Wystąpiły problemy przy zapisywaniu danych");
+                    while ($wiersz_danych = mysqli_fetch_row($wynik)) {
+                        for ($i = 0; $i < count($wiersz_danych); $i++) {
+                            echo "<td>$wiersz_danych[$i]</td>";
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <?php
+                $zapytanie = "SELECT rezyser FROM filmy";
+                $wynik = mysqli_query($polaczenie, $zapytanie)
+                    or die("Wystąpiły problemy przy zapisywaniu danych");
+                while ($wiersz_danych = mysqli_fetch_row($wynik)) {
+                    for ($i = 0; $i < count($wiersz_danych); $i++) {
+                        echo "<li>$wiersz_danych[$i]</li>";
+                    }
+                }
+                ?>
+            </div>
+            <div class="col">
+                <?php
+                $zapytanie = "SELECT tytul FROM filmy";
+                $wynik = mysqli_query($polaczenie, $zapytanie)
+                    or die("Wystąpiły problemy przy zapisywaniu danych");
+                echo "<ol>";
+                while ($wiersz_danych = mysqli_fetch_row($wynik)) {
+                    for ($i = 0; $i < count($wiersz_danych); $i++) {
+                        echo "<li>$wiersz_danych[$i]</li>";
+                    }
+                }
+                echo "</ol>";
+                mysqli_close($polaczenie);
+                ?>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
 
 
 
