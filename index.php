@@ -1634,3 +1634,206 @@ mysqli_select_db($polaczenie, "baza_filmow")
 
 </html>
 
+
+
+
+<!-- TABLICE I SORTOWANIA -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <?php
+    // ZADANIE 1
+    function randomArray($n)
+    {
+        $arr = [];
+        if ($n > 100) {
+            echo "Podaj liczbę mniejszą od 100";
+            array_push($arr, "Podaj liczbę mniejszą od 100");
+        } else {
+            for ($i = 0; $i < $n; $i++) {
+                $arr[$i] = rand(1, 100);
+
+                for ($j = 0; $j < $i; $j++) {
+                    if ($arr[$i] == $arr[$j]) {
+                        $i--;
+                        break;
+                    }
+                }
+                // co robi powyższy for
+                // dla każdego elementu tablicy sprawdza czy jest taki sam jak poprzedni
+                // jeśli tak to cofa się o jeden element i generuje nową liczbę
+            }
+        }
+
+        return $arr;
+    }
+
+    $arr = randomArray(100);
+    echo "ZADANIE 1 - Funkcja jako parametry ma przyjmować rozmiar tablicy i zwracać tablicę liczb wygenerowanych losowo z przedziału od 1 do 100. Liczby nie mogą się powtarzać.<br>";
+    echo "<pre>";
+    print_r($arr);
+    echo "</pre>";
+
+
+    // ZADANIE 2
+    function minArray($arr)
+    {
+        $min = $arr[0];
+        foreach ($arr as $value) {
+            if ($value < $min) {
+                $min = $value;
+            }
+        }
+
+        // for ($i = 0; $i < count($arr); $i++) {
+        //     if ($arr[$i] == $min) {
+        //         $arr[$i] = 0;
+        //     }
+        // }
+        return $min;
+    }
+
+    echo "<br>ZADANIE 2 - Funkcja jako parametr przyjmuje tablicę liczb i zwraca element minimalny.<br>";
+    echo minArray($arr);
+
+
+    // ZADANIE 3
+    function maxArray($arr)
+    {
+        $max = $arr[0];
+        foreach ($arr as $value) {
+            if ($value > $max) {
+                $max = $value;
+            }
+        }
+
+        // for ($i = 0; $i < count($arr); $i++) {
+        //     if ($arr[$i] == $max) {
+        //         $arr[$i] = 0;
+        //     }
+        // }
+
+        return $max;
+    }
+    echo "<br><br>ZADANIE 3 - Funkcja jako parametr przyjmuje tablicę liczb i zwraca element maksymalny.<br>";
+    echo maxArray($arr);
+
+
+    // ZADANIE 4
+    function average($arr)
+    {
+        $sum = 0;
+        foreach ($arr as $value) {
+            $sum += $value;
+        }
+
+        // for ($i = 0; $i < count($arr); $i++) {
+        //     $sum += $arr[$i];
+        // }
+
+        return $sum / count($arr);
+    }
+
+    echo "<br><br>ZADANIE 4 - Funkcja jako parametr przyjmuje tablicę liczb i zwraca średnią wszystkich elementów.<br>";
+    echo average($arr);
+
+
+    // ZADANIE 5
+    function sortWithValue($arr, $value)
+    {
+        for ($i = 0; $i < count($arr); $i++) {
+            for ($j = 0; $j < count($arr) - 1; $j++) {
+                if ($arr[$j] > $arr[$j + 1]) {
+                    $temp = $arr[$j];
+                    $arr[$j] = $arr[$j + 1];
+                    $arr[$j + 1] = $temp;
+                }
+            }
+        }
+        if ($value == "asc") {
+            return $arr;
+        } else if ($value == "desc") {
+            for ($i = 0; $i < count($arr) / 2; $i++) {
+                $temp = $arr[$i];
+                $arr[$i] = $arr[count($arr) - 1 - $i];
+                $arr[count($arr) - 1 - $i] = $temp;
+            }
+            return $arr;
+        }
+    }
+    echo "<br><br>ZADANIE 5 - Funkcja jako parametry przyjmuje tablicę liczb oraz sposób sortowania i zwraca tą samą tablicę, ale z elementami posortowanymi w zależności od wartości parametru.";
+    echo "<br>ZADANIE 5.1<br>";
+    echo "<pre>";
+    print_r(sortWithValue($arr, "asc"));
+    echo "</pre>";
+
+    echo "<br>ZADANIE 5.2<br>";
+    echo "<pre>";
+    print_r(sortWithValue($arr, "desc"));
+    echo "</pre>";
+
+
+    // ZADANIE 6
+    function twoToOne($arr1, $arr2)
+    {
+        $arr = [];
+        for ($i = 0; $i < count($arr1); $i++) {
+            $arr[$i] = $arr1[$i];
+        }
+        // jeśli się powtarzają to nie dodaje
+        for ($i = 0; $i < count($arr2); $i++) {
+            for ($j = 0; $j < count($arr1); $j++) {
+                if ($arr2[$i] == $arr1[$j]) {
+                    break;
+                }
+                if ($j == count($arr1) - 1) {
+                    array_push($arr, $arr2[$i]);
+                }
+            }
+        }
+        return $arr;
+    }
+
+
+    $arr1 = randomArray(10);
+    $arr2 = randomArray(10);
+
+    echo "<br>ZADANIE 6 - Funkcja jako parametry przyjmuje dwie tablice i zwraca tablicę powstałą przez połączenie tych dwóch tablic. Należy pamiętać że elementy w tablicy wynikowej nie mogą się powtarzać.<br>";
+    echo "<pre>";
+    print_r(twoToOne($arr1, $arr2));
+    echo "</pre>";
+
+
+    // ZADANIE 7
+    function intersectionArray($arr1, $arr2)
+    {
+        $arr = [];
+        for ($i = 0; $i < count($arr1); $i++) {
+            for ($j = 0; $j < count($arr2); $j++) {
+                if ($arr1[$i] == $arr2[$j]) {
+                    array_push($arr, $arr1[$i]);
+                }
+            }
+        }
+        return $arr;
+    }
+
+    echo "<br>ZADANIE 7 - Funkcja jako parametry przyjmuje dwie tablice i jako wynik zwraca tablicę, w której zawarta jest część wspólna obu tablic (elementy, które znajdują się w obu tablicach).<br>";
+    echo "<pre>";
+    print_r(intersectionArray($arr1, $arr2));
+    echo "</pre>";
+    ?>
+</body>
+
+</html>
+
+
+
