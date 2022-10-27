@@ -1961,3 +1961,176 @@ mysqli_select_db($polaczenie, "baza_filmow")
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ZADANIE -->
+<!-- https://mansfeld.pl/programowanie/kurs-pdo-bazy-danych-php/ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <?php
+    // CREATE DATABASE firma;
+    // use firma;
+
+    // CREATE TABLE `customer` (
+    //   `customer_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    //   `title` char(4) DEFAULT NULL,
+    //   `fname` varchar(32) DEFAULT NULL,
+    //   `lname` varchar(32) NOT NULL,
+    //   `addressline` varchar(64) DEFAULT NULL,
+    //   `town` varchar(32) DEFAULT NULL,
+    //   `zipcode` char(10) NOT NULL,
+    //   `phone` varchar(16) DEFAULT NULL
+    //   ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+    //   INSERT INTO `customer` (`customer_id`,`title`,`fname`,`lname`,`addressline`,`town`,`zipcode`,`phone`) VALUES
+    //  (1,'Miss','Jenny','Stones','27 Rowan Avenue','Hightown','NT2 1AQ','023 9876'),
+    //  (2,'Mr','Andrew','Stones','52 The Willows','Lowtown','LT5 7RA','876 3527'),
+    //  (3,'Miss','Alex','Matthew','4 The Street','Nicetown','NT2 2TX','010 4567'),
+    //  (4,'Mr','Adrian','Matthew','The Barn','Yuleville','YV67 2WR','487 3871'),
+    //  (5,'Mr','Simon','Cozens','7 Shady Lane','Oahenham','OA3 6QW','514 5926'),
+    //  (6,'Mr','Neil','Matthew','5 Pasture Lane','Nicetown','NT3 7RT','267 1232'),
+    //  (7,'Mr','Richard','Stones','34 Holly Way','Bingham','BG4 2WE','342 5982'),
+    //  (8,'Mrs','Anna','Stones','34 Holly Way','Bingham','BG4 2WE','342 5982'),
+    //  (9,'Mrs','Christine','Hickman','36 Queen Street','Histon','HT3 5EM','342 5432'),
+    //  (10,'Mr','Mike','Howard','86 Dysart Street','Tibsville','TB3 7FG','505 5482'),
+    //  (11,'Mr','Dave','Jones','54 Vale Rise','Bingham','BG3 8GD','342 8264'),
+    //  (12,'Mr','Richard','Neill','42 Thached way','Winersby','WB3 6GQ','505 6482'),
+    //  (13,'Mrs','Laura','Hendy','73 Margeritta Way','Oxbridge','OX2 3HX','821 2335'),
+    //  (14,'Mr','Bill','Neill','2 Beamer Street','Welltown','WT3 8GM','435 1234'),
+    //  (15,'Mr','David','Hudson','4  The Square','Milltown','MT2 6RT','961 4526');
+
+
+    try {
+        $dbhost = "localhost";
+        $dbname = "firma";
+        $dbuser = "root";
+        $dbpassword = "";
+        $db_conn = new PDO("mysql:host=" . $dbhost . ";dbname=" . $dbname, $dbuser, $dbpassword);
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+
+
+    $sql = "SELECT * FROM customer";
+    $stmt = $db_conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    ?>
+
+    <!-- tabela bootstrap -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Title</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Address Line</th>
+                            <th>Town</th>
+                            <th>Zip Code</th>
+                            <th>Phone</th>
+                            <th>Edytuj</th>
+                            <th>Usuń</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        foreach ($result as $row) {
+                            echo "<tr>";
+                            echo "<td>" . $row['customer_id'] . "</td>";
+                            echo "<td>" . $row['title'] . "</td>";
+                            echo "<td>" . $row['fname'] . "</td>";
+                            echo "<td>" . $row['lname'] . "</td>";
+                            echo "<td>" . $row['addressline'] . "</td>";
+                            echo "<td>" . $row['town'] . "</td>";
+                            echo "<td>" . $row['zipcode'] . "</td>";
+                            echo "<td>" . $row['phone'] . "</td>";
+                            // buttom edit yelow
+                            echo "<td><a href='edit.php?customer_id=" . $row['customer_id'] . "' class='btn btn-warning'>Edytuj</a></td>";
+                            // buttom delete
+                            echo "<td><a href='delete.php?customer_id=" . $row['customer_id'] . "' class='btn btn-danger'>Usuń</a></td>";
+                        }
+                        ?>
+
+                        <!-- <?php foreach ($result as $row) : ?>
+                            <tr>
+                                <td><?php echo $row['customer_id'] ?></td>
+                                <td><?php echo $row['title'] ?></td>
+                                <td><?php echo $row['fname'] ?></td>
+                                <td><?php echo $row['lname'] ?></td>
+                                <td><?php echo $row['addressline'] ?></td>
+                                <td><?php echo $row['town'] ?></td>
+                                <td><?php echo $row['zipcode'] ?></td>
+                                <td><?php echo $row['phone'] ?></td>
+                            </tr>
+                        <?php endforeach; ?> -->
+                    </tbody>
+            </div>
+        </div>
+
+
+        <?php
+        // usuwanie
+        class Delete
+        {
+            public function delete($id)
+            {
+                $dbhost = "localhost";
+                $dbname = "firma";
+                $dbuser = "root";
+                $dbpassword = "";
+                $db_conn = new PDO("mysql:host=" . $dbhost . ";dbname=" . $dbname, $dbuser, $dbpassword);
+                $sql = "DELETE FROM customer WHERE customer_id = :id";
+                $stmt = $db_conn->prepare($sql);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+                header("Location: index.php");
+            }
+        }
+
+        if (isset($_GET['customer_id'])) {
+            $id = $_GET['customer_id'];
+            $delete = new Delete();
+            $delete->delete($id);
+        }
+
+
+
+        ?>
+
+
+
+
+</body>
+
+</html>
+
