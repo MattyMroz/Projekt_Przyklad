@@ -1837,3 +1837,127 @@ mysqli_select_db($polaczenie, "baza_filmow")
 
 
 
+
+
+
+<!-- Klasy -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <?php
+    class Osoba
+    {
+        public $imie;
+        public $nazwisko;
+        public $rok_urodzenia;
+
+        public function __construct($imie, $nazwisko, $rok_urodzenia)
+        {
+            $this->imie = $imie;
+            $this->nazwisko = $nazwisko;
+            $this->rok_urodzenia = $rok_urodzenia;
+        }
+
+        public function wiek()
+        {
+            return date('Y') - $this->rok_urodzenia;
+        }
+
+        public function __toString()
+        {
+            return $this->imie . ' ' . $this->nazwisko . ' ' . $this->rok_urodzenia;
+        }
+
+        // czjest pełnoletnia
+        public function pelnoletnia()
+        {
+            return $this->wiek() >= 18;
+        }
+
+        // destruktor
+        public function __destruct()
+        {
+            echo 'Obiekt został usunięty';
+        }
+    }
+
+    // czy osoba jest pełnolentia
+    $osoba = new Osoba('Jan', 'Kowalski', 1990);
+    echo $osoba->pelnoletnia() ? 'Osoba jest pełnoletnia' : 'Osoba nie jest pełnoletnia';
+
+    echo '<br>';
+    echo '<pre>';
+    print_r($osoba);
+    echo '</pre>';
+
+    echo $osoba->__toString();
+    echo '<br>';
+    echo $osoba->wiek();
+
+    // podlksa dziecko
+    class Dziecko extends Osoba
+    {
+        public $opiekun;
+
+        public function __construct($imie, $nazwisko, $rok_urodzenia, $opiekun)
+        {
+            parent::__construct($imie, $nazwisko, $rok_urodzenia);
+            $this->opiekun = $opiekun;
+        }
+
+        public function __toString()
+        {
+            return parent::__toString() . ' ' . $this->opiekun;
+        }
+    }
+
+    $dziecko = new Dziecko('Jan', 'Kowalski', 2000, 'Janina Kowalska');
+    echo '<br>';
+    echo '<pre>';
+    print_r($dziecko);
+    echo '</pre>';
+
+    echo $dziecko->__toString();
+    echo '<br>';
+    echo $dziecko->wiek();
+    echo '<br>';
+    echo $dziecko->pelnoletnia() ? 'Osoba jest pełnoletnia' : 'Osoba nie jest pełnoletnia';
+    echo '<br>';
+    echo $dziecko->opiekun;
+
+    // jeśli jest pełnoletnia to usuń opiekuna
+    // if ($dziecko->pelnoletnia()) {
+    //     unset($dziecko->opiekun);
+    // }
+
+    echo '<br>';
+    echo '<pre>';
+    print_r($dziecko);
+    echo '</pre>';
+
+
+
+
+    ?>
+
+
+
+
+</body>
+
+</html>
