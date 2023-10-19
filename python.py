@@ -1,3 +1,31 @@
+import math
+x = 10
+print("Hello %d" % x)
+print("Hello %f" % x)
+print("Hello %o" % x)
+print("Hello %x" % x)
+print("Hello %e" % x)
+print("Hello %s" % x)
+
+print("Hello", x)
+print("Hello " , int(x))
+print("Hello " , float(x))
+print("Hello " , str(x))
+print("Hello " , bin(x)[2:])
+print("Hello " , oct(x)[2:])
+print("Hello " , hex(x)[2:])
+print("Hello " , chr(x))
+print("Hello " , ord('a'))
+# print("Hello %e" % x)
+# exponential
+print("Hello math" , math.exp(x))
+print("Hello " , type(x))
+print("Hello " , eval('x+2'))
+print("Hello " , repr(x))
+print("Hello " , bool(x))
+print("Hello " , complex(x))
+print("Hello " , complex(x,2))
+
 # łączenie 2 linii w 1 linię i zapis do pliku
 def main():
     with open('1.1.txt', 'r') as f:
