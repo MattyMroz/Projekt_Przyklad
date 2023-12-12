@@ -1,0 +1,143 @@
+{
+    "TRANSLATORS": [
+        {
+            "name": "Google Translate"
+        },
+        {
+            "name": "DeepL API"
+        },
+        {
+            "name": "DeepL Desktop Free"
+        },
+        {
+            "name": "ChatGPT",
+            "suboptions": [
+                {
+                    "name": "ChatGPT + Google Translate"
+                },
+                {
+                    "name": "ChatGPT + DeepL API"
+                },
+                {
+                    "name": "ChatGPT + DeepL Desktop"
+                },
+                {
+                    "name": "ChatGPT + Google Translate + DeepL API"
+                },
+                {
+                    "name": "ChatGPT + Google Translate + DeepL Desktop"
+                }
+            ]
+        },
+        {
+            "name": "Edge AI",
+            "suboptions": [
+                {
+                    "name": "Edge AI + Google Translate"
+                },
+                {
+                    "name": "Edge AI + DeepL API"
+                },
+                {
+                    "name": "Edge AI + DeepL Desktop"
+                },
+                {
+                    "name": "Edge AI + Google Translate + DeepL API"
+                },
+                {
+                    "name": "Edge AI + Google Translate + DeepL Desktop"
+                }
+            ]
+        }
+    ],
+    "TRANSLATION OPTIONS": [
+        {
+            "name": "Ilo\u015b\u0107 t\u0142umaczonych linii na raz:",
+            "suboptions": [
+                {
+                    "name": "30"
+                },
+                {
+                    "name": "40"
+                },
+                {
+                    "name": "50"
+                },
+                {
+                    "name": "75"
+                },
+                {
+                    "name": "100"
+                }
+            ]
+        },
+        {
+            "name": "Czy t\u0142umaczy\u0107 rozdzielone napisy?",
+            "suboptions": [
+                {
+                    "name": true
+                },
+                {
+                    "name": false
+                }
+            ]
+        }
+    ],
+    "VOICE ACTORS": [
+        {
+            "name": "TTS - Zosia - Harpo",
+            "description": {
+                "speed": "Szybko\u015b\u0107 g\u0142osu od 0 do ... (s\u0142owa na minut\u0119), domy\u015blna: 200",
+                "volume": "G\u0142o\u015bno\u015b\u0107 g\u0142osu od 0 do 1, domy\u015blna: 0.7"
+            },
+            "default_options": {
+                "default_voice_speed": 200,
+                "default_voice_volume": 0.7
+            }
+        },
+        {
+            "name": "TTS - Agnieszka - Ivona",
+            "description": {
+                "speed": "Szybko\u015b\u0107 g\u0142osu od -10 do 10, domy\u015blna: 5",
+                "volume": "G\u0142o\u015bno\u015b\u0107 g\u0142osu od 0 do 100, domy\u015blna: 65"
+            },
+            "default_options": {
+                "default_voice_speed": 5,
+                "default_voice_volume": 65
+            }
+        },
+        {
+            "name": "TTS - Zofia - Edge",
+            "description": {
+                "speed": "Szybko\u015b\u0107 g\u0142osu (+/- ? %) od -100% do +100%, domy\u015blna: +40%",
+                "volume": "G\u0142o\u015bno\u015b\u0107 g\u0142osu (+/- ? %) od -100% do +100%, domy\u015blna: +0%"
+            },
+            "default_options": {
+                "default_voice_speed": "+40%",
+                "default_voice_volume": "+0%"
+            }
+        },
+        {
+            "name": "TTS - Marek - Edge",
+            "description": {
+                "speed": "Szybko\u015b\u0107 g\u0142osu (+/- ? %) od -100% do +100%, domy\u015blna: +40%",
+                "volume": "G\u0142o\u015bno\u015b\u0107 g\u0142osu (+/- ? %) od -100% do +100%, domy\u015blna: +0%"
+            },
+            "default_options": {
+                "default_voice_speed": "+40%",
+                "default_voice_volume": "+0%"
+            }
+        }
+    ],
+    "OUTPUT": [
+        {
+            "name": "Ogl\u0105dam w MM_AVH_Players (wynik: napisy i audio)"
+        },
+        {
+            "name": "Scal do mkv"
+        },
+        {
+            "name": "Wypal do mp4"
+        }
+    ]
+}

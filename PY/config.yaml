@@ -1,0 +1,68 @@
+OUTPUT:
+- name: "Ogl\u0105dam w MM_AVH_Players (wynik: napisy i audio)"
+- name: Scal do mkv
+- name: Wypal do mp4
+TRANSLATION OPTIONS:
+- name: "Ilo\u015B\u0107 t\u0142umaczonych linii na raz:"
+  suboptions:
+  - name: '30'
+  - name: '40'
+  - name: '50'
+  - name: '75'
+  - name: '100'
+- name: "Czy t\u0142umaczy\u0107 rozdzielone napisy?"
+  suboptions:
+  - name: true
+  - name: false
+TRANSLATORS:
+- name: Google Translate
+- name: DeepL API
+- name: DeepL Desktop Free
+- name: ChatGPT
+  suboptions:
+  - name: ChatGPT + Google Translate
+  - name: ChatGPT + DeepL API
+  - name: ChatGPT + DeepL Desktop
+  - name: ChatGPT + Google Translate + DeepL API
+  - name: ChatGPT + Google Translate + DeepL Desktop
+- name: Edge AI
+  suboptions:
+  - name: Edge AI + Google Translate
+  - name: Edge AI + DeepL API
+  - name: Edge AI + DeepL Desktop
+  - name: Edge AI + Google Translate + DeepL API
+  - name: Edge AI + Google Translate + DeepL Desktop
+VOICE ACTORS:
+- default_options:
+    default_voice_speed: 200
+    default_voice_volume: 0.7
+  description:
+    speed: "Szybko\u015B\u0107 g\u0142osu od 0 do ... (s\u0142owa na minut\u0119),\
+      \ domy\u015Blna: 200"
+    volume: "G\u0142o\u015Bno\u015B\u0107 g\u0142osu od 0 do 1, domy\u015Blna: 0.7"
+  name: TTS - Zosia - Harpo
+- default_options:
+    default_voice_speed: 5
+    default_voice_volume: 65
+  description:
+    speed: "Szybko\u015B\u0107 g\u0142osu od -10 do 10, domy\u015Blna: 5"
+    volume: "G\u0142o\u015Bno\u015B\u0107 g\u0142osu od 0 do 100, domy\u015Blna: 65"
+  name: TTS - Agnieszka - Ivona
+- default_options:
+    default_voice_speed: +40%
+    default_voice_volume: +0%
+  description:
+    speed: "Szybko\u015B\u0107 g\u0142osu (+/- ? %) od -100% do +100%, domy\u015B\
+      lna: +40%"
+    volume: "G\u0142o\u015Bno\u015B\u0107 g\u0142osu (+/- ? %) od -100% do +100%,\
+      \ domy\u015Blna: +0%"
+  name: TTS - Zofia - Edge
+- default_options:
+    default_voice_speed: +40%
+    default_voice_volume: +0%
+  description:
+    speed: "Szybko\u015B\u0107 g\u0142osu (+/- ? %) od -100% do +100%, domy\u015B\
+      lna: +40%"
+    volume: "G\u0142o\u015Bno\u015B\u0107 g\u0142osu (+/- ? %) od -100% do +100%,\
+      \ domy\u015Blna: +0%"
+  name: TTS - Marek - Edge
