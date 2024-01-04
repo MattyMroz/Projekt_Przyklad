@@ -1,0 +1,24 @@
+def outside():
+        msg = “Outside!”
+        def inside():
+            msg = “Inside!”
+            print(msg)
+        inside()
+        print(msg)
+
+def outside():
+        msg = “Outside!”
+        def inside():
+            nonlocal msg
+            msg = “Inside!”
+            print(msg)
+        inside()
+        print(msg)
+
+ def outside():
+        d = {“outside”: 1}
+        def inside():
+            d[“inside”] = 2
+            print(d)
+        inside()
+        print(d)
